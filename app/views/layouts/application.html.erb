@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Asap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Noto+Sans" rel="stylesheet">
+    </head>
+
+  <body>
+    <%= render 'layouts/navigation' %>
+            <!--Notifications-->
+    <%= render 'shared/message' %>
+
+  <%# Modal devise %>
+    <% unless user_signed_in? %>
+      <%= render partial: 'users/registrations/new' %>
+      <%= render partial: 'users/sessions/new' %>
+    <% end %>
+    <% unless editor_signed_in? %>
+      <%= render partial: 'editors/registrations/new' %>
+      <%= render partial: 'editors/sessions/new' %>
+    <% end %>
+
+    <div class="container">
+    <%= yield %>
+    </div>
+  </body>
+
+<%# Pour rouvrir le modal si mauvais mot de passse %>
+<% if flash[:logInModal] %>
+<script>
+$('#logInModal').modal('show');
+</script>
+<% end %>
+<% if flash[:loginEditorModal] %>
+<script>
+$('#loginEditorModal').modal('show');
+</script>
+<% end %>
+
+  <script>
+  if (window.location.href.indexOf("/softwaress/") > -1) {
+    alert("found it");
+}
+  </script>
+
+</html>

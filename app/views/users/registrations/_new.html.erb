@@ -1,0 +1,181 @@
+<style>
+.body1 {
+    width: 50% !important;
+    height: 100% !important;
+    float: left;
+    background-color: #f5f7fb;
+    padding:2rem;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.body2 {
+    width: 50% !important;
+    height: 100% !important;
+    float: left;
+}
+button.close2.signup {
+  width:100%;
+  text-align: right;
+}
+
+.body2a {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.signuptitre {
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.modal-body.signup {
+  padding:0rem!important;
+  height: 530px;
+}
+
+ul i.fas.fa-check {
+  color: #5eba01;
+  margin-right: 10px;
+}
+
+.body2 i.fas.fa-times {
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.body1 ul.list-unstyled.leading-loose {
+  line-height: 32px !important;
+  text-align: left !important;
+  margin: 17px 0px 15px 20px !important;
+}
+
+.body1 li small {
+  font-size: 14px;
+}
+
+.body1 h4 {
+    letter-spacing: 0.15px !important;
+    line-height: 32px !important;
+    font-size: 20px !important;
+}
+
+.body1 img {
+  width:200px;
+  margin-left: 70px;
+  padding-bottom: 30px;
+}
+.signupbutton {
+    background: rgb(255, 255, 255);
+    box-shadow: none!important;
+    border: none;
+    color: #467fcf;
+    cursor: pointer;
+    padding: 0!important;
+}
+.signupbutton:hover {
+    text-decoration:underline;
+}
+
+<%# après cours %>
+.form-control.login {
+    margin-bottom: 10px!important;
+}
+
+button.googlelogin {
+    margin-right:0px!important;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+.form-footer {
+    margin-top: 1rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .body1 {
+    display:none!important;
+  }
+  .body2 {
+    width: 100%!important;
+    height: 100% !important;
+  }
+}
+</style>
+<div class="modal fade" id="signUpModal">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+              <div class="modal-body signup"> 
+              <div class="body1">
+              <img src="/assets/startup.svg" alt="startup application">
+                  <center><h4>Une façon simple de retrouver des applications pro !</h4><br>
+                  <span class="signuptitre">Créer un compte</span></center>
+               <ul class="list-unstyled leading-loose">
+                  <li><i class="fas fa-check"></i> <small>Accès aux différents avis</small></li>
+                  <li><i class="fas fa-check"></i> <small>Gardez en mémoire vos apps préférées</small></li>
+                  <li><i class="fas fa-check"></i> <small>Découvrez les fonctionnalités</small></li>
+               </ul>
+              </div> <%# body1  %>
+              <div class="body2">
+                        <button type="button" class="close2 signup" data-dismiss="modal"><i class="fas fa-times"></i></button>   
+              <div class="body2a">
+                        <center>
+                            <button class="facebooklogin"><i class="fab fa-facebook fa-2x"></i>Continuer avec Facebook</button>
+                            <br>
+                            <button class="googlelogin"><i class="fab fa-google fa-2x"></i>Continuer avec Google</button>
+                            <br>
+                            <%= link_to new_editor_registration_path do %>
+                                <div class="bg-orange-lightest border-orange text-orange-dark p-2 mt-3 .rounded-sm text-xs pointer" data-toggle="modal" data-target="#signUpModalEditor" data-dismiss="modal" role="alert">
+                                    <p>Pour référencer un logiciel, <strong>cliquez ici</strong></p>
+                                </div>
+                            <% end %>
+                        </center>
+                    <div class="contentor">
+                        <p class="or">OU</p>
+                    </div>
+                  <div class="card-title">Inscription par mail</div>
+                  <%= form_for(resource, as: resource_name,:html => { :id => "new_user_1"}, url: registration_path(resource_name)) do |f| %>
+                    <div class="form-group">
+                        <%= f.text_field :name, autocomplete: "prénom",id:"prenom_user", class:"form-control", :required => true %>
+                        <label class="form-control-placeholder" for="prenom_user">Prénom</label>
+                    </div>
+                    <div class="form-group">
+                        <%= f.text_field :fullname, autocomplete: "nom",id:"nom_user", class:"form-control", :required => true %>
+                        <label class="form-control-placeholder" for="nom_user">Nom</label>
+                    </div>
+                    <div class="form-group">
+                        <%= f.email_field :email, autocomplete: "email",id:"email_user", class:"form-control", :required => true %>
+                        <label class="form-control-placeholder" for="email_user">Adresse email</label>
+                    </div>
+                    <div class="form-group">
+                        <%= f.password_field :password, autocomplete: "new-password",id:"new-password_user", class:"form-control", :required => true %>
+                        <label class="form-control-placeholder" for="new-password_user">Mot de passe</label>
+                    </div>
+                    <div class="form-footer">
+                        <%= f.button "S'inscrire",class:"btn btn-primary btn-block",data:{disable_with: "<i class='fas fa-spinner fa-spin'></i>"} %>
+                    </div>
+                  <span id="helpBlock" class="help-block"></span>
+                  <% end %>
+                  
+
+                <div class="text-center text-muted">
+                    Déjà un compte ? 
+                        <button class="signupbutton" 
+                        data-toggle="modal" 
+                        data-target="#logInModal" 
+                        data-dismiss="modal">Connexion
+                        </button>
+                        <br>
+                </div>
+                </div><%#  body2a %>
+                </div><%#  body2 %>
+            </div> <%# modal-body signup %>
+        </div> <%# modal-content %>
+    </div> <%# modal-dialog modal-dialog-centered modal-lg %>
+</div> <%# modal fade %>
+
+
+<script>
+$("#insform").bind("ajax:error", function(evt, xhr, status, error) {
+                window.location.reload();
+        });
+        </script>

@@ -1,0 +1,176 @@
+<style>
+.body2 {
+    width: 50% !important;
+    height: 100% !important;
+    float: left;
+}
+button.close2.signup {
+  width:100%;
+  text-align: right;
+}
+
+.body2a {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.signuptitre {
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.modal-body.signup {
+  padding:0rem!important;
+  height: 530px;
+}
+
+ul i.fas.fa-check {
+  color: #5eba01;
+  margin-right: 10px;
+}
+
+.body2 i.fas.fa-times {
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.signupbutton {
+    background: rgb(255, 255, 255);
+    box-shadow: none!important;
+    border: none;
+    color: #467fcf;
+    cursor: pointer;
+    padding: 0!important;
+}
+.signupbutton:hover {
+    text-decoration:underline;
+}
+
+.facebooklogin.linkedin {
+    background-color:#0077b5;
+}
+<%# après cours %>
+.form-control.login {
+    margin-bottom: 10px!important;
+}
+
+.fa-linkedin.fa-2x {
+    position: relative;
+    top: 2px;
+}
+
+@media screen and (max-width: 1000px) {
+  .body2 {
+    width: 100%!important;
+    height: 100% !important;
+  }
+}
+
+img.editorlogin {
+    width:120px;
+}
+
+.body1 ul.list-unstyled.leading-loose.editor {
+    text-align: center!important;
+}
+
+.body1.editor img {
+    margin-left: 0px;
+    padding-bottom: 0px;
+}
+.modal-body.signup.editor {
+    height:640px;
+}
+.modal-body.signup.editor .form-footer{
+    margin-top: 1rem!important;
+}
+</style>
+<div class="modal fade" id="signUpModalEditor">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+              <div class="modal-body signup editor"> 
+              <div class="body1 editor">
+              <center><h4>Pourquoi nous rejoindre ?</h4>
+              <br>
+
+
+<div class="w-full md:w-1/4 p-4 text-center text-grey-lighter"><img src="/assets/startup.svg" alt="startup application" class="editorlogin"></div>
+<div class="w-full md:w-3/4 p-0 pt-1 pb-2 text-center text-grey-darker"><h2 class="text-base font-bold">Visibilité</h2>
+<div class="text-sm pb-2">Amélioration de votre visilité sur internet</div></div>
+<div class="w-full md:w-1/4 p-4 text-center text-grey-lighter"><img src="/assets/earnings.svg" alt="startup application" class="editorlogin"></div>
+<div class="w-full md:w-3/4 p-0 pt-1 pb-2 text-center text-grey-darker"><h2 class="text-base font-bold">Visibilité</h2>
+<div class="text-sm pb-2">Amélioration de votre visilité sur internet</div></div>
+<div class="w-full md:w-1/4 p-4 text-center text-grey-lighter"><img src="/assets/startup.svg" alt="startup application" class="editorlogin"></div>
+<div class="w-full md:w-3/4 p-0 pt-1 text-center text-grey-darker"><h2 class="text-base font-bold">Visibilité</h2>
+<div class="text-sm">Amélioration de votre visilité sur internet</div></div>
+  
+              </div> <%# body1  %>
+              <div class="body2">
+                        <button type="button" class="close2 signup" data-dismiss="modal"><i class="fas fa-times"></i></button>   
+              <div class="body2a">
+                        <center>
+                        <p class="text-xs pb-1">Inscription réservée aux éditeurs de logiciels</p>
+                            <button class="facebooklogin linkedin"><i class="fab fa-linkedin fa-2x"></i>Continuer avec Linkedin</button>
+                        </center>
+                    <div class="contentor">
+                        <p class="or">OU</p>
+                    </div>
+                  <div class="card-title">Inscription par mail</div>
+                  <%= form_for(resource_editor, as: resource_name_editor, :html => { :id => "new_editor_1"}, url: registration_path(resource_name_editor)) do |f| %>       
+                    <div class="form-group">
+                        <%= f.text_field :name, autocomplete:"prenom", id:"prenom", class:"form-control",:required => true %>
+                        <label class="form-control-placeholder" for="prenom" >Prénom</label>
+                    </div>
+                    <div class="form-group">
+                        <%= f.text_field :fullname, autocomplete: "nom",id:"nom", class:"form-control",:required => true %>
+                        <label class="form-control-placeholder" for="nom">Nom</label>
+                    </div>
+                    <div class="form-group">
+                        <%= f.email_field :email, autocomplete: "email",id:"email", class:"form-control",:required => true %>
+                        <label class="form-control-placeholder" for="email">Adresse email</label>
+                    </div>
+                    <div class="form-group">
+                        <%= f.text_field :entreprise, autocomplete: "entreprise", id:"entreprise",class:"form-control",:required => true %>
+                        <label class="form-control-placeholder" for="entreprise">Entreprise</label>
+                    </div>
+                    <div class="form-group">
+                        <%= f.text_field :job, autocomplete: "job",id:"job", class:"form-control",:required => true %>
+                        <label class="form-control-placeholder" for="job">Votre poste</label>
+                    </div>
+                    <div class="form-group">
+                        <%= f.text_field :website, autocomplete: "website",id:"website", class:"form-control",:required => true %>
+                        <label class="form-control-placeholder" for="website">Site internet</label>
+                    </div>
+                    <div class="form-group">
+                        <%= f.text_field :telephone, autocomplete: "telephone",id:"telephone", class:"form-control",:required => true %>
+                        <label class="form-control-placeholder" for="telephone">Téléphone</label>
+                    </div>
+                    <div class="form-group">
+                        <%= f.password_field :password, autocomplete: "new-password",id:"new-password", class:"form-control",:required => true %>
+                        <label class="form-control-placeholder" for="new-password">Mot de passe</label>
+                    </div>
+                    <div class="form-footer">
+                        <%= f.button "S'inscrire",class:"btn btn-primary btn-block",data:{disable_with: "<i class='fas fa-spinner fa-spin'></i>"} %>
+                    </div>
+                  <% end %>
+                </div><%#  body2a %>
+                </div><%#  body2 %>
+            </div> <%# modal-body signup %>
+        </div> <%# modal-content %>
+    </div> <%# modal-dialog modal-dialog-centered modal-lg %>
+</div> <%# modal fade %>
+
+
+<%# Notifications %>
+<% unless resource.errors.empty? %>
+ 
+ <script type="text/javascript">
+ 
+     <% resource.errors.full_messages.each do |msg| %>
+ 
+               toastr.error('<%= msg %>')
+ 
+     <% end %>
+ 
+ </script>
+ 
+ <% end %>

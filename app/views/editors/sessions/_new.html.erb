@@ -1,0 +1,249 @@
+<style>
+    .custom-control-label{
+    position:static;
+    }
+    .loginBtn.loginBtn--google {
+    padding-left: 55px;
+    padding-right: 25px;
+    }
+
+    .form-control.login {
+        position:relative;  
+        border-radius: 3px;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        padding: 4px 6px;
+        border: 1px solid #dbdbdb;
+        box-sizing: border-box;
+        background-color: #f8f9fa;
+        font-size: 14px;
+        letter-spacing: .3px;
+        background-color: #fafafa;
+        margin-bottom: 20px;
+    }
+
+.form-label.login {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  z-index: 10;
+  transition: transform 150ms ease-out, font-size 150ms ease-out;
+    color: #9aa0ac;
+    font-weight: 100;
+    padding-left: 8px;
+    cursor: auto;
+}
+
+.focused .form-label.login {
+  transform: translateY(-60%);
+  font-size: .75em;
+}
+
+.form-input {
+  position: relative;
+  padding: 10px 1px 1px 1px;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  box-shadow: 0;
+  background-color: #fafafa;
+}
+.form-input.filled {
+  box-shadow: 0 2px 0 0 lightgreen;
+}
+
+
+
+.close2 {
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    font-weight: 700;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+} 
+.close2:hover {
+    cursor: pointer;
+}
+.modal-header {
+    margin-left:auto;
+    border-bottom: 0px;
+    height: 10px;
+}
+.facebooklogin {
+    background-color: rgb(73, 96, 155);
+    width: 250px !important;
+    font-size: 15px !important;
+    color: rgb(255, 255, 255) !important;
+    cursor: pointer !important;
+    font-weight: 400 !important;
+    border-width: initial !important;
+    border-style: none !important;
+    border-color: initial !important;
+    border-image: initial !important;
+    border-radius: 3px !important;
+    padding-bottom: 7px;
+}
+
+.googlelogin {
+    background-color: rgb(63, 130, 248) !important;
+    width: 250px !important;
+    font-size: 15px !important;
+    color: rgb(255, 255, 255) !important;
+    cursor: pointer !important;
+    font-weight: 400 !important;
+    border-width: initial !important;
+    border-style: none !important;
+    border-color: initial !important;
+    border-image: initial !important;
+    border-radius: 3px !important;
+    padding-bottom: 7px;
+}
+.facebooklogin,.facebooklogin a, .googlelogin, .googlelogin a{
+    color:white;
+    text-decoration:none;
+}
+.fa-2x {
+    font-size: 1.3em;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.fa-facebook:before, .fa-google:before {
+    position: relative;
+    top: 2.3px;
+    right: 10px;
+}
+button.googlelogin{
+    margin-top: 10px;
+}
+button.googlelogin.session {
+    margin-right: 4px!important;
+}
+.fa-google:before {
+    right: 18px!important;
+}
+
+.contentor {
+  margin: 10px auto;
+  width: 300px;
+}
+
+.or {
+  position: relative;
+  text-align: center;
+  font-size: 16px;
+    color: #94989c;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.or:after {
+  position: absolute;
+  content: " ";
+  bottom: 10px;
+  right: 0;
+  left: 60%;
+  height: 1px;
+  background: #94989c;
+}
+
+.or:before {
+  position: absolute;
+  content: " ";
+  bottom: 10px;
+  right: 60%;
+  left: 0;
+  height: 1px;
+  background: #94989c;
+}
+.modal-body .header-brand2,.modal-body .header-brand3 {
+      font-size:1.8rem!important;
+    }
+
+.modal-dialog.modal-dialog-centered.login {
+  width:400px!important;
+}
+
+.signupbutton {
+    background: rgb(255, 255, 255);
+    box-shadow: none!important;
+    border: none;
+    color: #467fcf;
+    cursor: pointer;
+    padding: 0!important;
+}
+.signupbutton:hover {
+    text-decoration:underline;
+}
+
+.form-footer {
+    margin-top: 1rem;
+}
+</style>
+<div class="modal fade" id="loginEditorModal">
+      <div class="modal-dialog modal-dialog-centered login">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close2" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+              <div class="modal-body"> 
+                        <center>
+                        <p class="text-xs pb-1">Connexion réservée aux éditeurs de logiciels</p>
+                            <button class="facebooklogin linkedin"><i class="fab fa-linkedin fa-2x"></i>Continuer avec Linkedin</button>
+                        </center>
+                        </center>
+                    <div class="contentor">
+                        <p class="or">OU</p>
+                    </div>
+                           <center> 
+                            <%= link_to new_editor_registration_path do %>
+                                <div class="bg-orange-lightest border-orange text-orange-dark p-2 mt-3 .rounded-sm text-xs pointer" data-toggle="modal" data-target="#signUpModalEditor" data-dismiss="modal" role="alert">
+                                    <p>Pour s'inscrire et référencer un logiciel, <strong>cliquez ici</strong></p>
+                                </div>
+                            <% end %>
+                            </center><br>
+                    <div class="card-title">Connexion à votre compte</div>
+                    <%= form_for(resource_editor, as: resource_name_editor, remote: true, url: session_path(resource_name_editor)) do |f| %>
+                      <%= devise_error_messages! %>
+                        <div class="form-group">
+                            <%= f.email_field :email, class:"form-control", autocomplete: "email",id:"email_editor",:required => true %>
+                            <label class="form-control-placeholder" for="email_editor">Adresse email</label>
+                        </div>
+                        <div class="form-group">
+                            <%= f.password_field :password, autocomplete: "current-password",id:"current-password_editor", class:"form-control",:required => true %>
+                            <label class="form-control-placeholder" for="current-password_editor">Mot de passe</label>
+                        </div>
+                        <% if devise_mapping.rememberable? -%>
+                        <div class="form-group">
+                            <label class="custom-control custom-checkbox">
+                            <%= f.check_box :remember_me,class:"custom-control-input" %>
+                            <%= f.label :remember_me,class:"custom-control-label" %>
+                            </label>
+                        </div>
+                        <% end -%>
+                        <div class="form-footer">
+                            <%= f.button "Connexion", class: "btn btn-primary btn-block",data:{disable_with: "<i class='fas fa-spinner fa-spin'></i>"} %>
+                        </div>
+                    <% end %>
+                <br>
+                <div class="text-center text-muted">   
+
+                        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                        <%= link_to "Mot de passe oublié ?", new_password_path(resource_name_editor) %><br />
+                        <% end -%>
+
+                        <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+                        <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name_editor) %><br />
+                        <% end -%>
+
+                        <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+                        <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name_editor) %><br />
+                        <% end -%>
+
+                </div>
+              </div>
+            
+        </div>
+    </div>
+</div>

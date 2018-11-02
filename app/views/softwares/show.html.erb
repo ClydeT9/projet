@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+<% @software.photos.each do |photo| %>
+<%= image_tag photo.image.url(:standard), class: "card-img-top" %>
+<% end %>
+test
+<p>
+  <strong>Title:</strong>
+  <%= @software.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @software.description %>
+</p>
+
+<p>
+  <strong>Software url:</strong>
+  <%= @software.software_url %>
+</p>
+
+<p>
+  <strong>Software type:</strong>
+  <%= @software.software_type %>
+</p>
+
+<p>
+  <strong>Slogan:</strong>
+  <%= @software.slogan %>
+</p>
+
+<p>
+  <strong>Littledescription:</strong>
+  <%= @software.littledescription %>
+</p>
+
+<p>
+  <strong>Editor:</strong>
+  <%= @software.editeur %>
+</p>
+
+	  <% if @software.published? %>
+    <span class="label label-success">Published</span>
+  <% else %>
+    <span class="label label-default">Draft</span>
+  <% end %>
+
+<%= image_tag logo_url(@software) %>
+<%= get_video_iframe(@software.video_url) %>
+
+
+<%= link_to 'Edit', edit_software_path(@software) %> |
+<%= link_to 'Back', softwares_path %>
+

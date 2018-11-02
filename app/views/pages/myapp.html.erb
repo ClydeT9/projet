@@ -1,0 +1,58 @@
+<style>
+    h5 small{
+    color:#467fcf !important;
+    }
+table {
+  width: 100%;
+  table-layout: fixed;
+  line-height:5rem;
+}
+
+.hey1 {
+  width:20%;
+}
+.hey2{
+  width:35%;
+}
+.hey4a,.hey6a{
+  width:15%;
+}
+.hey5a {
+  width:10%;
+}
+</style>
+<div class="container">
+    <div class="page-header">
+        <h1 class="page-title">
+            Mes applications
+        </h1>
+    </div>
+    <div class="row">
+
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Application(s)</h3>
+                </div>
+              <% @softwares.each do |software| %>
+                <table class="table card-table table-vcenter">
+                        <tr>
+                            <td class="hey1">
+
+                            </td>
+                            <td class="hey2">
+                                   <td><%= software.title %></td>
+                            </td>
+                            
+                            <td class="hey5a"><strong><%= link_to "Aperçu", software_path(software),class:"btn btn-secondary btn-sm" %></strong></td>
+                            <td class="hey6a"><strong><%= link_to "Mettre à jour", edit_software_path(software),class:"btn btn-primary btn-sm" %></strong></td>
+                </table>
+                <% end %>
+
+                </div>  
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

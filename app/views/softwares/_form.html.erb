@@ -1,0 +1,184 @@
+<%= simple_form_for @software, html: {multipart: true,id:"formulaire"} do |f| %>
+<%= render 'shared/errors' %>
+    <div class="row form">
+        <div class="col-lg-9 form">
+            <form class="card">
+                <div class="card-body1">
+
+<div class="tabs flex mb-4">
+  <li class="tab-link current w-1/3 h-12 text-grey-darkest" data-tab="tab-1"><i class="fas fa-edit"></i> Détails</li>
+  <li class="tab-link middle w-1/3 h-12 text-grey-darkest" data-tab="tab-2"><i class="fas fa-bars"></i> Slogan</li>
+  <li class="tab-link w-1/3 h-12 text-grey-darkest" data-tab="tab-3"><i class="fas fa-images"></i> Images & Vidéo</li>
+</div>
+
+	<div id="tab-1" class="tab-content current">
+                            <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                    <div class="flex mb-4">
+                                    <%= f.text_field :title, id:"inputTitle",autocomplete: "title",class:"form-control col-sm-12 col-md-12", placeholder:"Nom du logiciel" %>
+                                    </div>
+                                    <div class="flex mb-4">
+                                    <%= f.text_field :software_url,id:"inputURL",autocomplete: "software_url",class:"form-control w-1/2 mr-1", placeholder:"Site internet" %>
+                                    <%= f.text_field :editeur, id:"inputEditeur",autocomplete: "editeur",class:"form-control w-1/2 ml-1", placeholder:"Éditeur" %>
+                                    </div>
+                                    <div class="flex mb-4">
+                                    <%= f.text_area :description,id:"inputDesc",maxlength:"300", rows:6,autocomplete: "description",class:"form-control col-sm-12 col-md-12", placeholder:"Description" %>
+                                    </div>
+                                </div>
+</div>
+  </div>
+
+	<div id="tab-2" class="tab-content">
+                              <div class="col-sm-12 col-md-12">
+                                <div class="form-group">
+                                <div class="flex mb-4">
+                                    <%= f.text_field :slogan,id:"inputSlogan",autocomplete: "slogan",class:"form-control", placeholder:"Slogan" %>
+                                </div>
+                                <div class="flex mb-4">
+                                <%= f.text_area :littledescription,id:"inputLittle",maxlength:"100", rows:3, autocomplete: "slogan",class:"form-control", placeholder:"Petite description" %>
+                                </div>
+                                <div class="flex mb-4">
+                                    <%= f.text_field :facebook,autocomplete: "facebook",class:"form-control w-1/3 mr-1", placeholder:"Facebook" %>
+                                    <%= f.text_field :linkedin, autocomplete: "linkedin",class:"form-control w-1/3", placeholder:"Linkedin" %>
+                                    <%= f.text_field :twitter, autocomplete: "twitter",class:"form-control w-1/3 ml-1", placeholder:"Twitter" %>
+                                </div>
+                               </div>
+                            </div>
+  </div>
+
+	<div id="tab-3" class="tab-content">
+            <div class="col-sm-12 col-md-12">
+            <div class="flex mb-4">
+                                <div class="form-group">
+                                <label class="form-label">Logo</label>
+                                    <div class="cadreavatar logo">
+                                    <%= image_tag logo_url(@software),id:"image" %>
+                                    
+                                    </div>
+                                  <label class="bg-grey-light hover:bg-grey cursor-pointer text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center">
+                                    <i class="fas fa-download"></i> <span class="telechargement">Choisir un logo</span>
+                                    <span style="display:none;">
+                                      <%= f.file_field :logo, id:"inputFiles" %>
+                                    </span>
+                                  </label>
+                                </div>
+            </div> 
+
+
+            <%= file_field_tag "images[]", type: :file, multiple: true %>
+
+<div id="photos"><%= render 'photos/list' %></div>
+
+
+<label for="youtube-id">Enter youtube video URL:</label>
+<input id="youtube-id" type="text" class="js-youtube-vid" placeholder="YSuo0j2xsj8">
+<div id="preview"></div>
+<%= f.text_field :video_url, id:"video_url" %>
+
+
+
+            </div>
+	</div><%# tab 3 %>
+
+                <div class="flex">
+                    <div class="card-footer text-right step">
+                  	<% if @software.published? %>
+                    <%= f.submit "Annuler la publication", class: "btn btn-secondary" %>
+                    <%= f.submit "Mettre à jour", class: "btn btn-primary" %>
+                    <% else %>
+                    <%= f.submit "Brouillon", class: "btn btn-secondary" %>
+                    <%= f.submit "Publier", class: "btn btn-primary",id:"publish" %>
+                    <% end %>
+                  </div>
+                </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+<% end %>
+
+<script>
+//logo
+document.getElementById("inputFiles").onchange = function () {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("image").src = e.target.result;
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+};
+</script>
+<script>
+// Tabs
+$(document).ready(function(){
+	
+	$('.tabs.flex li').click(function(){
+		var tab_id = $(this).attr('data-tab');
+
+		$('.tabs.flex li').removeClass('current');
+		$('.tab-content').removeClass('current');
+
+		$(this).addClass('current');
+		$("#"+tab_id).addClass('current');
+	})
+
+});
+</script>
+<script>
+// Bouton publish disabled
+$(document).ready(function (){
+    validate();
+    $('#inputTitle, #inputURL, #inputEditeur, #inputSlogan,#inputDesc, #inputLittle,#inputFiles').change(validate);
+});
+
+function validate(){
+    if ($('#inputTitle').val().length   >   0   &&
+        $('#inputURL').val().length  >   0   &&
+        $('#inputEditeur').val().length  >   0   &&
+        $('#inputDesc').val().length  >   50   &&
+        $('#inputLittle').val().length  >   0   &&
+        $('#inputFiles').val().length  >   0   &&
+        $('#inputSlogan').val().length    >   0) {
+        $("input#publish").prop("disabled", false);
+    }
+    else {
+        $("input#publish").prop("disabled", true);
+    }
+}
+</script>
+<script>
+// empeche d'envoyer le formulaire avec la touche enter
+$('#formulaire').on('keyup keypress', function(e) {
+  var keyCode = e.keyCode || e.which;
+  if (keyCode === 13) { 
+    e.preventDefault();
+    return false;
+  }
+});
+</script>
+
+<script>
+$('.js-youtube-vid').on('change', function (){
+
+        var newval = '',
+            $this = $(this);
+
+        if (newval = $this.val().match(/(\?|&)v=([^&#]+)/)) {
+
+            $this.val(newval.pop());
+
+        } else if (newval = $this.val().match(/(\.be\/)+([^\/]+)/)) {
+
+            $this.val(newval.pop());
+
+        } else if (newval = $this.val().match(/(\embed\/)+([^\/]+)/)) {
+
+            $this.val(newval.pop().replace('?rel=0',''));
+        }
+        $('#preview').html(newval);
+    });
+</script>

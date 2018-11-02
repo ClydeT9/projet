@@ -1,0 +1,155 @@
+<div class="nav-wrapper">    
+<div class="header">
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light">
+<%= link_to root_path do %>
+  <span class="navbar-brand"><span class="navbar-brand2">Farf</span><span class="navbar-brand3">app</span></span>
+<% end %>
+
+    <ul class="navbar-nav mr-auto">
+
+   <%#     
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+     %>
+
+    </ul>
+    <span class="navbar-text">
+    <% if user_signed_in? %>
+                    <div class="dropdown menu">
+                    <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                    <%= image_tag avatar_url(current_user), class: "avatar" %>
+                    <span class="nameheader">
+                    <%= current_user.name %> <%= current_user.fullname %>
+                    <small class="text-muted d-block mt-1"><%= current_user.email %></small>
+                    </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                        <%= link_to edit_user_registration_path do %>
+                        <span class="dropdown-item" href="#">
+                        <i class="far fa-user"></i> Mon profil
+                        </span>
+                        <% end %>
+                        <%= link_to new_software_path do %>
+                        <span class="dropdown-item" href="#">
+                        <i class="fas fa-comments"></i> Mes commentaires
+                        </span>
+                        <% end %>
+                        <%= link_to new_software_path do %>
+                        <span class="dropdown-item" href="#">
+                        <i class="far fa-heart"></i> Mes favoris
+                        </span>
+                        <% end %>
+                        <div class="dropdown-divider"></div>
+                        <%= link_to new_software_path do %>
+                        <span class="dropdown-item" href="#">
+                        <i class="far fa-question-circle"></i> Besoin d'aide ? 
+                        </span>
+                        <% end %>
+                        <%= link_to destroy_user_session_path, method: :delete do%>
+                        <span class="dropdown-item" href="#">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                        </span>
+                        <% end %>
+                    </div>
+                </div>
+    <% elsif editor_signed_in? %>
+        <div class="dropdown menu">
+                    <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                    <%= image_tag avatar_url(current_editor), class: "avatar" %>
+                    <span class="nameheader">
+                    <%= current_editor.name %> <%= current_editor.fullname %>
+                    <small class="text-muted d-block mt-1"><%= current_editor.email %></small>
+                    </span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                        <%= link_to edit_editor_registration_path do %>
+                        <span class="dropdown-item" href="#">
+                        <i class="far fa-user"></i> Mon profil
+                        </span>
+                        <% end %>
+                        <%= link_to new_software_path do %>
+                        <span class="dropdown-item" href="#">
+                        <i class="fas fa-plus"></i> Ajouter une app
+                        </span>
+                        <% end %>
+                        <%= link_to myapp_path do %>
+                        <span class="dropdown-item" href="#">
+                        <i class="fas fa-list-ol"></i> Mes applications
+                        </span>
+                        <% end %>
+                        <%= link_to new_software_path do %>
+                        <span class="dropdown-item" href="#">
+                        <i class="fas fa-chart-line"></i> Premium
+                        </span>
+                        <% end %>
+                        <%= link_to new_software_path do %>
+                        <span class="dropdown-item" href="#">
+                        <i class="far fa-heart"></i> Mes favoris
+                        </span>
+                        <% end %>
+                        <div class="dropdown-divider"></div>
+                        <%= link_to new_software_path do %>
+                        <span class="dropdown-item" href="#">
+                        <i class="far fa-question-circle"></i> Besoin d'aide ? 
+                        </span>
+                        <% end %>
+                        <%= link_to destroy_editor_session_path, method: :delete do%>
+                        <span class="dropdown-item" href="#">
+                        <i class="fas fa-sign-out-alt"></i> Déconnexion
+                        </span>
+                        <% end %>
+                    </div>
+                </div>
+    <% else %>
+       <a class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#signUpModal">Inscription</a>
+       <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#logInModal">Connexion</a>
+    <% end %>
+    </span>
+  
+</nav>
+</div></div><%# main et container %>
+</div><%# nav wrapper %>
+
+
+<script>
+// cache the element
+var $navBar = $('.header');
+
+// find original navigation bar position
+var navPos = $navBar.offset().top;
+
+// on scroll
+$(window).scroll(function() {
+
+    // get scroll position from top of the page
+    var scrollPos = $(this).scrollTop();
+
+    // check if scroll position is >= the nav position
+    if (scrollPos >= navPos) {
+        $navBar.addClass('fixed');
+    } else {
+        $navBar.removeClass('fixed');
+    }
+
+        if (scrollPos <= navPos) {
+        $navBar.removeClass('fixed');
+    } else {
+        $navBar.addClass('fixed');
+    }
+});
+</script>
