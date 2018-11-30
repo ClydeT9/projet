@@ -1,9 +1,25 @@
+<style>
+.dropdown.menu.categories {
+  display:none;
+}
+.header-brand2 {
+    font-size:25px;
+}
+@media only screen and (max-width: 800px){
+.dropdown.menu.categories {
+  display:inline-block;
+}
+.dropdown.menu.categories a.nav-link.pr-0.leading-none {
+        color: rgb(73, 80, 85);
+}
+}
+</style>
 <div class="nav-wrapper">    
 <div class="header">
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light">
 <%= link_to root_path do %>
-  <span class="navbar-brand"><span class="navbar-brand2">Farf</span><span class="navbar-brand3">app</span></span>
+  <span class="navbar-brand"><span class="navbar-brand2">une</span><span class="navbar-brand3">app</span></span>
 <% end %>
 
     <ul class="navbar-nav mr-auto">
@@ -29,7 +45,7 @@
 
     </ul>
     <span class="navbar-text">
-    <% if user_signed_in? %>
+<% if user_signed_in? %>
                     <div class="dropdown menu">
                     <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
                     <%= image_tag avatar_url(current_user), class: "avatar" %>
@@ -44,14 +60,29 @@
                         <i class="far fa-user"></i> Mon profil
                         </span>
                         <% end %>
-                        <%= link_to new_software_path do %>
+
+                        <% if current_user.role_editor? %>
+                            <%= link_to new_software_path do %>
+                            <span class="dropdown-item" href="#">
+                            <i class="fas fa-plus"></i> Ajouter une app
+                            </span>
+                            <% end %>
+
+                            <%= link_to myapp_path do %>
+                            <span class="dropdown-item" href="#">
+                            <i class="fas fa-list-ol"></i> Mes applications
+                            </span>
+                            <% end %>
+                        <% end %>
+
+                        <%= link_to user_path(current_user) do %>
                         <span class="dropdown-item" href="#">
-                        <i class="fas fa-comments"></i> Mes commentaires
+                        <i class="far fa-heart"></i> Mes favoris
                         </span>
                         <% end %>
                         <%= link_to new_software_path do %>
                         <span class="dropdown-item" href="#">
-                        <i class="far fa-heart"></i> Mes favoris
+                        <i class="fas fa-comments"></i> Mes commentaires
                         </span>
                         <% end %>
                         <div class="dropdown-divider"></div>
@@ -67,54 +98,6 @@
                         <% end %>
                     </div>
                 </div>
-    <% elsif editor_signed_in? %>
-        <div class="dropdown menu">
-                    <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                    <%= image_tag avatar_url(current_editor), class: "avatar" %>
-                    <span class="nameheader">
-                    <%= current_editor.name %> <%= current_editor.fullname %>
-                    <small class="text-muted d-block mt-1"><%= current_editor.email %></small>
-                    </span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                        <%= link_to edit_editor_registration_path do %>
-                        <span class="dropdown-item" href="#">
-                        <i class="far fa-user"></i> Mon profil
-                        </span>
-                        <% end %>
-                        <%= link_to new_software_path do %>
-                        <span class="dropdown-item" href="#">
-                        <i class="fas fa-plus"></i> Ajouter une app
-                        </span>
-                        <% end %>
-                        <%= link_to myapp_path do %>
-                        <span class="dropdown-item" href="#">
-                        <i class="fas fa-list-ol"></i> Mes applications
-                        </span>
-                        <% end %>
-                        <%= link_to new_software_path do %>
-                        <span class="dropdown-item" href="#">
-                        <i class="fas fa-chart-line"></i> Premium
-                        </span>
-                        <% end %>
-                        <%= link_to new_software_path do %>
-                        <span class="dropdown-item" href="#">
-                        <i class="far fa-heart"></i> Mes favoris
-                        </span>
-                        <% end %>
-                        <div class="dropdown-divider"></div>
-                        <%= link_to new_software_path do %>
-                        <span class="dropdown-item" href="#">
-                        <i class="far fa-question-circle"></i> Besoin d'aide ? 
-                        </span>
-                        <% end %>
-                        <%= link_to destroy_editor_session_path, method: :delete do%>
-                        <span class="dropdown-item" href="#">
-                        <i class="fas fa-sign-out-alt"></i> Déconnexion
-                        </span>
-                        <% end %>
-                    </div>
-                </div>
     <% else %>
        <a class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#signUpModal">Inscription</a>
        <a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#logInModal">Connexion</a>
@@ -124,6 +107,16 @@
 </nav>
 </div></div><%# main et container %>
 </div><%# nav wrapper %>
+
+
+<% if (!user_signed_in?) %>
+<div id="connexion">
+    <h4>Rechercher <span class="header-brand2"><a href="/">une</a><a href="/" style="color: #467fd0;">app</a></span>, qui améliorera votre quotidien professionnel</h4>
+    <h6>Une façon simple de retrouver des applications web qui vous <u>plaisent</u> et qui vous <u>conviennent</u> !</h6>
+    <button class="facebooklogin"><i class="fab fa-facebook fa-2x"></i><%= link_to "Continuer avec Facebook", root_path %></button>                  
+    <button class="googlelogin"><i class="fab fa-google fa-2x"></i><%= link_to "Continuer avec Google", root_path  %>
+</div>
+<% end %>
 
 
 <script>

@@ -1,53 +1,294 @@
-<p id="notice"><%= notice %></p>
-<% @software.photos.each do |photo| %>
-<%= image_tag photo.image.url(:standard), class: "card-img-top" %>
+<style>
+   .carousel-item img,.carousel-item.active,.carousel-item.active iframe{
+   width: 570px!important;
+   height: 305px!important;
+   }
+   div#carousel-thumb {
+   padding: 10px 0px 10px 10px;
+   background: #f5f7fb;
+   border: 1px solid #e0e5ec;
+   }
+   .carousel-indicators li {
+   background-color: #dee2e6;
+   height: 5px;
+   }
+   .carousel-indicators .active {
+   background-color: #b8c2cc;
+   }
+   img.card-img-top {
+   border-radius: 0px;
+   padding: 10px;
+   }
+   .photoseul {
+   background: #f5f7fb;
+   border: 1px solid #e0e5ec;
+   }
+   .carousel-control-prev-icon {
+   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#495057' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+   }
+   .carousel-control-next-icon {
+   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='#495057' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+   }
+   .show hr {
+   margin-top: .3rem;
+   margin-bottom: .7rem;
+   }
+   .link .fa-facebook:before {
+   top: 0px;
+   right:0px;
+   }
+   .link button.btn.btn-secondary.btn-sm {
+   color:#606f7b;
+   }
+
+<%#  %>
+   .bigshow {
+   display:none;
+   }
+   .bigshow2 {
+   display:block;
+   }
+   .littleshow2 {
+   display:none!important;
+   }
+   .bigshow2 div#carousel-thumb {
+   width: 550px;
+   margin: auto;
+   }
+   .bigshow.mt-4.overflow-hidden.bg-white.shadow.rounded.mx-auto.bigshow2 {
+   width:70%;
+   }
+   .bigshow .image_wrapper {
+   width:80px;
+   display:table-cell;
+   }
+   .bigshow .image_wrapper img {
+   border-radius:4px;
+   }
+   .bigshow_titre {
+   display:table-cell;
+   padding-left:20px!important;
+   width: 700px;
+   }
+   @media only screen and (max-width: 1000px){
+   .bigshow.mt-4.overflow-hidden.bg-white.shadow.rounded.mx-auto.bigshow2 {
+   width:100%!important;
+   }
+   }
+   .slide {
+    max-width: 600px;
+    margin: auto;
+   }
+   .containershow {
+    background: white;
+    margin: auto;
+    max-width:900px;
+    }
+
+    .show.description {
+      text-align: justify;
+    }
+
+.favoris_button {
+    margin-right: 10px;
+    font-size: 14px;
+}
+.bigshow .btn i {
+    position: relative;
+    font-size: 1.5rem;
+    top: 1px;
+}
+.bigshow span.btn.btn-secondary.btn-sm.pl-4.pr-4 {
+    float: right;
+    font-size:14px;
+}
+.like.show {
+    display: inline!important;
+    float: right!important;
+}
+</style>
+<div class="containershow">
+<div class="bigshow mt-4 overflow-hidden bg-white rounded mx-auto">
+<div class="p-4 mb-4">
+      <div class="image_wrapper">
+         <%= image_tag logo_url(@software) %>
+      </div>
+      <div class="bigshow_titre">
+         <h3 class="mb-2"><%= @software.title %> <small class="text-sm">(Par <%= @software.title %>)</small>
+<% if user_signed_in? %>
+        <div id="like-icon-software-<%= @software.id.to_s %>" class="like show ml-auto">
+          <%= render "like_icon", {is_liked: @is_liked, software: @software} %>
+        </div>
+<% else %>
+      <a data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4">Favoris <i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
 <% end %>
-test
-<p>
-  <strong>Title:</strong>
-  <%= @software.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @software.description %>
-</p>
-
-<p>
-  <strong>Software url:</strong>
-  <%= @software.software_url %>
-</p>
-
-<p>
-  <strong>Software type:</strong>
-  <%= @software.software_type %>
-</p>
-
-<p>
-  <strong>Slogan:</strong>
-  <%= @software.slogan %>
-</p>
-
-<p>
-  <strong>Littledescription:</strong>
-  <%= @software.littledescription %>
-</p>
-
-<p>
-  <strong>Editor:</strong>
-  <%= @software.editeur %>
-</p>
-
-	  <% if @software.published? %>
-    <span class="label label-success">Published</span>
-  <% else %>
-    <span class="label label-default">Draft</span>
-  <% end %>
-
-<%= image_tag logo_url(@software) %>
-<%= get_video_iframe(@software.video_url) %>
 
 
-<%= link_to 'Edit', edit_software_path(@software) %> |
-<%= link_to 'Back', softwares_path %>
+</h3>
+         <h5 class="text-grey-dark">
+            <%= @software.slogan %>
+         </h5>
+      </div>
+   </div>
+</div> 
+<%# fin du big %>
 
+<div class="littleshow w-full overflow-hidden bg-white rounded mx-auto">
+<div class="p-4">
+      <h3 class="mb-2"><%= @software.title %> <small class="text-sm">(Par <%= @software.editeur %>)</small></h3>
+      <label class="form-label text-sm mb-0">
+         <%= @software.slogan %>
+      </label>
+   </div>
+</div>
+<%# fin du little %>
+
+
+<div class="slide">
+      <% if get_video_iframe(@software.video_url) == nil %>
+      <% if @photos %>
+      <% if @software.photos.size == 1 %>
+      <div class="photoseul">
+         <%= image_tag @software.photos.first.image.url(), class: "card-img-top" %>
+      </div>
+      <% else %>
+      <!--Carousel Wrapper-->
+      <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" ata-ride="carousel" data-interval="false">
+         <div class="carousel-inner" role="listbox">
+            <% if @photos %>
+            <% @photos.each do |photo| %>
+            <div class="carousel-item <%= 'active' if photo.id == @photos[0].id %>">
+               <%= image_tag photo.image.url(),class:"d-block w-50" %>
+            </div>
+            <% end %>
+            <% end %>
+         </div>
+         <!--/.Slides-->
+         <!--Controls-->
+         <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
+         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+         <span class="sr-only">Previous</span>
+         </a>
+         <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
+         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+         <span class="sr-only">Next</span>
+         </a>
+         <% if @photos %>
+         <ol class="carousel-indicators">
+            <% @photos.each_with_index do |photo, index| %>
+            <li data-target="#carousel-thumb" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"><%= image_tag photo.image.url() %></li>
+            <% end %>
+         </ol>
+         <% end %>
+      </div>
+      <!--/.Carousel Wrapper-->
+      <% end %>
+      <% end %> <%# if photos %>
+      <% else %>
+      <% if @software.photos.size == 1 %>
+      <%= image_tag @software.photos.first.image.url(), class: "card-img-top" %>
+      <% else %>
+      <!--Carousel Wrapper-->
+      <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel" data-interval="false">
+         <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active"><%= get_video_iframe(@software.video_url) %></div>
+            <% if @photos %>
+            <% @photos.each do |photo| %>
+            <div class="carousel-item">
+               <%= image_tag photo.image.url(),class:"d-block w-50" %>
+            </div>
+            <% end %>
+            <% end %>
+         </div>
+         <!--/.Slides-->
+         <!--Controls-->
+         <a class="carousel-control-prev" href="#carousel-thumb" role="button" data-slide="prev">
+         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+         <span class="sr-only">Previous</span>
+         </a>
+         <a class="carousel-control-next" href="#carousel-thumb" role="button" data-slide="next">
+         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+         <span class="sr-only">Next</span>
+         </a>
+         <ol class="carousel-indicators">
+            <% if @photos %>
+            <% @photos.each_with_index do |photo, index| %>
+            <li data-target="#carousel-thumb" data-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"><%= image_tag photo.image.url()%></li>
+            <% end %>    
+            <% end %>
+         </ol>
+      </div>
+      <!--/.Carousel Wrapper-->
+      <% end %>
+      <% end %>
+   </div>
+<%#  fin du slide%>
+
+
+<div class="w-full overflow-hidden bg-white rounded mx-auto">
+<div class="link mt-4 mb-2 text-center">
+      <%= link_to @software.software_url, :target=>"_blank" do %><button type="button" class="btn btn-secondary btn-sm"><i class="fas fa-external-link-alt"></i> Website</button><% end %>
+      <% if @software.facebook == "" %><%else%><%= link_to @software.facebook, :target=>"_blank" do %><button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-facebook"></i> Facebook</button><% end %><% end %>
+      <% if @software.linkedin == "" %><%else%><%= link_to @software.linkedin, :target=>"_blank" do %><button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-linkedin"></i> Linkedin</button><% end %><% end %>
+      <% if @software.twitter == "" %><%else%><%= link_to @software.twitter, :target=>"_blank" do %><button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-twitter-square"></i> Twitter</button><% end %><% end %>
+   </div>
+   <div class="show p-4">
+      <div class="text-grey-darkest text-sm sans-serif">
+         <h5>Idéal pour</h5>
+         <hr>
+         <p>test</p>
+      </div>
+   </div>
+</div>
+<%# commun aussi %>
+
+
+<div class="bigshow mt-4 overflow-hidden bg-white rounded mx-auto">
+<div class="show description p-4">
+      <div class="text-grey-darkest text-sm sans-serif">
+         <h5>Description</h5>
+         <hr>
+         <p><%= sanitize @software.description %> </p>
+      </div>
+   </div>
+</div>
+<%# fin big %>
+
+
+<div class="littleshow w-full overflow-hidden bg-white rounded mx-auto">
+<div class="show p-4">
+      <div class="text-grey-darkest text-sm sans-serif">
+         <h5>Description</h5>
+         <hr>
+         <p><%= sanitize @software.description %></p>
+      </div>
+   </div>
+</div>
+<%# fin little %>
+
+<div class="w-full overflow-hidden bg-white rounded mx-auto">
+<div class="show p-4 bg-white">
+   <div class="text-grey-darkest text-sm sans-serif">
+      <h5>Commentaires</h5>
+      <hr>
+      <div id="comment-software-<%= @software.id.to_s %>">
+         <%= render 'comments/list', comment: @comment %>
+      </div>
+      <br>
+      <div id="comment-form-software-<%= @software.id.to_s %>">
+         <%= render 'comments/form', comment: @comment %>
+      </div>
+   </div>
+</div>
+</div>
+<%# fin commun %>
+
+</div>
+<%# fin containershow %>
+
+<script>
+   if (window.location.href.indexOf("/softwares/") > -1) {
+       $(".littleshow" ).addClass( "littleshow2" );
+       $(".bigshow" ).addClass( "bigshow2" );
+   }
+</script>

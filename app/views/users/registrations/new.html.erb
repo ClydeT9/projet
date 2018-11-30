@@ -1,9 +1,48 @@
+<style>
+#connexion,span.navbar-text {
+  display:none;
+}
 
-
-<%= form_for(:user, :url => "#", :html => { :id => "ajax_signup"}) do |f| %>
-
-  <p><%= f.email_field :email, :placeholder => "Email" %></p>
-  <p><%= f.password_field :password, :placeholder => "Password" %></p>
-  <p><%= f.submit "Sign up" %></p>
-  
-<% end %>
+.body2a {
+    background: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+}
+</style>
+                  <div class="body2a">
+                        <center>
+                            <button class="facebooklogin"><i class="fab fa-facebook fa-2x"></i>Continuer avec Facebook</button>
+                            <br>
+                            <button class="googlelogin"><i class="fab fa-google fa-2x"></i>Continuer avec Google</button>
+                        </center>
+                    <div class="contentor">
+                        <p class="or">OU</p>
+                    </div>
+                  <div class="card-title">Inscription par mail</div>
+                  <%= form_for(resource, as: resource_name,:html => { :id => "new_user_1"}, url: registration_path(resource_name)) do |f| %>
+                   <%= f.hidden_field :role_editor, value: 0 %>
+                    <div class="form-group">
+                    <label class="form-control-placeholder">Prénom</label>
+                        <%= f.text_field :name, autocomplete: "prénom", class:"form-control", :required => true %>
+                    </div>
+                    <div class="form-group"> 
+                    <label class="form-control-placeholder">Nom</label>
+                        <%= f.text_field :fullname, autocomplete: "nom", class:"form-control", :required => true %>
+                    </div>
+                    <div class="form-group">
+                    <label class="form-control-placeholder">Adresse email</label>
+                        <%= f.email_field :email, autocomplete: "email",class:"form-control", :required => true %>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-control-placeholder">Mot de passe</label>
+                        <%= f.password_field :password, autocomplete: "new-password", class:"form-control", :required => true %>
+                    </div>
+                    <div class="form-footer">
+                        <%= f.button "S'inscrire",class:"btn btn-primary btn-block",data:{disable_with: "<i class='fas fa-spinner fa-spin'></i>"} %>
+                    </div>
+                  <span id="helpBlock" class="help-block"></span>
+                  <% end %>
+                </div><%#  body2a %>

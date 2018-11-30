@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Categories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td><%= link_to 'Show', category %></td>
+        <td><%= link_to 'Edit', edit_category_path(category) %></td>
+        <td><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Category', new_category_path %><br>
+
+<% @test.softwares.each do |software| %>
+<%= link_to software.title, software_path(software) %>
+<% end %>
+
+<% @test2.each do |category| %>
+<%= link_to category.name, category, class:"no-click" %>
+<% end %>
+
+<% Category.all.each do |category| %>
+  <% if category.parent_id.nil? %>
+  <strong><%= category.children.size %>   <%= link_to category.name, category_path(category) %></strong><br>
+  <% if category.has_children? %>
+  <%= render category.children %>
+  <% else %>
+  salut2
+  <% end %>
+    <br>
+  <% end %>
+<% end %>
+<br>
+
+
+<% Category.all.each do |category| %>
+  <% if category.parent_id.nil? %>
+  <strong><%= category.children.size %>   <%= link_to category.name, category_path(category) %></strong><br>
+  <% if category.children? %>
+  <%= render category.children %>
+  <% else %>
+  salut2
+  <% end %>
+    <br>
+  <% end %>
+<% end %>
+
+

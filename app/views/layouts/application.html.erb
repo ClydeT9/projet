@@ -25,9 +25,7 @@
     <% end %>
     <% unless editor_signed_in? %>
       <%= render partial: 'editors/registrations/new' %>
-      <%= render partial: 'editors/sessions/new' %>
     <% end %>
-
     <div class="container">
     <%= yield %>
     </div>
@@ -39,9 +37,10 @@
 $('#logInModal').modal('show');
 </script>
 <% end %>
-<% if flash[:loginEditorModal] %>
+<% if flash[:newEditor] %>
 <script>
-$('#loginEditorModal').modal('show');
+$('#logInModal').modal('show');
+toastr.success('Merci pour votre inscription, vous pouvez maintenant vous connecter.')
 </script>
 <% end %>
 

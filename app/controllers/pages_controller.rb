@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-    before_action :authenticate_editor!, only: [:myapp]
+    before_action :authenticate_user!, only: [:myapp]
 
     def myapp
-        @softwares = current_editor.softwares
+        @softwares = current_user.softwares.order("published_at desc")
     end
 end

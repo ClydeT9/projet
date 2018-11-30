@@ -1,4 +1,5 @@
 module ApplicationHelper
+
     #avatar user
     def avatar_url(user)
       if user.avatar.present?
@@ -33,37 +34,20 @@ module ApplicationHelper
         @devise_mapping ||= Devise.mappings[:user]
       end
 
-      #pour editor
-      def resource_name_editor
-        :editor
-      end
-     
-      def resource_editor
-        @resource ||= Editor.new
-      end
-    
-      def resource_class_editor
-        Editor
-      end
-     
-      def devise_mapping_editor
-        @devise_mapping_editor ||= Devise.mappings[:editor]
-      end
-
       #pour member
-            def resource_name_member
-              :member
+            def resource_name_editor
+              :editor
             end
            
-            def resource_member
-              @resource ||= Member.new
+            def resource_editor
+              @resource ||= Editor.new
             end
           
-            def resource_class_member
-              Member
+            def resource_class_editor
+              Editor
             end
            
-            def devise_mapping_member
-              @devise_mapping_member ||= Devise.mappings[:member]
+            def devise_mapping_editor
+              @devise_mapping_editor ||= Devise.mappings[:editor]
             end
 end

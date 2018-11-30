@@ -1,4 +1,8 @@
-
+/*
+*= require selectize
+*= require selectize.default
+*= require trix
+*/
  @import "tabler";
  @import "tabler/variables";
  @import "bootstrap";
@@ -7,6 +11,14 @@
  @import "toastr";
  @import "dropzone/dropzone";
 
+ @media (min-width: 1200px) {
+ .container {
+     max-width: 1340px!important;
+ } 
+}
+p.collapse {
+  text-align: justify;
+}
 // fonts
 body {
   font-family: 'Montserrat', sans-serif;
@@ -23,9 +35,21 @@ input.btn.btn-primary:disabled,button.btn.btn-primary:disabled,input.btn.btn-sec
   border-radius:4px!important;
   cursor: initial;
 }
+.card-footer.text-right .btn:not(:disabled):not(.disabled) {
+  margin-bottom: .25rem;
+}
+.fa-2x {
+  padding-right:0px!important;
+}
 
 button.btn.btn-primary.btn-block {
   border-radius:2px;
+}
+
+span.badge.badge-success, span.badge.badge-warning {
+  font-size: 13px;
+  position: relative;
+  bottom: 4px;
 }
 
 // errors flash
@@ -61,7 +85,6 @@ nav.navbar.navbar-expand-lg.navbar-light {
   font-size: 1.5rem;
   white-space: nowrap;
   font-weight: 600;
-  font-family: 'Asap', sans-serif;
 }
 
 .navbar-brand2 {
@@ -354,3 +377,71 @@ i.fas.fa-bars,i.fas.fa-edit,i.fas.fa-images {
 .normal-color {
   color: #262626;
 }
+
+// connexion
+#connexion {
+  height: 13rem;
+  background-color: white;
+  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+  padding-top: 2rem;
+  padding: auto!important;
+  text-align:center;
+  }
+  #connexion center {
+  line-height:  13rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  }
+  #connexion h4 {
+  color: #495055;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  }
+  #connexion h6 {
+  font-size: 0.9375rem;
+  font-weight: 400;
+  padding-bottom: .5rem;
+  }
+
+
+  // contentor ou or 
+  .contentor {
+    margin: 10px auto;
+    width: 300px;
+  }
+  
+  .or {
+    position: relative;
+    text-align: center;
+    font-size: 16px;
+      color: #94989c;
+      font-weight: 700;
+      margin-top: 15px;
+  }
+  
+  .or:after {
+    position: absolute;
+    content: " ";
+    bottom: 10px;
+    right: 0;
+    left: 60%;
+    height: 1px;
+    background: #94989c;
+  }
+  
+  .or:before {
+    position: absolute;
+    content: " ";
+    bottom: 10px;
+    right: 60%;
+    left: 0;
+    height: 1px;
+    background: #94989c;
+  }
+  
+
+  .littleshow.w-full.overflow-hidden.bg-white.rounded.mx-auto, .bigshow.mt-4.overflow-hidden.bg-white.rounded.mx-auto {
+    text-align:justify;
+  }

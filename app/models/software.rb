@@ -1,19 +1,25 @@
 class Software < ApplicationRecord
+    acts_as_commentable
+    has_many :software_categories
+    has_many :categories, through: :software_categories
     has_many :photos
+    has_many :likes
     mount_uploader :logo, LogoUploader
-    belongs_to :editor
-    
-    SOFTWARE_TYPES = ["Marketing", "Finances", "Réseaux Sociaux"]
+    belongs_to :user
+    self.per_page = 20
 
-    validates :title, length: {maximum: 30} 
-    validates :software_url, length: {maximum: 50} 
-    validates :description, length: {maximum: 400} 
-    validates :littledescription,length: {maximum: 60} 
-    validates :slogan, length: {maximum: 40} 
-    validates :editeur, length: {maximum: 75} 
-    validates :facebook,length: {maximum: 150} 
-    validates :linkedin, length: {maximum: 150} 
-    validates :twitter, length: {maximum: 150} 
+    validates :title, length: {maximum: 20,minimum:3} 
+    validates :software_url, length: {maximum: 100,minimum:10} 
+    validates :description, presence: true
+    validates :slogan, length: {maximum: 100,minimum: 15} 
+    validates :editeur, length: {maximum: 45} 
+    validates :facebook,length: {maximum: 100} 
+    validates :linkedin, length: {maximum: 100} 
+    validates :twitter, length: {maximum: 100} 
+
+    def is_liked user
+        Like.find_by(user_id: user.id, software_id: id)
+    end
 
     # Pour le draft
     def published?

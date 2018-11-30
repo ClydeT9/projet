@@ -1,41 +1,58 @@
-<h2>Sign up Editors</h2>
+<style>
+#connexion,span.navbar-text {
+  display:none;
+}
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-                    <div class="form-control login">
-                        <label class="form-label login">Prénom</label>
-                        <%= f.text_field :name, autocomplete: "prénom", class:"form-input" %>
+.body2a {
+    background: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+}
+</style>
+<div class="body2a">
+                        <center>
+                        <div class="bg-orange-lightest border-orange text-orange-dark p-2 mt-3 rounded-sm text-xs pointer mb-4" data-toggle="modal" data-target="#signUpModalEditor" data-dismiss="modal" role="alert">Inscription réservée aux éditeurs de logiciels</div>
+                        </center>
+                  <div class="card-title">Inscription par mail</div>
+                  <%= form_for(resource_editor, as: resource_name_editor, :html => { :id => "new_editor_1"}, url: registration_path(resource_name_editor)) do |f| %>       
+                  <%= f.hidden_field :role_editor, value: 1 %>
+                    <div class="form-group">
+                     <label class="form-control-placeholder" >Prénom</label>
+                        <%= f.text_field :name, autocomplete:"prenom",class:"form-control",:required => true %>
                     </div>
-                    <div class="form-control login">
-                        <label class="form-label login">Nom</label>
-                        <%= f.text_field :fullname, autocomplete: "nom", class:"form-input" %>
+                    <div class="form-group">
+                       <label class="form-control-placeholder">Nom</label>
+                        <%= f.text_field :fullname, autocomplete: "nom", class:"form-control",:required => true %>
                     </div>
-                    <div class="form-control login">
-                        <label class="form-label login">website</label>
-                        <%= f.text_field :website, autocomplete: "website", class:"form-input" %>
+                    <div class="form-group">
+                          <label class="form-control-placeholder">Adresse email</label>
+                        <%= f.email_field :email, autocomplete: "email", class:"form-control",:required => true %>
                     </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "editors/shared/links" %>
+                    <div class="form-group">
+                      <label class="form-control-placeholder" >Entreprise</label>
+                        <%= f.text_field :entreprise, autocomplete: "entreprise",class:"form-control",:required => true %>
+                    </div>
+                    <div class="form-group">
+                    <label class="form-control-placeholder">Votre poste</label>
+                        <%= f.text_field :job, autocomplete: "job", class:"form-control",:required => true %>
+                    </div>
+                    <div class="form-group">
+                         <label class="form-control-placeholder">Site internet</label>
+                        <%= f.text_field :website, autocomplete: "website",class:"form-control",:required => true %>
+                    </div>
+                    <div class="form-group">
+                    <label class="form-control-placeholder">Téléphone</label>
+                        <%= f.text_field :telephone, autocomplete: "telephone", class:"form-control",:required => true %>
+                    </div>
+                    <div class="form-group">
+                    <label class="form-control-placeholder">Mot de passe</label>
+                        <%= f.password_field :password, autocomplete: "new-password", class:"form-control",:required => true %>
+                    </div>
+                    <div class="form-footer">
+                        <%= f.button "S'inscrire",class:"btn btn-primary btn-block",data:{disable_with: "<i class='fas fa-spinner fa-spin'></i>"} %>
+                    </div>
+                  <% end %>
+                </div><%#  body2a %>

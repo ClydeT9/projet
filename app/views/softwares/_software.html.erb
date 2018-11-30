@@ -1,0 +1,60 @@
+<style>
+   .like_button {
+   display: inline-block;
+   float: right;
+   }
+   #timeline .listing {
+   max-height:90px;
+   }
+   .like_button {
+      position:relative;
+      bottom: 3.6rem;
+      z-index:1;
+      margin-right:20px;
+   }
+   li.listing.clearfix.big {
+    margin-bottom: -10px!important;
+}
+</style>
+<li class="listing clearfix big" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title">
+         <%= software.title %>
+      </span>
+
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"no-click" %>
+         <% end %>
+         <% end %>
+
+
+
+      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+   </div>
+</li>
+<%= link_to software_path(software) do %>
+<li class="listing clearfix little" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title"><%= software.title %>
+      </span>
+      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
+   </div>
+</li>
+<% end %>
+
+         <% if user_signed_in? %>
+         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
+            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
+         </div>
+         <% else %>
+         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
+         <% end %>

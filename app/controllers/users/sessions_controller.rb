@@ -7,7 +7,7 @@ class Users::SessionsController < Devise::SessionsController
   
     if resource.valid_password?(params[:user][:password])
       sign_in :user, resource
-      return redirect_to root_path
+      return redirect_back(fallback_location: root_path)
     end
   
     invalid_login_attempt

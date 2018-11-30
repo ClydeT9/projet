@@ -124,7 +124,7 @@ button.googlelogin {
                             <button class="googlelogin"><i class="fab fa-google fa-2x"></i>Continuer avec Google</button>
                             <br>
                             <%= link_to new_editor_registration_path do %>
-                                <div class="bg-orange-lightest border-orange text-orange-dark p-2 mt-3 .rounded-sm text-xs pointer" data-toggle="modal" data-target="#signUpModalEditor" data-dismiss="modal" role="alert">
+                                <div class="bg-orange-lightest border-orange text-orange-dark p-2 mt-3 rounded-sm text-xs pointer" data-toggle="modal" data-target="#signUpModalEditor" data-dismiss="modal" role="alert">
                                     <p>Pour référencer un logiciel, <strong>cliquez ici</strong></p>
                                 </div>
                             <% end %>
@@ -134,6 +134,7 @@ button.googlelogin {
                     </div>
                   <div class="card-title">Inscription par mail</div>
                   <%= form_for(resource, as: resource_name,:html => { :id => "new_user_1"}, url: registration_path(resource_name)) do |f| %>
+                  <%= f.hidden_field :role_editor, value: 0 %>
                     <div class="form-group">
                         <%= f.text_field :name, autocomplete: "prénom",id:"prenom_user", class:"form-control", :required => true %>
                         <label class="form-control-placeholder" for="prenom_user">Prénom</label>
@@ -151,7 +152,7 @@ button.googlelogin {
                         <label class="form-control-placeholder" for="new-password_user">Mot de passe</label>
                     </div>
                     <div class="form-footer">
-                        <%= f.button "S'inscrire",class:"btn btn-primary btn-block",data:{disable_with: "<i class='fas fa-spinner fa-spin'></i>"} %>
+                        <%= f.button "S'inscrire", class:"btn btn-primary btn-block",data:{disable_with: "<i class='fas fa-spinner fa-spin'></i>"} %>
                     </div>
                   <span id="helpBlock" class="help-block"></span>
                   <% end %>

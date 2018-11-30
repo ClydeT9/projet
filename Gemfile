@@ -22,6 +22,11 @@ gem 'rails-i18n'
 gem 'toastr-rails'
 gem 'simple_form'
 gem 'jquery-rails'
+gem 'will_paginate'
+gem 'acts_as_commentable_with_threading'
+gem 'trix'
+gem 'selectize-rails'
+gem 'ancestry'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

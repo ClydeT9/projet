@@ -1,0 +1,3 @@
+$('#like-icon-software-<%= @software.id.to_s %>').
+  html('<%= j render "softwares/like_icon", {is_liked: @is_liked, software: @software} %>');
+console.log("delete bookmark success");

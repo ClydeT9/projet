@@ -1,58 +1,51 @@
 <style>
-    h5 small{
-    color:#467fcf !important;
-    }
-table {
-  width: 100%;
-  table-layout: fixed;
-  line-height:5rem;
+.myapp2 {
+    margin: 50px;
 }
-
-.hey1 {
-  width:20%;
+  .myapp3 {
+       min-width:65%;
+  }
+@media screen and (max-width: 1000px) {
+  .myapp {
+        margin-left: 0px!important;
+  }
 }
-.hey2{
-  width:35%;
-}
-.hey4a,.hey6a{
-  width:15%;
-}
-.hey5a {
-  width:10%;
+.middle > * {
+  vertical-align: middle;
 }
 </style>
-<div class="container">
-    <div class="page-header">
-        <h1 class="page-title">
+<% if current_user.role_editor? %>
+<div class="page-header">
+    <h1 class="page-title">
             Mes applications
-        </h1>
-    </div>
-    <div class="row">
+    </h1>
+</div>
 
-        <div class="col-lg-9">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Application(s)</h3>
-                </div>
-              <% @softwares.each do |software| %>
-                <table class="table card-table table-vcenter">
-                        <tr>
-                            <td class="hey1">
-
-                            </td>
-                            <td class="hey2">
-                                   <td><%= software.title %></td>
-                            </td>
-                            
-                            <td class="hey5a"><strong><%= link_to "Aperçu", software_path(software),class:"btn btn-secondary btn-sm" %></strong></td>
-                            <td class="hey6a"><strong><%= link_to "Mettre à jour", edit_software_path(software),class:"btn btn-primary btn-sm" %></strong></td>
-                </table>
-                <% end %>
-
-                </div>  
-            </div>
-
+<% @softwares.each do |software| %>
+<!-- wrapper -->
+<section class="m-2 leading-normal flex mx-auto max-w-lg">
+  <!-- card container -->
+  <div class="myapp max-w-lg bg-white overflow-hidden m-4 sm:flex border rounded min-w-full">
+    <div class="h-48 sm:h-auto sm:w-48 md:w-64 bg-cover bg-center text-center overflow-hidden">
+    <div class="myapp2">
+                                    <%= link_to software_path(software), class:"middle" do %>
+                                    <%= image_tag logo_url(software) %>
+                                    <% end %>
+    </div></div>
+    <!-- card-content -->
+     <div class="myapp3 px-6 py-6">
+      <h2 class="mb-2 mt-2 black"><%= link_to software.title, software_path(software) %> <% if software.published? %><span class="badge badge-success">En ligne</span><%else%><span class="badge badge-warning">Brouillon</span><%end%></h2>
+      <p class="mb-4 text-grey-dark text-sm">
+        <%= link_to software.slogan, software_path(software) %>
+      </p>
+       <!-- button -->
+       <div class="text-right pt-8">
+      <button type="button" class="btn btn-secondary btn-sm mb-1">Statistiques</button>
+      <%= link_to "Aperçu", software_path(software),class:"btn btn-secondary btn-sm mb-1" %>
+      <%= link_to "Mettre à jour", edit_software_path(software),class:"btn btn-primary btn-sm mb-1" %>
         </div>
     </div>
-</div>
-</div>
+  </div>
+</section>
+<% end %>
+<% end %>

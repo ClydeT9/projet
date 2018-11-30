@@ -1,17 +1,29 @@
 class SoftwaresController < ApplicationController
   before_action :set_software, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_editor!, except:[:index,:show]
+  before_action :authenticate_user!, except:[:index,:show]
 
   # GET /softwares
   # GET /softwares.json
   def index
-    @softwares = Software.all.order("published_at desc")
+    @softwares = Software.all.paginate(page: params[:page], per_page: 20).order("published_at desc")
+    respond_to do |format|
+      format.html
+      format.js
+     end
+     @softwares = Software.includes(:comment_threads).page(params[:page]).order("published_at desc")
   end
 
   # GET /softwares/1
   # GET /softwares/1.json
   def show
     @photos = @software.photos
+    @software = Software.find params[:id]
+    @is_liked = @software.is_liked(current_user) if user_signed_in?
+    @comment = Comment.build_from(@software, current_user.id, '') if user_signed_in?
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def upload_photo
@@ -19,7 +31,7 @@ class SoftwaresController < ApplicationController
   
   # GET /softwares/new
   def new
-    @software = current_editor.softwares.build
+    @software = current_user.softwares.build
   end
 
   # GET /softwares/1/edit
@@ -30,7 +42,7 @@ class SoftwaresController < ApplicationController
   # POST /softwares
   # POST /softwares.json
   def create
-    @software = current_editor.softwares.build(software_params)
+    @software = current_user.softwares.build(software_params)
     @software.published_at = Time.zone.now if publishing?
 
       if @software.save
@@ -82,7 +94,7 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def software_params
-      params.require(:software).permit(:title, :video_url,:description, :software_url, :software_type,:facebook,:linkedin,:twitter, :slogan, :littledescription, :editeur, :logo)
+      params.require(:software).permit(:title, :software_type, :video_url,:description, :software_url, :software_type,:facebook,:linkedin,:twitter, :slogan, :editeur, :logo, :target, category_ids: [])
     end
 
     def publishing?

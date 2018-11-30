@@ -1,0 +1,35 @@
+<style>
+textarea#comment_body {
+    min-width: 100%;
+    background: #f5f7fb;
+    border-radius: 4px;
+    min-height: 60px;
+    border: 1px solid #e9ecef;
+}
+a.soulignement.cursor-pointer {
+  text-decoration:underline!important;
+}
+</style>
+<% if user_signed_in? %>
+<%= form_for comment, html: { class: 'comment' }, remote: true do |f| %>
+  <fieldset>
+    <%= f.label :body, 'Mettre un commentaire' %><br />
+    <%= f.text_area :body %>
+  </fieldset>
+  <%= f.hidden_field :commentable_type %>
+  <%= f.hidden_field :commentable_id %>
+  <%= f.hidden_field :parent_id %>
+  <%= f.submit "Publier", class: 'btn btn-secondary btn-sm mb-4' %>
+<% end %>
+<% else %>
+<center>
+      <label class="form-label text-sm mb-0">
+         <a class="soulignement cursor-pointer" data-toggle="modal" data-target="#logInModal">Connectez-vous</a> afin de laisser un commentaire
+      </label>
+                    <div class="contentor">
+                        <p class="or">OU</p>
+                    </div>
+      <button class="facebooklogin"><i class="fab fa-facebook fa-2x"></i><%= link_to "Continuer avec Facebook", root_path %></button>                  
+      <button class="googlelogin"><i class="fab fa-google fa-2x"></i><%= link_to "Continuer avec Google", root_path  %>
+</center>
+<% end %>

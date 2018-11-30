@@ -1,0 +1,4 @@
+$('#comment-software-<%= @software.id.to_s %>').
+  html('<%= j render "list", {comment: @comment} %>');
+$('#comment-form-software-<%= @software.id.to_s %> #comment_body').val("");
+console.log("Commentaire créer avec succès");

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <strong><%= @category.name %><br></strong>
+  <% if @category.has_children? %>
+  heeloo
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_category_path(@category) %> |
+<%= link_to 'Back', categories_path %>
+
+<br>
+<strong>
+<% @category.softwares.each do |software| %>
+<%= link_to software.title, software_path(software) %>
+<% end %>
+</strong>
+<br>
+
+
+<% if @category.parent.nil? %>
+ <%= render @category.children %>
+<% end %>
+
+<% if @category.subtree %>
+<% @category.softwares.each do |software| %>
+<%= link_to software.title, software_path(software) %>
+<% end %>
+<% end %>

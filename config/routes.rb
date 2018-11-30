@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :photos
+  resources :categories
   devise_for :users, path: 'users', controllers: {
     sessions:           "users/sessions",
     passwords:          "users/passwords",
@@ -7,14 +7,14 @@ Rails.application.routes.draw do
     confirmations:      "users/confirmations",
   }
   devise_for :editors, path: 'editors', controllers: {
-    sessions:           "editors/sessions",
-    passwords:          "editors/passwords",
     registrations:      "editors/registrations",
-    confirmations:      "editors/confirmations",
   }
-  resources :softwares
   resources :photos
-  
+  resources :users, only: [:show]
+  resources :softwares do 
+    resources :likes, only: [:create, :destroy], shallow: true
+  end
+  resources :comments, only: [:create, :new]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'softwares#index'
 

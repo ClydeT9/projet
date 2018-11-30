@@ -1,0 +1,69 @@
+  <style>
+  ol, ul {
+      list-style-type: none;
+  }
+   ol#comments {
+      padding-left:0px;
+   }
+   .commentname {
+    font-weight: bold;
+    font-size: 15px;
+    margin-right: 10px;
+   }
+   .tagline {
+    background: #f5f7fb;
+    border-radius: 4px 4px 0px 0px;
+    padding: 5px;
+    border: 1px solid #e9ecef;
+    border-bottom: 1px solid #f1f5f8;
+    padding-left:10px;
+}
+section.body {
+    background: #ffffff;
+    border: 1px solid #f1f5f8;
+    border-top: none;
+    border-radius: 0px 0px 4px 4px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.commentbody {
+    display: inline-block;
+    text-align: justify;
+}
+.commentreply{
+    display: inline-block;
+    font-size:10px;
+    float:right;
+    padding-right:10px;
+    padding-top:4px;
+}
+.commentreply a{
+        color:#8795a1;
+}
+.tagline span.badge.badge-success {
+  font-size: 10px;
+  position: relative;
+  bottom: 1px;
+  background-color:#437dd3;
+}
+  </style>
+  <%= nested_ol @software.comment_threads, id: 'comments' do |comment| %>
+    <div class="tagline" title="<%= comment.created_at %>">
+      <span class="commentname"><%= comment.user.name %></span> <% if comment.user.name == @software.user.name %> <span class="badge badge-success mr-2">Éditeur</span><% end %>
+      <small class="italic">Il y a <%= time_ago_in_words comment.created_at %></small>
+      <% if user_signed_in? %>
+      <span class="commentreply italic">
+        <%= link_to 'Répondre', new_comment_path(parent_id: comment.id, format: 'js'), remote: true, method: :get %>
+      </span>
+      <% else %>
+      <span class="commentreply italic">
+        <a class="cursor-pointer" data-toggle="modal" data-target="#logInModal">Répondre</a>
+      </span>
+      <% end %>
+    </div>
+    <section class="body">
+      <span class="commentbody"><%= comment.body %></span>
+    </section>
+    <div id="reply-form-<%= comment.id %>" style="display: none">
+    </div>
+ <% end -%>

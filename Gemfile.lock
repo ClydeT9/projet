@@ -42,13 +42,21 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    acts_as_commentable_with_threading (2.0.1)
+      activerecord (>= 4.0)
+      activesupport (>= 4.0)
+      awesome_nested_set (>= 3.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    ancestry (3.0.5)
+      activerecord (>= 3.2.0)
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
     autoprefixer-rails (9.3.1)
       execjs
+    awesome_nested_set (3.1.4)
+      activerecord (>= 4.0.0, < 5.3)
     bcrypt (3.1.12)
     bindex (0.5.0)
     bootsnap (1.3.2)
@@ -190,6 +198,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    selectize-rails (0.12.6)
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
@@ -216,6 +225,8 @@ GEM
     tilt (2.0.8)
     toastr-rails (1.0.3)
       railties (>= 3.1.0)
+    trix (0.10.1)
+      rails
     turbolinks (5.2.0)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -233,6 +244,7 @@ GEM
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    will_paginate (3.1.6)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -240,6 +252,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_commentable_with_threading
+  ancestry
   bootsnap (>= 1.1.0)
   bootstrap
   byebug
@@ -258,6 +272,7 @@ DEPENDENCIES
   rails (~> 5.2.1)
   rails-i18n
   sass-rails (~> 5.0)
+  selectize-rails
   selenium-webdriver
   simple_form
   spring
@@ -265,10 +280,12 @@ DEPENDENCIES
   sqlite3
   tabler-rubygem
   toastr-rails
+  trix
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  will_paginate
 
 RUBY VERSION
    ruby 2.5.1p57

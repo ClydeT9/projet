@@ -1,28 +1,25 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
 
   protected
- 
   def update_resource(resource, params)
       resource.update_without_password(params)
   end
   def after_update_path_for(resource)
     edit_user_registration_path(resource)
   end
-  
+  def after_sign_in_path_for(resource_or_scope)
+    stored_location_for(resource_or_scope) || super
+  end
+
   private
   def sign_up_params
-    params.require(:user).permit(:name, :fullname, :email, :password, :password_confirmation)
+    params[:user][:role_editor] = params[:user] && params[:user][:role_editor] == '0' ? false : true
+    params.require(:user).permit(:name, :fullname, :email, :password, :password_confirmation, :role_editor)
   end
 
   def account_update_params
     params.require(:user).permit(:name, :fullname,:avatar,:job, :email, :password, :password_confirmation, :current_password)
   end
-
-
 
   # GET /resource/sign_up
   # def new

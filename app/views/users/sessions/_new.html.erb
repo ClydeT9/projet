@@ -123,40 +123,6 @@ button.googlelogin.session {
 .fa-google:before {
     right: 18px!important;
 }
-
-.contentor {
-  margin: 10px auto;
-  width: 300px;
-}
-
-.or {
-  position: relative;
-  text-align: center;
-  font-size: 16px;
-    color: #94989c;
-    font-weight: 700;
-    margin-top: 15px;
-}
-
-.or:after {
-  position: absolute;
-  content: " ";
-  bottom: 10px;
-  right: 0;
-  left: 60%;
-  height: 1px;
-  background: #94989c;
-}
-
-.or:before {
-  position: absolute;
-  content: " ";
-  bottom: 10px;
-  right: 60%;
-  left: 0;
-  height: 1px;
-  background: #94989c;
-}
 .modal-body .header-brand2,.modal-body .header-brand3 {
       font-size:1.8rem!important;
     }
@@ -197,7 +163,7 @@ button.googlelogin.session {
                         <p class="or">OU</p>
                     </div>
                     <div class="card-title">Connexion à votre compte</div>
-                    <%= form_for(resource, as: resource_name, :html => { :id => "new_user_2"},remote: true, url: session_path(resource_name)) do |f| %>
+                    <%= form_for(resource, as: resource_name, :html => { :id => "new_user_2"},remote: true, url: user_session_path(resource_name)) do |f| %>
                       <%= devise_error_messages! %>
                         <div class="form-group">
                             <%= f.email_field :email, class:"form-control", autocomplete: "email",id:"email_newuser",:required => true %>
@@ -242,11 +208,7 @@ button.googlelogin.session {
                         <% end -%>
 
                 </div>
-                           <center> <%= link_to new_editor_session_path do %>
-                                <div class="border-orange text-orange-dark p-2 mt-3 .rounded-sm text-xs pointer" data-toggle="modal" data-target="#loginEditorModal" data-dismiss="modal" role="alert">
-                                    <p>Connexion éditeur, <strong>cliquez ici</strong></p>
-                                </div>
-                            <% end %></center>
+
               </div>
             
         </div>

@@ -1,0 +1,136 @@
+<style>
+.clearfix:before, .clearfix:after {
+	content:" ";
+	display: table;
+}
+.clearfix:after{
+	clear: both;
+}
+.main_header{
+	margin: 5em 0 3em 0;
+}
+.logo img {
+		width:75px;
+		float: left;
+}
+.logo h1{
+	float: left;
+	margin: 0 0 0 1em;
+	text-transform: uppercase;
+	font-size: 1.34em;
+	padding-top: 1.8em;
+	color :#34324b;
+}
+.logo h1 span{
+	font-weight: 400;
+}
+.current{
+	color: #34324b;
+	font-weight: 700;
+}
+#timeline{
+  width: 100%;
+  position: relative;
+  list-style: none;
+  padding: 0;
+}
+#timeline a {
+text-decoration: none;
+}
+ #timeline:after {
+    content: "";
+    width: 1px;
+    background: 1px #e6e7e9;
+    height: 90%;
+    position: absolute;
+    top: 3em;
+    left: 3em;
+    z-index: 0; }
+#timeline .listing{
+  background-color: white;
+  border: 1px solid #e6e7e9;
+  border-radius: 0.3em;
+  padding: 1em;
+  margin-bottom: 1em;
+  position: relative;
+  z-index: 1;
+  display: table;
+  width: 100%;
+  transition: all .3s ease-in-out;
+}
+.listing:hover{
+  cursor: pointer;
+  box-shadow: 0px 2px 40px 0 rgba(0,0,0,0.1);
+
+}
+#timeline .listing img,.info,.job_type{
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 0.9em;
+  color: #74718f;
+}
+#timeline .image_wrapper{
+  width: 60px;
+}
+#timeline .image_wrapper img{
+  width: 60px;
+  display : block;
+  margin : 0 auto;
+  border-radius: 0.25em;
+}
+.info{
+  line-height: 1.25;
+  width: 640px;
+  padding-left: 25px;
+}
+.job_title{
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #34324b;
+}
+.job_info{
+  color:#74718f;
+  display: block;
+}
+.job_info span{
+  margin: 0 .75em;
+}
+.contract{
+  color: #a378fc;
+
+}
+.contract:before{
+background-color:#a378fc;
+}
+
+.mes_favoris {
+    width: 60%;
+    margin: auto;
+}
+</style>
+<div class="page-header">
+    <h1 class="page-title">
+            Mes favoris
+    </h1>
+</div>
+
+
+<div class="mes_favoris">
+	<ul id="timeline">
+            <% softwares.each do |software| %>
+            <%= link_to software_path(software) do %>
+                <li class="listing clearfix" data-id="<%= software.id %>">
+                <div class="image_wrapper">
+                    <%= image_tag logo_url(software) %>
+                </div>
+                <div class="info">
+                    <span class="job_title">
+                        <%= software.title %>
+                    </span>
+                    <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+                </div>
+                </li>
+            <% end %>
+            <% end %>
+    </ul>
+</div>

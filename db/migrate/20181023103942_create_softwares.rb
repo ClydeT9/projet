@@ -6,12 +6,13 @@ class CreateSoftwares < ActiveRecord::Migration[5.2]
       t.string :software_url
       t.string :software_type
       t.string :slogan
-      t.string :littledescription
       t.string :editeur
       t.string :facebook
       t.string :linkedin
       t.string :twitter
       t.string :video_url
+      t.string :target
+      t.string :software_type
 
       t.timestamps
     end

@@ -37,7 +37,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :website
       t.string :telephone
       t.string :job
-      
+      t.boolean :role_editor
+
       t.timestamps null: false
     end
 

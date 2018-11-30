@@ -64,9 +64,31 @@
                                       <%= f.file_field :avatar, id:"files" %>
                                     </span>
                                         <label>
-                                  </label>
                                 </div>
                             </div>
+
+
+
+                          <% if current_user.role_editor? %>                  <div class="col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <%= f.label :telephone,class:"form-label" %>
+                                    <%= f.text_field :telephone, required: true,autocomplete: "telephone",class:"form-control", placeholder:"Numéro de téléphone" %>
+                                </div>
+                                <div class="form-group">
+                                    <%= f.label :entreprise,class:"form-label" %>
+                                    <%= f.text_field :entreprise, required: true,autocomplete: "entreprise",class:"form-control", placeholder:"Entreprise" %>
+                                </div>
+                                <div class="form-group">
+                                    <%= f.label :website,class:"form-label" %>
+                                    <%= f.text_field :website, required: true,autocomplete: "website",class:"form-control", placeholder:"Site internet" %>
+                                </div>
+                            </div>
+                        <% end %>
+
+
+
+
+
                         </div>
                     </div>
 

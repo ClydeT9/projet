@@ -18,6 +18,8 @@
 //= require dropzone
 //= require_tree .
 //= require toastr
+//= require trix
+//= require selectize
 // = require tabler/tabler
 // = require tabler/vendors/bootstrap.bundle.min
 // = require tabler/vendors/circle-progress.min
@@ -25,7 +27,23 @@
 // = require tabler/core
 
 toastr.options = {
- 
-    "positionClass": "toast-bottom-right"
-    
+    "closeButton": true,
+    "progressBar": true,
+    "positionClass": "toast-bottom-right",
+    "showDuration": "10000",
+    "timeOut": "10000"
     };
+
+    
+    $(document).ready(function() {
+        if ($('.pagination').length) {
+          $(window).scroll(function() {
+            var url = $('.pagination .next_page').attr('href');
+            if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+              $('.pagination').html('test');
+              return $.getScript(url);
+            }
+          });
+          return $(window).scroll();
+        }
+      });
