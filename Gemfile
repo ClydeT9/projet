@@ -26,6 +26,8 @@ gem 'acts_as_commentable_with_threading'
 gem 'trix'
 gem 'selectize-rails'
 gem 'ancestry'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
