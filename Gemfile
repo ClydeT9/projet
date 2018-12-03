@@ -28,7 +28,6 @@ gem 'selectize-rails'
 gem 'ancestry'
 gem 'omniauth'
 gem 'omniauth-facebook', '~> 4.0'
- gem 'omniauth-google-oauth2'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
