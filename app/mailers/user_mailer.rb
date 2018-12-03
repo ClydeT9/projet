@@ -1,9 +1,8 @@
-
-class UserMailer < ApplicationMailer
-    default from: 'clyde.thomson@uneapp.com'
-   
-    def welcome_email
-      @user = params[:user]
-      mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+class UserMailer < ActionMailer::Base
+    default from: "clyde.thomson@uneapp.com"
+  
+    def welcome_email(user)
+      @user = user
+      mail(to: @user.email, subject: 'Sample Email')
     end
   end
