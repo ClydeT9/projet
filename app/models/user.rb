@@ -12,6 +12,12 @@ class User < ApplicationRecord
 
          extend FriendlyId
          friendly_id :name, use: :slugged
+         
+         after_create :welcome_send
+         def welcome_send
+          WelcomeMailer.welcome_send(self).deliver
+        end
+
 
          def self.create_from_omniauth(params)
           user = find_or_create_by(email: params.info.email, uid: params.uid)
