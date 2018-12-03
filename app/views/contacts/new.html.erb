@@ -46,7 +46,7 @@ body {                /* body - or any parent wrapper */
                     <div class="col-md-12">
                       <div class="form-group mb-0">
                         <label class="form-label">Message</label>
-                        <%= f.text_area :message, as: :text, rows:"5", class:"form-control",placeholder:"Votre message"  %>
+                        <%= f.text_area :message, as: :text, rows:"5", required: true,class:"form-control",placeholder:"Votre message"  %>
                       </div>
                     </div>
                     <div class="hidden">
