@@ -89,7 +89,10 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  # Do not dump schema after migrations.
+  config.middleware.use Rack::HostRedirect, {
+  'uneapp.herokuapp.com' => 'www.uneapp.com'
+}
+  # Do not dump schema after migrations
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { host: 'https://www.uneapp.com'}
