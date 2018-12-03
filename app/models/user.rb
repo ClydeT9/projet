@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :likes
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook]
          validates :name, presence: true, length: {maximum: 75} 
 
@@ -12,12 +12,10 @@ class User < ApplicationRecord
 
          extend FriendlyId
          friendly_id :name, use: :slugged
-         
-         after_create :welcome_send
-         def welcome_send
-          WelcomeMailer.welcome_send(self).deliver
-        end
 
+         def after_confirmation
+          welcome_email
+         end
 
          def self.create_from_omniauth(params)
           user = find_or_create_by(email: params.info.email, uid: params.uid)
@@ -26,5 +24,10 @@ class User < ApplicationRecord
             name: params.info.name
           })
           user
+        end
+
+        private
+        def welcome_email
+          Brands::UserMailer.welcome_email(self).deliver
         end
 end
