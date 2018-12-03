@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
   def sign_up_params
     params[:user][:role_editor] = params[:user] && params[:user][:role_editor] == '0' ? false : true
-    params.require(:user).permit(:name, :fullname, :email, :password, :password_confirmation, :role_editor)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role_editor)
   end
 
   def account_update_params

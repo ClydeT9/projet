@@ -139,10 +139,7 @@ button.googlelogin {
                         <%= f.text_field :name, autocomplete: "prénom",id:"prenom_user", class:"form-control", :required => true %>
                         <label class="form-control-placeholder" for="prenom_user">Prénom</label>
                     </div>
-                    <div class="form-group">
-                        <%= f.text_field :fullname, autocomplete: "nom",id:"nom_user", class:"form-control", :required => true %>
-                        <label class="form-control-placeholder" for="nom_user">Nom</label>
-                    </div>
+
                     <div class="form-group">
                         <%= f.email_field :email, autocomplete: "email",id:"email_user", class:"form-control", :required => true %>
                         <label class="form-control-placeholder" for="email_user">Adresse email</label>

@@ -27,7 +27,7 @@ gem 'trix'
 gem 'selectize-rails'
 gem 'ancestry'
 gem 'omniauth'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '~> 4.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
