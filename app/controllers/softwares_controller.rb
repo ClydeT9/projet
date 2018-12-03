@@ -17,7 +17,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares/1.json
   def show
     @photos = @software.photos
-    @software = Software.find params[:id]
+    @software = Software.friendly.find(params[:id])
     @is_liked = @software.is_liked(current_user) if user_signed_in?
     @comment = Comment.build_from(@software, current_user.id, '') if user_signed_in?
     respond_to do |format|
@@ -89,7 +89,7 @@ class SoftwaresController < ApplicationController
 private
     # Use callbacks to share common setup or constraints between actions.
     def set_software
-      @software = Software.find(params[:id])
+      @software = Software.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

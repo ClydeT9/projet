@@ -10,6 +10,9 @@ class User < ApplicationRecord
 
          validates :fullname, presence: true, length: {maximum: 75}
 
+         extend FriendlyId
+         friendly_id :name, use: :slugged
+
          def self.create_from_omniauth(params)
           user = find_or_create_by(email: params.info.email, uid: params.uid)
           user.update({

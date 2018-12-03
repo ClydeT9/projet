@@ -7,6 +7,7 @@ class Software < ApplicationRecord
     mount_uploader :logo, LogoUploader
     belongs_to :user
     self.per_page = 20
+    
 
     validates :title, length: {maximum: 20,minimum:3} 
     validates :software_url, length: {maximum: 100,minimum:10} 
@@ -16,6 +17,9 @@ class Software < ApplicationRecord
     validates :facebook,length: {maximum: 100} 
     validates :linkedin, length: {maximum: 100} 
     validates :twitter, length: {maximum: 100} 
+
+    extend FriendlyId
+    friendly_id :title, use: :slugged
 
     def is_liked user
         Like.find_by(user_id: user.id, software_id: id)

@@ -16,8 +16,10 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy], shallow: true
   end
   resources :comments, only: [:create, :new]
+  resources :contacts, only: [:new, :create]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'softwares#index'
 
   get '/myapp' => 'pages#myapp'
+  get '/mentions' => 'pages#mentions'
 end

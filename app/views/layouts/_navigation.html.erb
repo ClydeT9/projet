@@ -13,13 +13,26 @@
         color: rgb(73, 80, 85);
 }
 }
+.une {
+    background: #437dd2;
+    color: white;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-weight: bold;
+    border-radius: 8px 0px;
+    margin-right: 1px;
+}
+.app {
+    font-weight: bold;
+    color: #495056;
+}
 </style>
 <div class="nav-wrapper">    
 <div class="header">
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light">
 <%= link_to root_path do %>
-  <span class="navbar-brand"><span class="navbar-brand2">une</span><span class="navbar-brand3">app</span></span>
+  <span class="navbar-brand"><span class="une">une</span><span class="app">app</span></span>
 <% end %>
 
     <ul class="navbar-nav mr-auto">
@@ -111,7 +124,7 @@
 
 <% if (!user_signed_in?) %>
 <div id="connexion">
-    <h4>Rechercher <span class="header-brand2"><a href="/">une</a><a href="/" style="color: #467fd0;">app</a></span>, qui améliorera votre quotidien professionnel</h4>
+    <h4>Rechercher une app, qui améliorera votre quotidien professionnel</h4>
     <h6>Une façon simple de retrouver des applications web qui vous <u>plaisent</u> et qui vous <u>conviennent</u> !</h6>
     <button class="facebooklogin"><i class="fab fa-facebook fa-2x"></i><%= link_to "Continuer avec Facebook", root_path %></button>                  
     <button class="googlelogin"><i class="fab fa-google fa-2x"></i><%= link_to "Continuer avec Google", root_path  %>
