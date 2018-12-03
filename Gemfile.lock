@@ -53,7 +53,7 @@ GEM
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    autoprefixer-rails (9.3.1)
+    autoprefixer-rails (9.4.0)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
@@ -174,7 +174,6 @@ GEM
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.6)
-    rack-rewrite (1.5.1)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.1.1)
@@ -306,7 +305,6 @@ DEPENDENCIES
   omniauth-facebook (~> 4.0)
   pg
   puma (~> 3.11)
-  rack-rewrite (~> 1.5, >= 1.5.1)
   rails (~> 5.2.1)
   rails-i18n
   rails_12factor
