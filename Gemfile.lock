@@ -238,6 +238,7 @@ GEM
     simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
+    smtpapi (0.1.0)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -315,6 +316,7 @@ DEPENDENCIES
   selectize-rails
   selenium-webdriver
   simple_form
+  smtpapi
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
