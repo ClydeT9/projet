@@ -4,8 +4,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(sign_up_params)
     if @user.save
       # Deliver the signup email
-      sign_in(@user)
       UserMailer.send_signup_email(@user).deliver
+      sign_in(@user)
       return redirect_back(fallback_location: root_path)
     else
       render :action => 'new'
