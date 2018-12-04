@@ -1,5 +1,3 @@
-<h2>Change your password</h2>
-
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
   <%= f.hidden_field :reset_password_token %>
@@ -22,4 +20,44 @@
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<style>
+#connexion {
+    display:none;
+}
+body {                /* body - or any parent wrapper */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.container {
+  flex: 1;
+}
+.body2a {
+    background: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+}
+</style>
+  <div class="body2a">
+                  <div class="card-title">Changement du mot de passe</div>
+                 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+                 <%= f.hidden_field :reset_password_token %>
+                    <div class="form-group">
+                    <label class="form-control-placeholder">Nouveau mot de passe</label>
+                            <% if @minimum_password_length %>
+                              <em>(<%= @minimum_password_length %> caractères minimum)</em><br />
+                            <% end %>
+                            <%= f.password_field :password, autofocus: true, autocomplete: "off",class:"form-control", :required => true %>
+                    </div>
+                    <div class="form-group">
+                    <label class="form-control-placeholder">Confirmation du mot de passe</label>
+                        <%= f.password_field :password_confirmation, autocomplete: "off",class:"form-control",:required => true %>
+                    </div>
+                      <div class="actions">
+                        <%= f.submit "Nouveau mot de passe",class:"btn btn-primary btn-block" %>
+                      </div>
+                  <% end %>
+                </div><%#  body2a %>
