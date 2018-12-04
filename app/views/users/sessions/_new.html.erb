@@ -173,14 +173,6 @@ button.googlelogin.session {
                             <%= f.password_field :password, autocomplete: "current-password",id:"current-password_newuser", class:"form-control",:required => true %>
                             <label class="form-control-placeholder" for="current-password_newuser">Mot de passe</label>
                         </div>
-                        <% if devise_mapping.rememberable? -%>
-                        <div class="form-group">
-                            <label class="custom-control custom-checkbox">
-                            <%= f.check_box :remember_me,class:"custom-control-input", id:"remember_me_user" %>
-                            <%= f.label :remember_me,class:"custom-control-label" %>
-                            </label>
-                        </div>
-                        <% end -%>
                         <div class="form-footer">
                             <%= f.button "Connexion", class: "btn btn-primary btn-block",data:{disable_with: "<i class='fas fa-spinner fa-spin'></i>"} %>
                         </div>

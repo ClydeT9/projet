@@ -89,6 +89,7 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  #redirect herokuapp
   config.middleware.use Rack::HostRedirect, {
   'uneapp.herokuapp.com' => 'www.uneapp.com'
 }
