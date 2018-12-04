@@ -23,7 +23,6 @@
     <% unless user_signed_in? %>
       <%= render partial: 'users/registrations/new' %>
       <%= render partial: 'users/sessions/new' %>
-      <%= render partial: 'users/passwords/new' %>
     <% end %>
     <% unless editor_signed_in? %>
       <%= render partial: 'editors/registrations/new' %>
