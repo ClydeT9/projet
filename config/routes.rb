@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   devise_for :editors, path: 'editors', controllers: {
     registrations:      "editors/registrations",
   }
-  resources :photos
   resources :users, only: [:show]
+  resources :photos
   resources :softwares do 
     resources :likes, only: [:create, :destroy], shallow: true
   end
