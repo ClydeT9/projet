@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     registrations:      "editors/registrations",
   }
   resources :photos
-  resources :users, only: [:show, :create]
+  resources :users, only: [:show]
   resources :softwares do 
     resources :likes, only: [:create, :destroy], shallow: true
   end
