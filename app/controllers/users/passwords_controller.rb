@@ -29,6 +29,6 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # The path used after sending reset password instructions
   def after_sending_reset_password_instructions_path_for(resource_name)
-    return redirect_to root_path
+    return redirect_back(fallback_location: root_path)
   end
 end
