@@ -31,7 +31,6 @@ gem 'omniauth-facebook', '~> 4.0'
 gem 'friendly_id', '~> 5.2.4' 
 gem 'mail_form'
 gem 'rack-host-redirect'
-gem 'sendgrid-ruby'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
