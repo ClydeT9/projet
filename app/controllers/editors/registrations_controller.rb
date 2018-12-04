@@ -3,7 +3,9 @@ class Editors::RegistrationsController < Devise::RegistrationsController
   def create
     @editor = Editor.new(sign_up_params)
     if @editor.save
-      redirect_to root_path, flash: {newEditor: true }
+      sign_in(@editor)
+      UserMailer.send_signup_email(@editor).deliver
+      return redirect_back(fallback_location: root_path)
     else
       
     end

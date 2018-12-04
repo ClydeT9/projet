@@ -4,8 +4,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = User.new(sign_up_params)
     if @user.save
       # Deliver the signup email
+      sign_in(@user)
       UserMailer.send_signup_email(@user).deliver
-      redirect_to(@user, :notice => 'User created')
+      return redirect_back(fallback_location: root_path)
     else
       render :action => 'new'
     end
@@ -14,9 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
   def update_resource(resource, params)
       resource.update_without_password(params)
-  end
-  def after_sign_up_path_for(user)
-    stored_location_for(resource_or_scope) || super
   end
   def after_update_path_for(resource)
     edit_user_registration_path(resource)

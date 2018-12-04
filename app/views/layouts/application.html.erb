@@ -40,12 +40,6 @@
 $('#logInModal').modal('show');
 </script>
 <% end %>
-<% if flash[:newEditor] %>
-<script>
-$('#logInModal').modal('show');
-toastr.success('Merci pour votre inscription, vous pouvez maintenant vous connecter.')
-</script>
-<% end %>
 
   <script>
   if (window.location.href.indexOf("/softwaress/") > -1) {
