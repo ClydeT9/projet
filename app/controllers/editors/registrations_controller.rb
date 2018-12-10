@@ -7,7 +7,7 @@ class Editors::RegistrationsController < Devise::RegistrationsController
       UserMailer.send_signup_email(@editor).deliver
       return redirect_back(fallback_location: root_path)
     else
-      
+      render :action => 'new'
     end
   end
     

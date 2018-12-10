@@ -12,17 +12,21 @@
     background:none;
     padding-top: 0px;
 }
-body {                /* body - or any parent wrapper */
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-.container {
-  flex: 1;
-}
 .row {
     text-align: center;
 }
+body {
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.container {
+  height: auto !important;
+  min-height: 100%;
+  min-height: calc(100% - 14em);
+}
+
 </style>
                     <div class="row">
                         <div class="col-md-8 col-lg-6">
