@@ -30,6 +30,7 @@ gem 'friendly_id', '~> 5.2.4'
 gem 'mail_form'
 gem 'rack-host-redirect'
 gem 'smtpapi'
+gem 'google-cloud-storage'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
