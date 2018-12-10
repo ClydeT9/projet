@@ -16,7 +16,6 @@ class SoftwaresController < ApplicationController
   # GET /softwares/1
   # GET /softwares/1.json
   def show
-    @photos = @software.photos
     @software = Software.friendly.find(params[:id])
     @is_liked = @software.is_liked(current_user) if user_signed_in?
     @comment = Comment.build_from(@software, current_user.id, '') if user_signed_in?
@@ -36,7 +35,6 @@ class SoftwaresController < ApplicationController
 
   # GET /softwares/1/edit
   def edit
-    @photos = @software.photos
   end
 
   # POST /softwares
@@ -48,10 +46,8 @@ class SoftwaresController < ApplicationController
       if @software.save
         if params[:images]
             params[:images].each do |i|
-                @software.photos.create(image: i)
             end
         end
-        @photos = @software.photos
         redirect_to edit_software_path(@software), notice:"Votre logiciel a été ajouté avec succès" 
   else
        render :new
@@ -67,7 +63,6 @@ class SoftwaresController < ApplicationController
     if @software.update(software_params)
       if params[:images]
           params[:images].each do |i|
-              @software.photos.create(image: i)
           end
       end
      redirect_to edit_software_path(@software), notice:"Modification enregistrée..."
@@ -85,6 +80,12 @@ class SoftwaresController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def delete_image_attachment
+    @image = ActiveStorage::Attachment.find(params[:id])
+    @image.purge
+    redirect_back(fallback_location: softwares_path)
+  end
+
 
 private
     # Use callbacks to share common setup or constraints between actions.
@@ -94,7 +95,7 @@ private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def software_params
-      params.require(:software).permit(:title, :software_type, :video_url,:description, :software_url, :software_type,:facebook,:linkedin,:twitter, :slogan, :editeur, :logo, :target, category_ids: [])
+      params.require(:software).permit(:title, :software_type, :video_url,:description, :software_url, :software_type,:facebook,:linkedin,:twitter, :slogan, :editeur, :logo, :target, category_ids: [],images: [])
     end
 
     def publishing?

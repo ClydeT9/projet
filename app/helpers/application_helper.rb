@@ -2,21 +2,21 @@ module ApplicationHelper
 
     #avatar user
     def avatar_url(user)
-      if user.avatar.present?
-          user.avatar.url
+      if user.avatar.attached?
+          user.avatar
       else
           'default_image.png'
       end
     end
         #logo software
         def logo_url(software)
-          if software.logo.present?
-              software.logo.url
+          if software.logo.attached?
+              software.logo
           else
               'logo_download.png'
           end
         end
-    
+                
     #   Devise login modal 
     def resource_name
         :user

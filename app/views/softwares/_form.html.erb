@@ -64,6 +64,17 @@ trix-toolbar .button_group button.active, trix-toolbar .button_group input[type=
     bottom: 6px;
     left: 3px;
 }
+.panel.panel-default {
+    border: 1px solid #e0e5ec;
+    border-radius: 4px;
+    padding: 10px;
+    width: 240px;
+    max-height:250px;
+}
+.panel-body {    
+    margin-bottom: 15px;
+    padding-top: 5px;
+    }
 </style>
 <%= simple_form_for @software, html: {multipart: true,id:"formulaire"} do |f| %>
 <%= render 'shared/errors' %>
@@ -164,9 +175,34 @@ trix-toolbar .button_group button.active, trix-toolbar .button_group input[type=
                                 </div>
             </div>
             
+
 <label class="form-label">Screenshots<span class="requis">(minimum 1 screenshot)</span></label>
-<%= file_field_tag "images[]", type: :file, multiple: true, class:"fileform"%>
-<div id="photos"><%= render 'photos/list' %></div>
+<%= f.file_field :images, multiple: true %>
+<br><br>
+<div class="row">
+   <% (0...@software.images.count).each do |image| %>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading preview">
+                <%= image_tag(@software.medium(image))%>
+            </div>
+            <div class="panel-body">
+                <span class="pull-right">
+                    <%= link_to delete_image_attachment_software_url(@software.images[image]), method: :delete, data: {confirm: "Supprimer l'image ?"} do %>
+                    <i class="fa fa-times fa-xs"></i> <small>Suppression</small>
+                    <% end %>
+                </span>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>
+
+
+<br><br>
+
+
+
 
             </div>
 	</div><%# tab 3 %>

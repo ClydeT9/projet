@@ -1,8 +1,7 @@
 class User < ApplicationRecord
-  mount_uploader :avatar, AvatarUploader
+  has_one_attached :avatar
   has_many :softwares
   has_many :likes
-  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,6 +9,13 @@ class User < ApplicationRecord
          validates :name, presence: true, length: {maximum: 75} 
 
          validates :fullname, presence: true, length: {maximum: 75}
+
+         def thumbnail input
+          return self.images[input].variant(resize: '100x100>').processed
+        end
+        def medium input
+          return self.images[input].variant(resize: '300x300>').processed
+        end
 
          extend FriendlyId
          friendly_id :name, use: :slugged

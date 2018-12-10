@@ -61,7 +61,7 @@
 <% if user_signed_in? %>
                     <div class="dropdown menu">
                     <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
-                    <%= image_tag avatar_url(current_user), class: "avatar" %>
+                    <%= image_tag avatar_url(current_user), class:"avatar" %>
                     <span class="nameheader">
                     <%= current_user.name %> <%= current_user.fullname %>
                     <small class="text-muted d-block mt-1"><%= current_user.email %></small>

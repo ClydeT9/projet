@@ -12,9 +12,11 @@ Rails.application.routes.draw do
     registrations:      "editors/registrations",
   }
   resources :users, only: [:show]
-  resources :photos
   resources :softwares do 
     resources :likes, only: [:create, :destroy], shallow: true
+    member do
+      delete :delete_image_attachment
+     end  
   end
   resources :comments, only: [:create, :new]
   resources :contacts, only: [:new, :create]
