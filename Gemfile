@@ -31,6 +31,7 @@ gem 'mail_form'
 gem 'rack-host-redirect'
 gem 'smtpapi'
 gem 'google-cloud-storage'
+gem 'mini_magick'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
