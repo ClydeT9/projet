@@ -35,9 +35,8 @@ span.cat_info {
     bottom: 25px;
 }
 </style>
-	<ul id="timeline">
         <li class="listing clearfix big" data-id="<%= software.id %>">
-          <div class="image_wrapper">
+          <div class="image_logo">
             <%= image_tag software.logo.variant(resize: "120x120") %>
           </div>
           <div class="info">
@@ -54,7 +53,7 @@ span.cat_info {
             </span>
           </div>
         </li>
-    </ul>
+
 
 <%= link_to software_path(software) do %>
 <li class="listing clearfix little" data-id="<%= software.id %>">
