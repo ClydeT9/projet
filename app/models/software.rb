@@ -13,12 +13,12 @@ class Software < ApplicationRecord
     validates :software_url, length: {maximum: 150,minimum:2} 
     validates :target, length: {maximum: 200,minimum:6} 
     validates :description, presence: true
-    validates :slogan, length: {maximum: 75,minimum: 15} 
+    validates :slogan, length: {maximum: 40,minimum: 5} 
     validates :editeur, length: {maximum: 45} 
     validates :facebook,length: {maximum: 100} 
     validates :linkedin, length: {maximum: 100} 
     validates :twitter, length: {maximum: 100} 
-
+    
     def thumbnail input
         return self.images[input].variant(resize: '100x100>').processed
     end
@@ -29,8 +29,8 @@ class Software < ApplicationRecord
         return self.images[input].variant(resize: '570x305!').processed
     end
 
-    extend FriendlyId
-    friendly_id :title, use: :slugged
+    # extend FriendlyId
+    # friendly_id :title, use: :slugged
 
     def is_liked user
         Like.find_by(user_id: user.id, software_id: id)

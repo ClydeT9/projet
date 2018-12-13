@@ -75,6 +75,49 @@ trix-toolbar .button_group button.active, trix-toolbar .button_group input[type=
     margin-bottom: 15px;
     padding-top: 5px;
     }
+
+    /* selectize */
+    .selectize-control.multi .selectize-input [data-value],.selectize-control.multi .selectize-input [data-value].active {
+    text-shadow: none;
+    box-shadow: none;
+    word-wrap: break-word;
+    font-size: 0.75rem;
+    color: #6e7687;
+    background-color: #e9ecef;
+    border-radius: 3px;
+    padding: 0 .5rem;
+    line-height: 2em;
+    display: -ms-inline-flexbox;
+    font-weight: 400;
+    background-image: none;
+    background-repeat: repeat-x;
+}
+.selectize-control.multi .selectize-input [data-value].active {
+    background-color: rgba(110, 118, 135, 0.2);
+}
+.selectize-input {
+    box-shadow: none;
+    border: 1px solid #dae1e7;
+    border-top-color: #dee2e6;
+    background: #f5f7fb;
+}
+.selectize-dropdown [data-selectable].option {
+    font-size: 12px;
+}
+.selectize-input.focus {
+    box-shadow: 0 0 0 1px rgba(70, 127, 207, 0.25);
+    border-color: #e0e5ec;
+}
+.selectize-dropdown {
+        box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
+}
+input#software_category_ids-selectized {
+    font-family: monospace;
+    font-size: 11px;
+}
+.selectize-dropdown-content {
+    max-height:250px;
+}
 </style>
 <%= simple_form_for @software, html: {multipart: true,id:"formulaire"} do |f| %>
 <%= render 'shared/errors' %>
@@ -140,15 +183,43 @@ trix-toolbar .button_group button.active, trix-toolbar .button_group input[type=
                                 <div class="form-group">
                                 <label class="form-label">Slogan<span class="requis">(requis)</span></label>
                                 <div class="flex mb-4">
-                                    <%= f.text_field :slogan,id:"inputSlogan",autocomplete: "slogan",maxlength:"75", class:"form-control", placeholder:"Rechercher une app qui améliorera votre quotidien professionnel" %>
+                                    <%= f.text_field :slogan,id:"inputSlogan",autocomplete: "slogan",maxlength:"40", class:"form-control", placeholder:"Rechercher une app qui améliorera votre quotidien professionnel" %>
                                 </div>
                                </div>
+
+                                    <div class="flex">
+                                    <div class="form-group w-100">
+
+
+
+
+                                    <% categories = {
+                                    'Collaboration'      => [['Gestion de projet', 2], ['Messagerie', 3], ['Outils collaboratifs', 4], ['Partage de fichiers', 5], ['Présentation/Vidéo', 6], ["Réseau social d'entreprise", 7], ['Visioconférence', 8]],
+                                    'Finances' => [['Comptabilité', 10], ['Devis',11],['Facturation/Recouvrement', 12], ['Gestion des achats/stocks',13],['Gestion des clients/fournisseurs', 14], ['Note de frais',15],['Paiement en ligne', 16], ['Rapports financiers',17], ['Trésorerie',18]],
+                                    'Gestion commerciale'      => [['Fidélisation des clients', 20], ['Gestion des prospects', 21],['Gestion des ventes', 22], ['Gestion des visiteurs', 23],['Marketing Automation', 24], ['Organisations de réunions', 25],['Point de vente', 26], ['Prise de RDV/Réservations', 27]],
+                                    'Internet' => [['Création de site', 29], ["Création d'application",30],['E-commerce', 31], ['Hébergement', 32],['Référencement', 33], ['Sécurité', 34],['Traduction', 35]],
+                                    'Marketing'      => [['Campagnes publicitaires', 37], ['Enquêtes', 38],['Fidélisation client', 39], ['Gestion des réseaux sociaux', 40], ['Jeux-Concours', 41], ['Mailing', 42]],
+                                    'Ressources humaines' => [['Formation', 44], ['Gestion des congés/absences',45],['Gestion des salaires', 46], ['Gestion des talents',47],['Recrutement', 48], ['Temps de travail',49]],
+                                    'Service client' => [['Gestion des appels', 51], ['Live chat',52],['Multicanal', 53], ['Relation Client',54]]
+                                    } %>
+
+
+                                    <label class="form-label">Catégories<span class="requis">(requis)</span></label>
+                                    <%= f.select :category_ids, grouped_options_for_select(categories, @software.category_ids), {}, { multiple: true, class: "selectize" } %>
+                                    </div>
+                                    </div>
+                                    <%# flex  %>
+                                    
                                     <div class="flex">
                                     <div class="form-group w-100">
                                     <label class="form-label">Idéal pour<span class="requis">(requis)</span></label>
                                     <%= f.text_area :target, rows:3, id:"inputTarget",maxlength:"200", class:"form-control col-sm-12 col-md-12", placeholder:"Indépendant et petites entreprises" %>
                                     </div>
                                     </div>
+
+
+
+
                             </div>
   </div>
 
@@ -268,7 +339,7 @@ function validate(){
         $('#inputEditeur').val().length  >   0   &&
         $('#inputDesc').val().length  >   1000   &&
         $('#inputTarget').val().length  >   6   &&
-        $('#inputSlogan').val().length    >   15) {
+        $('#inputSlogan').val().length    >   5) {
         $("input#publish").prop("disabled", false);
     }
     else {

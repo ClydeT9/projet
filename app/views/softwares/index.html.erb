@@ -1,24 +1,23 @@
 <style>
 .sidebar {
   width: 13%;
-  height: 85vh;
+  height: 90vh;
   min-height: 200px;
   overflow: auto;
   position: -webkit-sticky;
   position: sticky;
-  top: 10%;
+  top: 60px;
+  padding-top:20px;
+  border-right: 1px solid #e0e5ec;
 }
 .sidebar2 {
   width: 47%;
-  height: 80vh;
-  min-height: 200px;
-  overflow: auto;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 10%;
-  padding-left:20px;
+  padding-top:20px;
+  padding-bottom: 20px;
 }
-
+.footer {
+      margin-top: 0rem!important;
+}
 .main {
   width: 40%;
   height: 200vh;
@@ -26,12 +25,22 @@
   display: flex;
   flex-direction: column;
   padding-left: 10px;
+  padding-right: 10px;
+  margin-top:20px;
 }
 
+div#contentest {
+    height: 85vh;
+    overflow: auto;
+    position: sticky;
+    top: 80px;
+    border: 1px solid #e6e7e9;
+    border-radius: 4px;
+    background: white;
+}
 .wrapper {
   display: flex;
   justify-content: space-between;
-  margin-top:30px;
 }
 
 .bottom {
@@ -138,8 +147,7 @@ text-decoration: none;
 }
 .info{
   line-height: 1.25;
-  width: 640px;
-  padding-left: 25px;
+  padding-left: 10px;
 }
 .job_title{
   font-weight: 700;
@@ -228,72 +236,131 @@ background-color:#a378fc;
 .favoris_button {
   display:none;
 }
+
+.newsletter {
+    width: 100%;
+    min-height: 60vh;
+    background: white;
+    border: 1px solid #e0e5ec;
+    border-radius: 4px;
+}
+.newsletter2 {
+    position: absolute;
+    top: 35%;
+    transform: translateY(-35%);
+    background: #f5f7fb;
+    padding: 15px;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    border: 1px solid #e0e5ec;
+    text-align: center;
+    border-radius: 4px;
+}
+
+#nav ul li a {
+    font-size: 0.72rem;
+    font-weight: 100;
+    color: #868e96;
+}
+
+#nav .titrenav a {
+  color: #495057;
+  font-size: 0.75rem;
+}
 </style>
-<% if current_user %>
-hello <%= current_user.name %>
-<% end %>
-<% unless current_user %> 
-  <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-<% else %>
-  <%= current_user[:name] %>
-  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-<% end %>
+<div class="index">
+<div class="wrapper">
 
-<%= link_to "new category", new_category_path %>
-<br>
-
-<% Category.all.each do |category| %>
-  <% if category.parent_id.nil? %>
-  <strong><%= category.children.size %>  <%= link_to category.name, category_path(category) %></strong><br>
-  <% if category.has_children? %>
-  <%= render category.children %>
-  <% end %>
-    <br>
-  <% end %>
-<% end %>
-
- <div class="wrapper">
-  <div class="sidebar">
+<div class="sidebar">
 <nav id="nav" class="overflow-y-auto text-base lg:text-sm">
    <div class="mb-4">
-      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs">Introduction</p>
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Collaboration", controller: "categories", action: "show", id: 1 %></p>
       <ul>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/what-is-tailwind">What is Tailwind?</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/positioning">Position</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/visibility">Visibility</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/z-index">Z-Index</a></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion de projet",controller: "categories", action: "show", id: 2 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Messagerie",controller: "categories", action: "show", id: 3 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Outils collaboratifs", controller: "categories", action: "show", id: 4 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Partage de fichiers", controller: "categories", action: "show", id: 5 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Présentation/Vidéo", controller: "categories", action: "show", id: 6 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Réseau Social d'entreprise", controller: "categories", action: "show", id: 7 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Visioconférence", controller: "categories", action: "show", id: 8 %></li>       
       </ul>
    </div>
     <div class="mb-4">
-      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs">Fixed</p>
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Finances", controller: "categories", action: "show", id: 9 %></p>
       <ul>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/positioning">Position</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/visibility">Visibility</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/z-index">Z-Index</a></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Comptabilité",  controller: "categories", action: "show", id: 10 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Devis", controller: "categories", action: "show", id: 11 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Facturation/Recouvrement", controller: "categories", action: "show", id: 12 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des achats/stocks", controller: "categories", action: "show", id: 13 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des clients/fournisseurs", controller: "categories", action: "show", id: 14 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Note de frais", controller: "categories", action: "show", id: 15 %></li>  
+         <li class="mb-3 lg:mb-2"><%= link_to "Paiement en ligne", controller: "categories", action: "show", id: 16 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Rapports financiers", controller: "categories", action: "show", id: 17 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Trésorerie", controller: "categories", action: "show", id: 18 %></li> 
       </ul>
    </div>
    <div class="mb-4">
-      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs">Layout</p>
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Gestion commerciale", controller: "categories", action: "show", id: 19 %></p>
       <ul>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/container">Container</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/display">Display</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/floats">Floats</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/overflow">Overflow</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/positioning">Position</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/visibility">Visibility</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/z-index">Z-Index</a></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Fidélisation des clients", controller: "categories", action: "show", id: 20 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des prospects", controller: "categories", action: "show", id: 21 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des ventes", controller: "categories", action: "show", id: 22 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des visiteurs", controller: "categories", action: "show", id: 23 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Marketing Automation", controller: "categories", action: "show", id: 24 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Organisations de réunions", controller: "categories", action: "show", id: 25 %></li> 
+         <li class="mb-3 lg:mb-2"><%= link_to "Point de vente", controller: "categories", action: "show", id: 26 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Prise de RDV/Réservations", controller: "categories", action: "show", id: 27 %> </li> 
       </ul>
    </div>
       <div class="mb-4">
-      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs">Fixed</p>
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Internet", controller: "categories", action: "show", id: 28 %></p>
       <ul>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/positioning">Position</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/visibility">Visibility</a></li>
-         <li class="mb-3 lg:mb-2"><a class="hover:underline" href="https://tailwindcss.com/docs/z-index">Z-Index</a></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Création de site", controller: "categories", action: "show", id: 29 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Création d'application", controller: "categories", action: "show", id: 30 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "E-commerce", controller: "categories", action: "show", id: 31 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Hébergement", controller: "categories", action: "show", id: 32 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Référencement", controller: "categories", action: "show", id: 33 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Sécurité", controller: "categories", action: "show", id: 34 %></li>  
+         <li class="mb-3 lg:mb-2"><%= link_to "Traduction", controller: "categories", action: "show", id: 35 %></li>  
+      </ul>
+   </div>
+      <div class="mb-4">
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Marketing", controller: "categories", action: "show", id: 36 %></p>
+      <ul>
+         <li class="mb-3 lg:mb-2"><%= link_to "Campagnes publicitaires", controller: "categories", action: "show", id: 37 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Enquêtes", controller: "categories", action: "show", id: 38 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Fidélisation client", controller: "categories", action: "show", id: 39 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des réseaux sociaux", controller: "categories", action: "show", id: 40 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Jeux-Concours", controller: "categories", action: "show", id: 41 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Mailing", controller: "categories", action: "show", id: 42 %></li> 
+      </ul>
+   </div>
+      <div class="mb-4">
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Ressources humaines", controller: "categories", action: "show", id: 43 %></p>
+      <ul>
+         <li class="mb-3 lg:mb-2"><%= link_to "Formation", controller: "categories", action: "show", id: 44 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des congés/absences", controller: "categories", action: "show", id: 45 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des salaires", controller: "categories", action: "show", id: 46 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des talents", controller: "categories", action: "show", id: 47 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Recrutement", controller: "categories", action: "show", id: 48 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Temps de travail", controller: "categories", action: "show", id: 49 %></li> 
+  </ul>
+   </div>
+      <div class="mb-4">
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Service client", controller: "categories", action: "show", id: 50 %></p>
+      <ul>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des appels", controller: "categories", action: "show", id: 51 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Live chat", controller: "categories", action: "show", id: 52 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Multicanal", controller: "categories", action: "show", id: 53 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Relation client", controller: "categories", action: "show", id: 54 %></li>
       </ul>
    </div>
 </nav>
-  </div>
+</div>
+
+
+
   <div class="main">
 		<ul id="timeline">
     <div id="my-softwares">
@@ -305,52 +372,30 @@ hello <%= current_user.name %>
 
 <div class="sidebar2">
   <div id='contentest'>
-    <div class="max-w-md w-full lg:flex">
-  <div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-    <div class="mb-8">
-      <p class="text-sm text-grey-dark flex items-center">
-        <svg class="fill-current text-grey w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-          <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-        </svg>
-        Members only
-      </p>
-      <div class="text-black font-bold text-xl mb-2">Can coffee make you a better developer?</div>
-      <p class="text-grey-darker text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
-    </div>
-    <div class="flex items-center">
-      <img class="w-10 h-10 rounded-full mr-4" src="https://pbs.twimg.com/profile_images/885868801232961537/b1F6H4KC_400x400.jpg" alt="Avatar of Jonathan Reinink">
-      <div class="text-sm">
-        <p class="text-black leading-none">Jonathan Reinink</p>
-        <p class="text-grey-dark">Aug 18</p>
-      </div>
-    </div>
+  
+<div class="newsletter2">
+  <h3>Inscrivez-vous à notre newsletter</h3>
+  <br>
+  <h6>[Bientôt disponible]</h6>
+  <br>
+  <form class="w-full max-w-sm">
+  <div class="flex items-center border-b border-b-2 border-teal py-2">
+    <input class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="clyde.thomson@uneapp.com" aria-label="Full name" disabled>
+    <button class="flex-no-shrink bg-teal hover:bg-teal-dark border-teal hover:border-teal-dark text-sm border-4 text-white py-1 px-2 rounded" type="button">
+      Inscription
+    </button>
+  </div>
+</form>
+</div>
+<%# newsletter2 %>
+
   </div>
 </div>
-<%# max-w %><br>
-    <div class="max-w-md w-full lg:flex">
-  <div class="border-r border-b border-l border-grey-light lg:border-l-0 lg:border-t lg:border-grey-light bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-    <div class="mb-8">
-      <p class="text-sm text-grey-dark flex items-center">
-        <svg class="fill-current text-grey w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-          <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-        </svg>
-        Members only
-      </p>
-      <div class="text-black font-bold text-xl mb-2">Can coffee make you a better developer?</div>
-      <p class="text-grey-darker text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
-    </div>
-    <div class="flex items-center">
-      <img class="w-10 h-10 rounded-full mr-4" src="https://pbs.twimg.com/profile_images/885868801232961537/b1F6H4KC_400x400.jpg" alt="Avatar of Jonathan Reinink">
-      <div class="text-sm">
-        <p class="text-black leading-none">Jonathan Reinink</p>
-        <p class="text-grey-dark">Aug 18</p>
-      </div>
-    </div>
-  </div>
 </div>
-<%# max-w %>
-  </div>
+
 </div>
+<%# index %>
+
 
 <script>
     $(".listing.clearfix.big[data-id]").click(function(e) {
@@ -361,4 +406,3 @@ hello <%= current_user.name %>
     }
 });
 </script>
-</div>

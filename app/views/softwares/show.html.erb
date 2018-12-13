@@ -61,6 +61,8 @@
    .bigshow .image_wrapper {
    width:80px;
    display:table-cell;
+      position: relative;
+    top: 24px;
    }
    .bigshow .image_wrapper img {
    border-radius:4px;
@@ -144,7 +146,10 @@ iframe.slick-slide.slick-current.slick-active {
          <%= image_tag logo_url(@software) %>
       </div>
       <div class="bigshow_titre">
-         <h3 class="mb-2"><%= @software.title %> <small class="text-sm">(Par <%= @software.title %>)</small>
+         <h3 class="mb-2"><%= @software.title %> 
+
+
+         <small class="text-sm">(Par <%= @software.editeur %>)</small>
 <% if user_signed_in? %>
         <div id="like-icon-software-<%= @software.id.to_s %>" class="like show ml-auto">
           <%= render "like_icon", {is_liked: @is_liked, software: @software} %>
@@ -155,9 +160,16 @@ iframe.slick-slide.slick-current.slick-active {
 
 
 </h3>
-         <h5 class="text-grey-dark">
+         <h5 class="text-grey-dark mb-2">
             <%= @software.slogan %>
          </h5>
+         <% @software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
       </div>
    </div>
 </div> 
@@ -166,9 +178,16 @@ iframe.slick-slide.slick-current.slick-active {
 <div class="littleshow w-full overflow-hidden bg-white rounded mx-auto">
 <div class="p-4">
       <h3 class="mb-2"><%= @software.title %> <small class="text-sm">(Par <%= @software.editeur %>)</small></h3>
-      <label class="form-label text-sm mb-0">
+      <label class="form-label text-sm mb-2">
          <%= @software.slogan %>
       </label>
+         <% @software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
    </div>
 </div>
 <%# fin du little %>

@@ -16,6 +16,7 @@
 //= require jquery3
 //= require popper
 //= require dropzone
+//= require jquery.easy-autocomplete
 //= require_tree .
 //= require toastr
 //= require trix
@@ -27,23 +28,23 @@
 // = require tabler/core
 
 toastr.options = {
-    "closeButton": true,
-    "progressBar": true,
-    "positionClass": "toast-bottom-right",
-    "showDuration": "10000",
-    "timeOut": "10000"
-    };
+  "closeButton": true,
+  "progressBar": true,
+  "positionClass": "toast-bottom-right",
+  "showDuration": "10000",
+  "timeOut": "10000"
+};
 
-    
-    $(document).ready(function() {
-        if ($('.pagination').length) {
-          $(window).scroll(function() {
-            var url = $('.pagination .next_page').attr('href');
-            if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
-              $('.pagination').html('test');
-              return $.getScript(url);
-            }
-          });
-          return $(window).scroll();
-        }
-      });
+
+$(document).ready(function () {
+  if ($('.pagination').length) {
+    $(window).scroll(function () {
+      var url = $('.pagination .next_page').attr('href');
+      if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+        $('.pagination').html('test');
+        return $.getScript(url);
+      }
+    });
+    return $(window).scroll();
+  }
+});

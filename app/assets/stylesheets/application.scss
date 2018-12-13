@@ -1,4 +1,6 @@
 /*
+*= require easy-autocomplete
+*= require easy-autocomplete.themes
 *= require selectize
 *= require selectize.default
 *= require trix
@@ -19,6 +21,11 @@
 
 p.collapse {
   text-align: justify;
+}
+
+a.btn.btn-primary.btn-sm,
+a.btn.btn-secondary.btn-sm {
+  border-radius: 2px;
 }
 
 // footer

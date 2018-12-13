@@ -26,8 +26,110 @@
     font-weight: bold;
     color: #495056;
 }
+
+input[type="text"]:focus + input[type="submit"] {
+  /* some sweet CSS */
+  background-color: green;
+}
+
+ul.fixe{
+    display:none!important;
+}
+ul.fixe.focused {
+    display:block!important;
+}
+.form-control.search {
+    font-family: 'Montserrat';
+    font-size: 0.8em;
+    width: 25em;
+    height: 2.1rem;
+    background: #f5f7fb;
+    transition: width 0.3s 0.25s;
+    -webkit-transition: width 0.3s 0.25s;
+}
+
+.form-control.search:focus {
+    box-shadow: 0 1px 0 rgba(12, 13, 14, 0.1), 0 1px 6px rgba(59, 64, 69, 0.1);
+     width:48em;
+     border-radius:2px;
+}
+div#eac-container-qq,div#eac-container-q {
+    width: 38.4em;
+}
+div#eac-container-qq {
+    z-index:10000;
+}
+div#eac-container-q {
+    z-index:10001;
+}
+span.input-icon-addon.focused {
+    display:none;
+}
+.overlay.focused {
+  opacity:    0.5; 
+  background: #000; 
+  width:      100%;
+  height:     100%; 
+  z-index:    10;
+  top:        60px; 
+  left:       0; 
+  position:   fixed; 
+}
+
+.easy-autocomplete-container,.nav-wrapper .header.fixed {
+    z-index: 10000;
+}
+
+li.selected {
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11), 0 5px 15px 0 rgba(0, 0, 0, 0.08);
+    border-radius: 0 0 4px 4px;
+}
+.easy-autocomplete-container ul {
+    border-top:none;
+    border-radius: 4px;
+}
+.easy-autocomplete input.focused {
+    border-radius:4px 4px 0px 0px;
+}
+.easy-autocomplete input {
+    box-shadow:none;
+    border-radius:2px;
+}
+#eac-container-q ul.dele{
+    display:none!important;
+    transition-property: display;
+    transition-delay: 4s;
+}
+.mystyle {
+display:none!important;
+}
+
+
+<%# search %>
+.input-icon .form-control {
+    background: white;
+    border: 1px solid #e0e5ec;
+}
+.input-icon .form-control.scrolled {
+  background:#f5f7fb;
+  transition: background 3s;
+}
+#bloc2 h6 {
+    padding-bottom: 4px;
+    padding-top:8px;
+    font-size: 16px;
+}
+span.s-2 {
+    color: #8795a1;
+    font-size: 14px;
+}
+.easy-autocomplete-container ul li, .easy-autocomplete-container ul .eac-category {
+    border-bottom: 1px solid #f1f5f8;
+    border-radius: 0px;
+}
 </style>
-<div class="nav-wrapper">    
+<div class="overlay"></div>  
+<div class="nav-wrapper">  
 <div class="header">
 <div class="container">
 <nav class="navbar navbar-expand-lg navbar-light">
@@ -35,7 +137,7 @@
   <span class="navbar-brand"><span class="une">une</span><span class="app">app</span></span>
 <% end %>
 
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav mr-auto pl-4">
 
    <%#     
     <ul class="navbar-nav mr-auto">
@@ -55,8 +157,15 @@
       </li>
     </ul>
      %>
+                    <%= form_with url: search_path, local: true, method: :get, html: { class: "input-icon" } do |form| %>
+                    <%= form.text_field :q, placeholder: "A la recherche d'une app professionnel ...", data: { behavior: "autocomplete" }, onkeypress:"myFunction()",class: "form-control search" %>
+                        <span class="input-icon-addon">
+                        <i class="fas fa-search"></i>
+                        </span>
+                    <% end %>
+</ul>
 
-    </ul>
+    
     <span class="navbar-text">
 <% if user_signed_in? %>
                     <div class="dropdown menu">
@@ -69,43 +178,43 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                         <%= link_to edit_user_registration_path do %>
-                        <span class="dropdown-item" href="#">
+                        <span class="dropdown-item">
                         <i class="far fa-user"></i> Mon profil
                         </span>
                         <% end %>
 
                         <% if current_user.role_editor? %>
                             <%= link_to new_software_path do %>
-                            <span class="dropdown-item" href="#">
+                            <span class="dropdown-item">
                             <i class="fas fa-plus"></i> Ajouter une app
                             </span>
                             <% end %>
 
                             <%= link_to myapp_path do %>
-                            <span class="dropdown-item" href="#">
+                            <span class="dropdown-item">
                             <i class="fas fa-list-ol"></i> Mes applications
                             </span>
                             <% end %>
                         <% end %>
 
                         <%= link_to user_path(current_user) do %>
-                        <span class="dropdown-item" href="#">
+                        <span class="dropdown-item">
                         <i class="far fa-heart"></i> Mes favoris
                         </span>
                         <% end %>
                         <%= link_to new_software_path do %>
-                        <span class="dropdown-item" href="#">
+                        <span class="dropdown-item">
                         <i class="fas fa-comments"></i> Mes commentaires
                         </span>
                         <% end %>
                         <div class="dropdown-divider"></div>
-                        <%= link_to new_software_path do %>
-                        <span class="dropdown-item" href="#">
+                        <a href="../contacts/new">
+                        <span class="dropdown-item">
                         <i class="far fa-question-circle"></i> Besoin d'aide ? 
                         </span>
-                        <% end %>
+                        </a>
                         <%= link_to destroy_user_session_path, method: :delete do%>
-                        <span class="dropdown-item" href="#">
+                        <span class="dropdown-item">
                         <i class="fas fa-sign-out-alt"></i> Déconnexion
                         </span>
                         <% end %>
@@ -127,8 +236,9 @@
     <h4>Rechercher une app, qui améliorera votre quotidien professionnel</h4>
     <h6>Une façon simple de retrouver des applications web qui vous <u>plaisent</u> et qui vous <u>conviennent</u> !</h6>
     <button class="facebooklogin"><i class="fab fa-facebook fa-2x"></i><%= link_to "Continuer avec Facebook", root_path %></button>                  
-    <button class="googlelogin"><i class="fab fa-google fa-2x"></i><%= link_to "Continuer avec Google", root_path  %>
+    <button class="googlelogin"><i class="fab fa-google fa-2x"></i><%= link_to "Continuer avec Google", root_path  %></button>
 </div>
+
 <% end %>
 
 
@@ -157,5 +267,37 @@ $(window).scroll(function() {
     } else {
         $navBar.addClass('fixed');
     }
+});
+</script>
+
+<script>
+function setFocused() {
+  var results = document.querySelectorAll('.overlay, .fixe, .form-control.search,span.input-icon-addon,.easy-autocomplete input');
+  for (result of results) {
+    result.classList.add('focused');
+  }
+}
+
+function unsetFocused() {
+  var results = document.querySelectorAll('.overlay, .fixe, .form-control.search,span.input-icon-addon,.easy-autocomplete input');
+  for (result of results) {
+    result.classList.remove('focused');
+  }
+}
+
+var results = document.querySelectorAll('input#q');
+for (result of results) {
+  result.addEventListener("focus", setFocused);
+  result.addEventListener("blur", unsetFocused);
+}
+</script>
+
+
+<script>
+$(function () {
+  $(document).scroll(function () {
+    var $nav = $(".input-icon .form-control");
+    $nav.toggleClass('scrolled', $(this).scrollTop() > 0);
+  });
 });
 </script>

@@ -15,6 +15,25 @@
    li.listing.clearfix.big {
     margin-bottom: -10px!important;
 }
+
+span.cat_info {
+    margin: 0px;
+}
+
+.cat_info a {
+       font-size: 10px;
+}
+.job_info {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.info.big {
+    line-height: 1.25;
+    padding-left: 25px;
+    display: inline-block;
+    position: relative;
+    bottom: 25px;
+}
 </style>
 <li class="listing clearfix big" data-id="<%= software.id %>">
    <div class="image_wrapper">
@@ -25,17 +44,17 @@
          <%= software.title %>
       </span>
 
+      <span class="job_info"><%= software.slogan %></span>
+
+      <span class="cat_info">
          <% software.categories.each do |category| %>
          <% if category.parent.nil? %>
                 parent
                 <% else %>
-                <%= link_to category.name, category, class:"no-click" %>
+                <%= link_to category.name, category, class:"tag no-click" %>
          <% end %>
          <% end %>
-
-
-
-      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
+      </span>
    </div>
 </li>
 <%= link_to software_path(software) do %>
@@ -43,10 +62,19 @@
    <div class="image_wrapper">
       <%= image_tag logo_url(software) %>
    </div>
-   <div class="info">
+   <div class="info big">
       <span class="job_title"><%= software.title %>
       </span>
-      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
+      <span class="job_info"><%= software.slogan %></span>
+      <span class="cat_info">
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </span>    
    </div>
 </li>
 <% end %>
@@ -58,3 +86,4 @@
          <% else %>
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
+         

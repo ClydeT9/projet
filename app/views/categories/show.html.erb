@@ -1,31 +1,488 @@
-<p id="notice"><%= notice %></p>
+<style>
+.sidebar {
+  width: 13%;
+  height: 85vh;
+  min-height: 200px;
+  overflow: auto;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  padding-top:20px;
+  border-right: 1px solid #e0e5ec;
+}
+.sidebar2 {
+  width: 47%;
+  padding-top:20px;
+  padding-bottom: 20px;
+}
 
-<p>
-  <strong>Name:</strong>
-  <strong><%= @category.name %><br></strong>
-  <% if @category.has_children? %>
-  heeloo
-  <% end %>
-</p>
+.footer {
+      margin-top: 0rem!important;
+}
+.main {
+  width: 40%;
+  height: 200vh;
+  min-height: 1700px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top:20px;
+}
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+div#contentest {
+    height: 85vh;
+    overflow: auto;
+    position: sticky;
+    top: 80px;
+    border: 1px solid #e6e7e9;
+    border-radius: 4px;
+    background: white;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
 
-<br>
-<strong>
-<% @category.softwares.each do |software| %>
-<%= link_to software.title, software_path(software) %>
-<% end %>
-</strong>
-<br>
+.bottom {
+  justify-self: bottom;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+ul li a {
+  font-size: 0.8rem;
+  font-weight: 100;
+  color: #868e96;
+}
+.titrenav {
+    color: #495057;
+}
 
 
-<% if @category.parent.nil? %>
- <%= render @category.children %>
-<% end %>
+
+
+
+
+
+
+.clearfix:before, .clearfix:after {
+	content:" ";
+	display: table;
+}
+.clearfix:after{
+	clear: both;
+}
+.main_header{
+	margin: 5em 0 3em 0;
+}
+.logo img {
+		width:75px;
+		float: left;
+}
+.logo h1{
+	float: left;
+	margin: 0 0 0 1em;
+	text-transform: uppercase;
+	font-size: 1.34em;
+	padding-top: 1.8em;
+	color :#34324b;
+}
+.logo h1 span{
+	font-weight: 400;
+}
+.current{
+	color: #34324b;
+	font-weight: 700;
+}
+#timeline{
+  width: 100%;
+  position: relative;
+  list-style: none;
+  padding: 0;
+}
+#timeline a {
+text-decoration: none;
+}
+ #timeline:after {
+    content: "";
+    width: 1px;
+    background: 1px #e6e7e9;
+    height: 90%;
+    position: absolute;
+    top: 3em;
+    left: 3em;
+    z-index: 0; }
+#timeline .listing{
+  background-color: white;
+  border: 1px solid #e6e7e9;
+  border-radius: 0.3em;
+  padding: 1em;
+  margin-bottom: 1em;
+  position: relative;
+  z-index: 1;
+  display: table;
+  width: 100%;
+  transition: all .3s ease-in-out;
+}
+.listing:hover{
+  cursor: pointer;
+  box-shadow: 0px 2px 40px 0 rgba(0,0,0,0.1);
+
+}
+#timeline .listing img,.info,.job_type{
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 0.9em;
+  color: #74718f;
+}
+#timeline .image_wrapper{
+  width: 60px;
+}
+#timeline .image_wrapper img{
+  width: 60px;
+  display : block;
+  margin : 0 auto;
+  border-radius: 0.25em;
+}
+.info{
+  line-height: 1.25;
+  padding-left: 10px;
+}
+.job_title{
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #34324b;
+}
+.job_info{
+  color:#74718f;
+  display: block;
+}
+.job_info span{
+  margin: 0 .75em;
+}
+.contract{
+  color: #a378fc;
+
+}
+.contract:before{
+background-color:#a378fc;
+}
+.date{
+  display: inline-block; 
+  padding: 1em 0;
+  width: 100px;
+  background-color: white;
+  border: 1px solid #e6e7e9;
+  border-radius: 3em;
+  font-weight: 700;
+  font-size: .75em;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+  margin : 1em 0 2em 0;
+  color: #34324b;
+}
+@media only screen and (max-width: 768px){
+.logo{
+   display: block;
+  text-align: center;
+}
+.logo img {
+    float: none;
+}
+.logo h1{
+  float: none;
+  margin: 0 auto;
+  text-transform: uppercase;
+  font-size: 1.1em;
+}
+}
+
+.listing.clearfix.little{
+   display: none!important;
+}
+@media only screen and (max-width: 1200px){
+.listing.clearfix.big{
+   display: none!important;
+}
+.listing.clearfix.little{
+   display: block!important;
+}
+.listing.clearfix.little .image_wrapper{
+   display: table-cell!important;
+}
+.sidebar2 {
+  display:none!important;
+}
+.sidebar {
+  width:20%;
+}
+.main {
+  width:80%;
+}
+}
+
+
+@media only screen and (max-width: 800px){
+.sidebar {
+  display:none!important;
+}
+.main {
+  width:100%;
+}
+}
+
+.favoris_button {
+  display:none;
+}
+
+.newsletter {
+    width: 100%;
+    min-height: 60vh;
+    background: white;
+    border: 1px solid #e0e5ec;
+    border-radius: 4px;
+}
+.newsletter2 {
+    position: absolute;
+    top: 35%;
+    transform: translateY(-35%);
+    background: #f5f7fb;
+    padding: 15px;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    border: 1px solid #e0e5ec;
+    text-align: center;
+    border-radius: 4px;
+}
+
+#nav ul li a {
+    font-size: 0.72rem;
+    font-weight: 100;
+    color: #868e96;
+}
+
+#nav .titrenav a {
+  color: #495057;
+  font-size: 0.75rem;
+}
+   .like_button {
+   display: inline-block;
+   float: right;
+   }
+   #timeline .listing {
+   max-height:90px;
+   }
+   .like_button {
+      position:relative;
+      bottom: 3.6rem;
+      z-index:1;
+      margin-right:20px;
+   }
+   li.listing.clearfix.big {
+    margin-bottom: -10px!important;
+}
+
+span.cat_info {
+    margin: 0px;
+}
+
+.cat_info a {
+       font-size: 10px;
+}
+.job_info {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+
+#nav a.active {
+font-weight: bold;
+color: #437dd2;
+}
+</style>
+<div class="wrapper">
+
+<div class="sidebar">
+<nav id="nav" class="overflow-y-auto text-base lg:text-sm">
+   <div class="mb-4">
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Collaboration", controller: "categories", action: "show", id: 1 %></p>
+      <ul>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion de projet",controller: "categories", action: "show", id: 2 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Messagerie",controller: "categories", action: "show", id: 3 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Outils collaboratifs", controller: "categories", action: "show", id: 4 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Partage de fichiers", controller: "categories", action: "show", id: 5 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Présentation/Vidéo", controller: "categories", action: "show", id: 6 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Réseau Social d'entreprise", controller: "categories", action: "show", id: 7 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Visioconférence", controller: "categories", action: "show", id: 8 %></li>       
+      </ul>
+   </div>
+    <div class="mb-4">
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Finances", controller: "categories", action: "show", id: 9 %></p>
+      <ul>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Comptabilité",  controller: "categories", action: "show", id: 10 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Devis", controller: "categories", action: "show", id: 11 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Facturation/Recouvrement", controller: "categories", action: "show", id: 12 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des achats/stocks", controller: "categories", action: "show", id: 13 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des clients/fournisseurs", controller: "categories", action: "show", id: 14 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Note de frais", controller: "categories", action: "show", id: 15 %></li>  
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Paiement en ligne", controller: "categories", action: "show", id: 16 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Rapports financiers", controller: "categories", action: "show", id: 17 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Trésorerie", controller: "categories", action: "show", id: 18 %></li> 
+      </ul>
+   </div>
+   <div class="mb-4">
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Gestion commerciale", controller: "categories", action: "show", id: 19 %></p>
+      <ul>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Fidélisation des clients", controller: "categories", action: "show", id: 20 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des prospects", controller: "categories", action: "show", id: 21 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des ventes", controller: "categories", action: "show", id: 22 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des visiteurs", controller: "categories", action: "show", id: 23 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Marketing Automation", controller: "categories", action: "show", id: 24 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Organisations de réunions", controller: "categories", action: "show", id: 25 %></li> 
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Point de vente", controller: "categories", action: "show", id: 26 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Prise de RDV/Réservations", controller: "categories", action: "show", id: 27 %> </li> 
+      </ul>
+   </div>
+      <div class="mb-4">
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Internet", controller: "categories", action: "show", id: 28 %></p>
+      <ul>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Création de site", controller: "categories", action: "show", id: 29 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Création d'application", controller: "categories", action: "show", id: 30 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "E-commerce", controller: "categories", action: "show", id: 31 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Hébergement", controller: "categories", action: "show", id: 32 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Référencement", controller: "categories", action: "show", id: 33 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Sécurité", controller: "categories", action: "show", id: 34 %></li>  
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Traduction", controller: "categories", action: "show", id: 35 %></li>  
+      </ul>
+   </div>
+      <div class="mb-4">
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Marketing", controller: "categories", action: "show", id: 36 %></p>
+      <ul>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Campagnes publicitaires", controller: "categories", action: "show", id: 37 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Enquêtes", controller: "categories", action: "show", id: 38 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Fidélisation client", controller: "categories", action: "show", id: 39 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des réseaux sociaux", controller: "categories", action: "show", id: 40 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Jeux-Concours", controller: "categories", action: "show", id: 41 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Mailing", controller: "categories", action: "show", id: 42 %></li> 
+      </ul>
+   </div>
+      <div class="mb-4">
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Ressources humaines", controller: "categories", action: "show", id: 43 %></p>
+      <ul>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Formation", controller: "categories", action: "show", id: 44 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des congés/absences", controller: "categories", action: "show", id: 45 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des salaires", controller: "categories", action: "show", id: 46 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des talents", controller: "categories", action: "show", id: 47 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Recrutement", controller: "categories", action: "show", id: 48 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Temps de travail", controller: "categories", action: "show", id: 49 %></li> 
+  </ul>
+   </div>
+      <div class="mb-4">
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Service client", controller: "categories", action: "show", id: 50 %></p>
+      <ul>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des appels", controller: "categories", action: "show", id: 51 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Live chat", controller: "categories", action: "show", id: 52 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Multicanal", controller: "categories", action: "show", id: 53 %></li>
+         <li class="mb-3 lg:mb-2"><%= active_link_to "Relation client", controller: "categories", action: "show", id: 54 %></li>
+      </ul>
+   </div>
+</nav>
+</div>
+
+
+
+  <div class="main">
+		<ul id="timeline">
+    <div id="my-softwares">
+         
 
 <% if @category.subtree %>
 <% @category.softwares.each do |software| %>
-<%= link_to software.title, software_path(software) %>
+    <li class="listing clearfix big" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title">
+         <%= software.title %>
+      </span>
+
+      <span class="job_info"><%= software.slogan %></span>
+
+      <span class="cat_info">
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </span>
+   </div>
+</li>
+<%= link_to software_path(software) do %>
+<li class="listing clearfix little" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title"><%= software.title %>
+      </span>
+      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
+   </div>
+</li>
+<% end %>
+
+         <% if user_signed_in? %>
+         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
+            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
+         </div>
+         <% else %>
+         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
+         <% end %>
+
+
 <% end %>
 <% end %>
+
+
+    </div>
+    </ul>
+  </div><%# main %>
+
+<div class="sidebar2">
+  <div id='contentest'>
+  
+    <div class="newsletter2">
+  <h3>Inscrivez-vous à notre newsletter</h3>
+  <br>
+  <h6>Rester informer des dernières applications</h6>
+  <br>
+  <form class="w-full max-w-sm">
+  <div class="flex items-center border-b border-b-2 border-teal py-2">
+    <input class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="clyde.thomson@uneapp.com" aria-label="Full name">
+    <button class="flex-no-shrink bg-teal hover:bg-teal-dark border-teal hover:border-teal-dark text-sm border-4 text-white py-1 px-2 rounded" type="button">
+      Inscription
+    </button>
+  </div>
+</form>
+</div>
+<%# newsletter2 %>
+
+  </div>
+</div>
+
+<script>
+    $(".listing.clearfix.big[data-id]").click(function(e) {
+    if (!$(e.target).hasClass('no-click')) {
+      $.get('/softwares/' + $(this).attr('data-id'), function(data) {
+        $('#contentest').html(data);
+      }); 
+    }
+});
+</script>
+</div>

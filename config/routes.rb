@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get :search, controller: :pages
   resources :categories
   devise_for :users, path: 'users', controllers: {
     sessions:           "users/sessions",
