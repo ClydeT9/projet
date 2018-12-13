@@ -35,28 +35,27 @@ span.cat_info {
     bottom: 25px;
 }
 </style>
-<li class="listing clearfix big" data-id="<%= software.id %>">
-   <div class="image_wrapper">
-      <%= image_tag software.logo.variant(resize: "120x120") %>
-   </div>
-   <div class="info">
-      <span class="job_title">
-         <%= software.title %>
-      </span>
+	<ul id="timeline">
+        <li class="listing clearfix big" data-id="<%= software.id %>">
+          <div class="image_wrapper">
+            <%= image_tag software.logo.variant(resize: "120x120") %>
+          </div>
+          <div class="info">
+            <span class="job_title"><%= software.title %></span>
+            <span class="job_info"><%= software.slogan %></span>
+            <span class="cat_info">         
+               <% software.categories.each do |category| %>
+               <% if category.parent.nil? %>
+                     parent
+                     <% else %>
+                     <%= link_to category.name, category, class:"tag no-click" %>
+               <% end %>
+               <% end %>
+            </span>
+          </div>
+        </li>
+    </ul>
 
-      <span class="job_info"><%= software.slogan %></span>
-
-      <span class="cat_info">
-         <% software.categories.each do |category| %>
-         <% if category.parent.nil? %>
-                parent
-                <% else %>
-                <%= link_to category.name, category, class:"tag no-click" %>
-         <% end %>
-         <% end %>
-      </span>
-   </div>
-</li>
 <%= link_to software_path(software) do %>
 <li class="listing clearfix little" data-id="<%= software.id %>">
    <div class="image_wrapper">
