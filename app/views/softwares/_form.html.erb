@@ -170,7 +170,7 @@ input#software_category_ids-selectized {
                                     <div class="form-group w-100">
                                     <%= f.hidden_field :description,id:"inputDesc", rows:8,autocomplete: "description",class:"form-control col-sm-12 col-md-12", placeholder:"Description" %>
                                     <trix-editor input="inputDesc" name="text" id="text"></trix-editor>
-                                    <label class="form-label float-left w-full">Description<span class="requis">(requis)</span> (200 mots minimum et 300 mots maximum) <span class="float-right"><span id="display_count">0</span></span></label>
+                                    <label class="form-label float-left w-full">Description<span class="requis">(requis)</span> (200 mots minimum et 400 mots maximum) <span class="float-right"><span id="display_count">0</span></span></label>
                                     </div>
                                     </div>
 
@@ -404,15 +404,15 @@ $('#video_url').keyup(function (){
 $(document).ready(function() {
     $("#text").on('keyup', function() {
         var words = this.value.match(/\S+/g).length;
-        if (words > 300) {
+        if (words > 400) {
             // Split the string on first 200 words and rejoin on spaces
-            var trimmed = $(this).val().split(/\s+/, 300).join(" ");
+            var trimmed = $(this).val().split(/\s+/, 400).join(" ");
             // Add a space at the end to keep new typing making new words
             $(this).val(trimmed + " ");
         }
         else {
             $('#display_count').text(words);
-            $('#word_left').text(300-words);
+            $('#word_left').text(400-words);
         }
     });
  }); 
