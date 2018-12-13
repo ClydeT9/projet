@@ -13,7 +13,7 @@ class Software < ApplicationRecord
     validates :software_url, length: {maximum: 150,minimum:2} 
     validates :target, length: {maximum: 200,minimum:6} 
     validates :description, presence: true
-    validates :slogan, length: {maximum: 40,minimum: 5} 
+    validates :slogan, length: {maximum: 60,minimum: 5} 
     validates :editeur, length: {maximum: 45} 
     validates :facebook,length: {maximum: 100} 
     validates :linkedin, length: {maximum: 100} 
