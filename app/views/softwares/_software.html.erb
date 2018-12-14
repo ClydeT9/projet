@@ -34,14 +34,35 @@ span.cat_info {
     position: relative;
     bottom: 25px;
 }
+.scroll {
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar; }
+
+.scroll::-webkit-scrollbar {
+  display: none; }
+
+.container.example-three {
+    max-width: 367px!important;
+    float: left;
+    padding-left: 0px;
+    margin-right: 0px;
+}
+nav.vertical-align-middle.scroll {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
 </style>
         <li class="listing clearfix big" data-id="<%= software.id %>">
           <div class="image_wrapper">      
-            <%= image_tag software.logo.variant(resize: "60x60"), width:60, height:60 %>
+            <%= image_tag software.logo %>
           </div>
           <div class="info">
             <span class="job_title"><%= software.title %></span>
             <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
             <span class="cat_info">         
                <% software.categories.each do |category| %>
                <% if category.parent.nil? %>
@@ -51,6 +72,8 @@ span.cat_info {
                <% end %>
                <% end %>
             </span>
+            </nav>
+            </div>
           </div>
         </li>
 
@@ -84,4 +107,3 @@ span.cat_info {
          <% else %>
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
-         

@@ -298,14 +298,13 @@ span.cat_info {
     margin-bottom: 4px;
 }
 
-
 #nav a.active {
 font-weight: bold;
 color: #437dd2;
 }
+
 </style>
 <div class="wrapper">
-
 <div class="sidebar">
 <nav id="nav" class="overflow-y-auto text-base lg:text-sm">
    <div class="mb-4">
@@ -398,11 +397,9 @@ color: #437dd2;
   <div class="main">
 		<ul id="timeline">
     <div id="my-softwares">
-         
-
-<% if @category.subtree %>
-<% @category.softwares.each do |software| %>
-    <li class="listing clearfix big" data-id="<%= software.id %>">
+<% if @category.id == 1 %>
+<% @collaboration.each do |software| %>
+<li class="listing clearfix big" data-id="<%= software.id %>">
    <div class="image_wrapper">
       <%= image_tag logo_url(software) %>
    </div>
@@ -444,12 +441,351 @@ color: #437dd2;
          <% else %>
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
+<% end %>
+<% end %>  
+<%# collaboration %>
+
+<% if @category.id == 9 %>
+<% @finances.each do |software| %>
+<li class="listing clearfix big" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title">
+         <%= software.title %>
+      </span>
+
+      <span class="job_info"><%= software.slogan %></span>
+
+      <span class="cat_info">
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </span>
+   </div>
+</li>
+<%= link_to software_path(software) do %>
+<li class="listing clearfix little" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title"><%= software.title %>
+      </span>
+      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
+   </div>
+</li>
+<% end %>
+
+         <% if user_signed_in? %>
+         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
+            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
+         </div>
+         <% else %>
+         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
+         <% end %>
+<% end %>
+<% end %>  
+<%# finances %>
 
 
+<% if @category.id == 19 %>
+<% @commerce.each do |software| %>
+<li class="listing clearfix big" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title">
+         <%= software.title %>
+      </span>
+
+      <span class="job_info"><%= software.slogan %></span>
+
+      <span class="cat_info">
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </span>
+   </div>
+</li>
+<%= link_to software_path(software) do %>
+<li class="listing clearfix little" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title"><%= software.title %>
+      </span>
+      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
+   </div>
+</li>
+<% end %>
+
+         <% if user_signed_in? %>
+         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
+            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
+         </div>
+         <% else %>
+         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
+         <% end %>
+<% end %>
+<% end %>  
+<%# commerce %>
+
+
+
+<% if @category.id == 28 %>
+<% @internet.each do |software| %>
+<li class="listing clearfix big" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title">
+         <%= software.title %>
+      </span>
+
+      <span class="job_info"><%= software.slogan %></span>
+
+      <span class="cat_info">
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </span>
+   </div>
+</li>
+<%= link_to software_path(software) do %>
+<li class="listing clearfix little" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title"><%= software.title %>
+      </span>
+      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
+   </div>
+</li>
+<% end %>
+
+         <% if user_signed_in? %>
+         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
+            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
+         </div>
+         <% else %>
+         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
+         <% end %>
+<% end %>
+<% end %>  
+<%# internet %>
+
+
+
+<% if @category.id == 36 %>
+<% @marketing.each do |software| %>
+<li class="listing clearfix big" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title">
+         <%= software.title %>
+      </span>
+
+      <span class="job_info"><%= software.slogan %></span>
+
+      <span class="cat_info">
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </span>
+   </div>
+</li>
+<%= link_to software_path(software) do %>
+<li class="listing clearfix little" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title"><%= software.title %>
+      </span>
+      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
+   </div>
+</li>
+<% end %>
+
+         <% if user_signed_in? %>
+         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
+            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
+         </div>
+         <% else %>
+         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
+         <% end %>
+<% end %>
+<% end %>  
+<%# marketing %>
+
+<% if @category.id == 43 %>
+<% @rh.each do |software| %>
+<li class="listing clearfix big" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title">
+         <%= software.title %>
+      </span>
+
+      <span class="job_info"><%= software.slogan %></span>
+
+      <span class="cat_info">
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </span>
+   </div>
+</li>
+<%= link_to software_path(software) do %>
+<li class="listing clearfix little" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title"><%= software.title %>
+      </span>
+      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
+   </div>
+</li>
+<% end %>
+
+         <% if user_signed_in? %>
+         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
+            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
+         </div>
+         <% else %>
+         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
+         <% end %>
+<% end %>
+<% end %>  
+<%# rh %>
+
+<% if @category.id == 50 %>
+<% @client.each do |software| %>
+<li class="listing clearfix big" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title">
+         <%= software.title %>
+      </span>
+
+      <span class="job_info"><%= software.slogan %></span>
+
+      <span class="cat_info">
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </span>
+   </div>
+</li>
+<%= link_to software_path(software) do %>
+<li class="listing clearfix little" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title"><%= software.title %>
+      </span>
+      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
+   </div>
+</li>
+<% end %>
+
+         <% if user_signed_in? %>
+         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
+            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
+         </div>
+         <% else %>
+         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
+         <% end %>
+<% end %>
+<% end %>  
+<%# client %>
+
+
+
+<% if @category.subtree %>
+<% @category.softwares.each do |software| %>
+<li class="listing clearfix big" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title">
+         <%= software.title %>
+      </span>
+
+      <span class="job_info"><%= software.slogan %></span>
+
+      <span class="cat_info">
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </span>
+   </div>
+</li>
+<%= link_to software_path(software) do %>
+<li class="listing clearfix little" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag logo_url(software) %>
+   </div>
+   <div class="info">
+      <span class="job_title"><%= software.title %>
+      </span>
+      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
+   </div>
+</li>
+<% end %>
+
+         <% if user_signed_in? %>
+         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
+            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
+         </div>
+         <% else %>
+         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
+         <% end %>
 <% end %>
 <% end %>
-
-
     </div>
     </ul>
   </div><%# main %>

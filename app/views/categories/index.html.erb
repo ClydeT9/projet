@@ -1,3 +1,4 @@
+<% if current_user.id == 1 %>
 <p id="notice"><%= notice %></p>
 
 <h1>Categories</h1>
@@ -31,7 +32,7 @@
 <% end %>
 
 <% @test2.each do |category| %>
-<%= link_to category.name, category, class:"no-click" %>
+<%= link_to category.name, category, class:"no-click" %> hello2
 <% end %>
 
 <% Category.all.each do |category| %>
@@ -61,3 +62,4 @@
 <% end %>
 
 
+<% end%>

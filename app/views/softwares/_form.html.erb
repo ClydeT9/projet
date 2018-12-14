@@ -282,7 +282,7 @@ input#software_category_ids-selectized {
                     <div class="card-footer text-right step">
                   	<% if @software.published? %>
                     <%= f.submit "Annuler la publication", class: "btn btn-secondary mb-1" %>
-                    <%= f.submit "Mettre à jour", class: "btn btn-primary mb-1", onclick:"return checkWordCount()"%>
+                    <%= f.submit "Mettre à jour", id:"maj", class: "btn btn-primary mb-1", onclick:"return checkWordCount()"%>
                     <% else %>
                     <%= f.submit "Brouillon", class: "btn btn-secondary mb-1" %>
                     <%= f.submit "Publier", class: "btn btn-primary mb-1",id:"publish", onclick:"return checkWordCount()"%>
@@ -428,4 +428,18 @@ $(document).ready(function() {
 return false;
     }
 }
+</script>
+
+<script>
+$(document).ready(function(){
+$("#maj, #publish").click(function(){
+
+var url = $("#inputDesc").val();
+var b = url.search(/(?:https?|ftp):\/\/[\n\S]+/g);
+if(b >0 ) {
+alert("Nous n'acceptons pas de lien dans la description.");
+return false;
+} 
+})
+})
 </script>
