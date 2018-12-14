@@ -33,7 +33,7 @@ span.cat_info {
     padding-left: 25px;
     display: inline-block;
     position: relative;
-    bottom: 25px;
+    bottom: 5px;
 }
 .scroll {
   white-space: nowrap;
@@ -49,7 +49,7 @@ span.cat_info {
     float: left;
     padding-left: 0px;
     margin-right: 0px;
-}
+} 
 nav.vertical-align-middle.scroll {
     white-space: nowrap;
     overflow-x: scroll;
@@ -67,6 +67,20 @@ nav.vertical-align-middle.scroll {
     height:60px;
     display: flex;
     align-items: center;
+}
+
+@media only screen and (max-width: 500px){ 
+    .info.big {
+    max-width: 20em;
+    margin-top: 20px;
+}
+#timeline .listing {
+    min-height: 9.5em;
+}
+
+.main {
+    height: auto;
+}
 }
 </style>
 <% if software.published? %>

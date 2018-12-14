@@ -5,14 +5,30 @@ color: #467fcf;
 a.btn.btn-outline-primary.btn-sm:hover {
 color: white;
 }
-
+@media only screen and (max-width: 800px){ 
+.col-auto.footer {
+    text-align:center;
+}
+.col-auto.footer .btn {
+    margin-top:8px;
+}
+}
+@media only screen and (max-width: 500px){ 
+.col-auto {
+        max-width: 400px;
+        text-align: center;
+}
+form.input-icon {
+  display:none;
+}
+}
 </style>
   <footer class="footer mt-6">
         <div class="container">
           <div class="row align-items-center flex-row-reverse">
             <div class="col-auto ml-lg-auto">
               <div class="row align-items-center">
-                <div class="col-auto">
+                <div class="col-auto footer">
                   <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item"><a href="../contacts/new">Contactez-nous</a></li>
                     <li class="list-inline-item"><a href="../mentions">Conditions générales</a></li>
