@@ -138,6 +138,18 @@ iframe.slick-slide.slick-current.slick-active {
     width: 570px;
     height: 305px;
 }
+.image_wrapper.little, .image_wrapper.little img {
+   width:80px;
+   display:inline-block;
+   border-radius:4px;
+}
+.info.little {
+       display: inline-block;
+       left: 0px;
+}
+a.tag {
+   margin-bottom:4px;
+}
 </style>
 <div class="containershow">
 <div class="bigshow mt-4 overflow-hidden bg-white rounded mx-auto">
@@ -163,6 +175,31 @@ iframe.slick-slide.slick-current.slick-active {
          <h5 class="text-grey-dark mb-2">
             <%= @software.slogan %>
          </h5>
+         <div class="cat_big">   
+         <% @software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+         </div>
+      </div>
+   </div>
+</div> 
+<%# fin du big %>
+
+<div class="littleshow w-full overflow-hidden bg-white rounded mx-auto">
+<div class="p-4">
+         <div class="image_wrapper little">      
+            <%= image_tag @software.logo %>
+         </div>
+      <div class="info little">
+      <h3 class="mb-2"><%= @software.title %> <small class="text-sm">(Par <%= @software.editeur %>)</small></h3>
+      <label class="form-label text-sm mb-2">
+         <%= @software.slogan %>
+      </label>
+      <div class="cat_little">   
          <% @software.categories.each do |category| %>
          <% if category.parent.nil? %>
                 parent
@@ -171,23 +208,8 @@ iframe.slick-slide.slick-current.slick-active {
          <% end %>
          <% end %>
       </div>
-   </div>
-</div> 
-<%# fin du big %>
-
-<div class="littleshow w-full overflow-hidden bg-white rounded mx-auto">
-<div class="p-4">
-      <h3 class="mb-2"><%= @software.title %> <small class="text-sm">(Par <%= @software.editeur %>)</small></h3>
-      <label class="form-label text-sm mb-2">
-         <%= @software.slogan %>
-      </label>
-         <% @software.categories.each do |category| %>
-         <% if category.parent.nil? %>
-                parent
-                <% else %>
-                <%= link_to category.name, category, class:"tag no-click" %>
-         <% end %>
-         <% end %>
+      </div>
+      <%# info %>
    </div>
 </div>
 <%# fin du little %>

@@ -9,11 +9,10 @@ class Software < ApplicationRecord
     self.per_page = 20
     
     
-    validates :title, length: {maximum: 25,minimum:3} 
-    validates :software_url, length: {maximum: 150,minimum:2} 
-    validates :target, length: {maximum: 200,minimum:6} 
-    validates :description, presence: true
-    validates :slogan, length: {maximum: 60,minimum: 5} 
+    validates :title, length: {maximum: 25} 
+    validates :software_url, length: {maximum: 150} 
+    validates :target, length: {maximum: 200} 
+    validates :slogan, length: {maximum: 60} 
     validates :editeur, length: {maximum: 45} 
     validates :facebook,length: {maximum: 100} 
     validates :linkedin, length: {maximum: 100} 

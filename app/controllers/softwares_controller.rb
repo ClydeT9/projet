@@ -81,6 +81,7 @@ class SoftwaresController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
   def delete_image_attachment
     @image = ActiveStorage::Attachment.find(params[:id])
     @image.purge

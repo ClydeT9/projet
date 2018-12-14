@@ -205,7 +205,7 @@ input#software_category_ids-selectized {
 
 
                                     <label class="form-label">Catégories<span class="requis">(requis)</span></label>
-                                    <%= f.select :category_ids, grouped_options_for_select(categories, @software.category_ids), {}, { multiple: true, class: "selectize" } %>
+                                    <%= f.select :category_ids, grouped_options_for_select(categories, @software.category_ids), {}, { placeholder: "Gestion de projet, facturation, gestion des ventes, ...", multiple: true, class: "selectize" } %>
                                     </div>
                                     </div>
                                     <%# flex  %>

@@ -18,6 +18,7 @@
 
 span.cat_info {
     margin: 0px;
+    margin-bottom: 4px;
 }
 
 .cat_info a {
@@ -68,6 +69,8 @@ nav.vertical-align-middle.scroll {
     align-items: center;
 }
 </style>
+<% if software.published? %>
+
         <li class="listing clearfix big" data-id="<%= software.id %>">
           <div class="image_wrapper">      
             <%= image_tag software.logo %>
@@ -90,7 +93,6 @@ nav.vertical-align-middle.scroll {
             </div>
           </div>
         </li>
-
 
 <%= link_to software_path(software) do %>
 <li class="listing clearfix little" data-id="<%= software.id %>">
@@ -121,3 +123,6 @@ nav.vertical-align-middle.scroll {
          <% else %>
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
+
+<% end %>
+<%# published %>

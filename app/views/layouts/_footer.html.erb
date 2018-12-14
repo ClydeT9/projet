@@ -6,7 +6,8 @@ a.btn.btn-outline-primary.btn-sm:hover {
 color: white;
 }
 
-</style><footer class="footer mt-6">
+</style>
+  <footer class="footer mt-6">
         <div class="container">
           <div class="row align-items-center flex-row-reverse">
             <div class="col-auto ml-lg-auto">
@@ -18,7 +19,7 @@ color: white;
                   </ul>
                 </div>
                 <div class="col-auto">
-                             <a class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#signUpModalEditor">Référencer un logiciel</a>
+                            <% if user_signed_in? %><% else %><a class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#signUpModalEditor">Référencer un logiciel</a><% end %>
                 </div>
               </div>
             </div>
