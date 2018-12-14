@@ -103,7 +103,9 @@ nav.vertical-align-middle.scroll {
       <span class="job_title"><%= software.title %>
       </span>
       <span class="job_info"><%= software.slogan %></span>
-      <span class="cat_info">
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
          <% software.categories.each do |category| %>
          <% if category.parent.nil? %>
                 parent
@@ -111,7 +113,9 @@ nav.vertical-align-middle.scroll {
                 <%= link_to category.name, category, class:"tag no-click" %>
          <% end %>
          <% end %>
-      </span>    
+      </span> 
+      </nav>
+      </div>
    </div>
 </li>
 <% end %>
