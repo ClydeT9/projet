@@ -26,7 +26,6 @@
 // = require tabler/vendors/circle-progress.min
 // = require tabler/vendors/jquery.sparkline.min
 // = require tabler/core
-
 toastr.options = {
   "closeButton": true,
   "progressBar": true,

@@ -90,7 +90,9 @@ button.googlelogin {
 .form-footer {
     margin-top: 1rem;
 }
-
+.nav-wrapper .header.fixed {
+    z-index:999;
+}
 @media screen and (max-width: 1000px) {
   .body1 {
     display:none!important;
@@ -179,4 +181,4 @@ button.googlelogin {
 $("#insform").bind("ajax:error", function(evt, xhr, status, error) {
                 window.location.reload();
         });
-        </script>
+</script>

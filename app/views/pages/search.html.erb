@@ -151,7 +151,7 @@ text-decoration: none;
 }
 .job_title{
   font-weight: 700;
-  font-size: 1.1em;
+  font-size: 15px;
   color: #34324b;
 }
 .job_info{
@@ -203,6 +203,19 @@ background-color:#a378fc;
    display: none!important;
 }
 @media only screen and (max-width: 1200px){
+  #timeline .image_wrapper {
+    display: inline-block!important;
+    position: relative;
+    left: 20px;
+  }
+  .info-big {
+    padding-left:0px;
+    max-width: 80%;
+  }
+  #timeline .listing {
+    max-height: 105px;
+    padding-top: 20px;
+}
 .listing.clearfix.big{
    display: none!important;
 }
@@ -222,7 +235,11 @@ background-color:#a378fc;
   width:80%;
 }
 }
-
+@media only screen and (max-width: 800px){
+  .container.example-three {
+   max-width:400px!important;
+}
+ }
 
 @media only screen and (max-width: 800px){
 .sidebar {
@@ -288,10 +305,11 @@ background-color:#a378fc;
 
 span.cat_info {
     margin: 0px;
+    margin-bottom: 4px;
 }
 
 .cat_info a {
-       font-size: 10px;
+       font-size: 9px;
 }
 .job_info {
     margin-top: 4px;
@@ -302,7 +320,7 @@ span.cat_info {
     padding-left: 25px;
     display: inline-block;
     position: relative;
-    bottom: 25px;
+    bottom: 5px;
 }
 .scroll {
   white-space: nowrap;
@@ -318,14 +336,48 @@ span.cat_info {
     float: left;
     padding-left: 0px;
     margin-right: 0px;
-}
+} 
 nav.vertical-align-middle.scroll {
     white-space: nowrap;
     overflow-x: scroll;
 }
+#timeline .image_wrapper {
+  position:absolute;
+}
+.info {
+    position: relative;
+    left: 68px;
+}
 
-ul#timeline.empty:after {
-    display: none;
+.image_wrapper {
+    max-height: 60px;
+    height:60px;
+    display: flex;
+    align-items: center;
+}
+@media only screen and (max-width: 500px){ 
+.container.example-three {
+    max-width: 550px!important;
+}
+.info.big {
+    max-width: 20em;
+    margin-top: 20px;
+}
+a.like_button.no-click {
+    padding-top:10px;
+}
+#timeline .listing {
+    min-height: 10.3em;
+}
+nav.vertical-align-middle.scroll {
+    max-width:250px;
+}
+#timeline .image_wrapper {
+    padding-top:25px;
+}
+.main {
+    height: auto;
+}
 }
 </style>
 <div class="index">
@@ -429,9 +481,12 @@ ul#timeline.empty:after {
       </ul>
       <% end %>
 
-<ul id="timeline">
+
+    	<ul id="timeline">
+
 <% @softwares.each do |software| %>
- <li class="listing clearfix big" data-id="<%= software.id %>">
+<% if software.published? %>
+        <li class="listing clearfix big" data-id="<%= software.id %>">
           <div class="image_wrapper">      
             <%= image_tag software.logo %>
           </div>
@@ -454,8 +509,6 @@ ul#timeline.empty:after {
           </div>
         </li>
 
-
-<%= link_to software_path(software) do %>
 <li class="listing clearfix little" data-id="<%= software.id %>">
    <div class="image_wrapper">
       <%= image_tag software.logo.variant(resize: "120x120") %>
@@ -464,7 +517,9 @@ ul#timeline.empty:after {
       <span class="job_title"><%= software.title %>
       </span>
       <span class="job_info"><%= software.slogan %></span>
-      <span class="cat_info">
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
          <% software.categories.each do |category| %>
          <% if category.parent.nil? %>
                 parent
@@ -472,10 +527,11 @@ ul#timeline.empty:after {
                 <%= link_to category.name, category, class:"tag no-click" %>
          <% end %>
          <% end %>
-      </span>    
+      </span> 
+      </nav>
+      </div>
    </div>
 </li>
-<% end %>
 
          <% if user_signed_in? %>
          <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
@@ -485,19 +541,19 @@ ul#timeline.empty:after {
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
 
+<% end %>
+<%# published %>
 
 
 
-    <% end %>
+<% end %>
       </ul>
     </div>
   </div><%# main %>
 
-
-
 <div class="sidebar2">
   <div id='contentest'>
-  
+
 <div class="newsletter2">
   <h3>Inscrivez-vous à notre newsletter</h3>
   <br>
@@ -530,6 +586,14 @@ ul#timeline.empty:after {
       $.get('/softwares/' + $(this).attr('data-id'), function(data) {
         $('#contentest').html(data);
       }); 
+    }
+});
+</script>
+
+<script>
+    $(".listing.clearfix.little[data-id]").click(function(e) {
+    if (!$(e.target).hasClass('no-click')) {
+      window.location = "/softwares/" + $(this).attr('data-id');
     }
 });
 </script>

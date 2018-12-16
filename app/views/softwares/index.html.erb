@@ -389,7 +389,7 @@ background-color:#a378fc;
 
 <div class="sidebar2">
   <div id='contentest'>
-  
+
 <div class="newsletter2">
   <h3>Inscrivez-vous à notre newsletter</h3>
   <br>
@@ -422,6 +422,14 @@ background-color:#a378fc;
       $.get('/softwares/' + $(this).attr('data-id'), function(data) {
         $('#contentest').html(data);
       }); 
+    }
+});
+</script>
+
+<script>
+    $(".listing.clearfix.little[data-id]").click(function(e) {
+    if (!$(e.target).hasClass('no-click')) {
+      window.location = "/softwares/" + $(this).attr('data-id');
     }
 });
 </script>

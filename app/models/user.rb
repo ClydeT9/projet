@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_one_attached :avatar
-  has_many :softwares
+  has_many :softwares, dependent: :destroy
   has_many :likes
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

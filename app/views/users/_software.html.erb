@@ -1,4 +1,82 @@
 <style>
+.mes_favoris {
+    width: 60%;
+    margin: auto;
+}
+@media only screen and (max-width: 1000px){ 
+.mes_favoris {
+    width: 100%;
+    margin: auto;
+}
+}
+
+.sidebar {
+  width: 13%;
+  height: 90vh;
+  min-height: 200px;
+  overflow: auto;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  padding-top:20px;
+  border-right: 1px solid #e0e5ec;
+}
+.sidebar2 {
+  width: 47%;
+  padding-top:20px;
+  padding-bottom: 20px;
+}
+.footer {
+      margin-top: 0rem!important;
+}
+.main {
+  width: 40%;
+  height: 200vh;
+  min-height: 1700px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top:20px;
+}
+
+div#contentest {
+    height: 85vh;
+    overflow: auto;
+    position: sticky;
+    top: 80px;
+    border: 1px solid #e6e7e9;
+    border-radius: 4px;
+    background: white;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom {
+  justify-self: bottom;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+ul li a {
+  font-size: 0.8rem;
+  font-weight: 100;
+  color: #868e96;
+}
+.titrenav {
+    color: #495057;
+}
+
+
+
+
+
+
+
+
 .clearfix:before, .clearfix:after {
 	content:" ";
 	display: table;
@@ -80,12 +158,11 @@ text-decoration: none;
 }
 .info{
   line-height: 1.25;
-  width: 640px;
-  padding-left: 25px;
+  padding-left: 10px;
 }
 .job_title{
   font-weight: 700;
-  font-size: 1.1em;
+  font-size: 15px;
   color: #34324b;
 }
 .job_info{
@@ -102,10 +179,216 @@ text-decoration: none;
 .contract:before{
 background-color:#a378fc;
 }
+.date{
+  display: inline-block; 
+  padding: 1em 0;
+  width: 100px;
+  background-color: white;
+  border: 1px solid #e6e7e9;
+  border-radius: 3em;
+  font-weight: 700;
+  font-size: .75em;
+  text-align: center;
+  z-index: 2;
+  position: relative;
+  margin : 1em 0 2em 0;
+  color: #34324b;
+}
+@media only screen and (max-width: 768px){
+.logo{
+   display: block;
+  text-align: center;
+}
+.logo img {
+    float: none;
+}
+.logo h1{
+  float: none;
+  margin: 0 auto;
+  text-transform: uppercase;
+  font-size: 1.1em;
+}
+}
 
-.mes_favoris {
-    width: 60%;
-    margin: auto;
+.listing.clearfix.little{
+   display: none!important;
+}
+@media only screen and (max-width: 1200px){
+  #timeline .image_wrapper {
+    display: inline-block!important;
+    position: relative;
+    left: 20px;
+  }
+  .info-big {
+    padding-left:0px;
+    max-width: 80%;
+  }
+  #timeline .listing {
+    max-height: 105px;
+    padding-top: 20px;
+}
+.listing.clearfix.big{
+   display: none!important;
+}
+.listing.clearfix.little{
+   display: block!important;
+}
+.listing.clearfix.little .image_wrapper{
+   display: table-cell!important;
+}
+.sidebar2 {
+  display:none!important;
+}
+.sidebar {
+  width:20%;
+}
+.main {
+  width:80%;
+}
+}
+@media only screen and (max-width: 800px){
+  .container.example-three {
+   max-width:400px!important;
+}
+ }
+
+@media only screen and (max-width: 800px){
+.sidebar {
+  display:none!important;
+}
+.main {
+  width:100%;
+}
+}
+
+.favoris_button {
+  display:none;
+}
+
+.newsletter {
+    width: 100%;
+    min-height: 60vh;
+    background: white;
+    border: 1px solid #e0e5ec;
+    border-radius: 4px;
+}
+.newsletter2 {
+    position: absolute;
+    top: 35%;
+    transform: translateY(-35%);
+    background: #f5f7fb;
+    padding: 15px;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    border: 1px solid #e0e5ec;
+    text-align: center;
+    border-radius: 4px;
+}
+
+#nav ul li a {
+    font-size: 0.72rem;
+    font-weight: 100;
+    color: #868e96;
+}
+
+#nav .titrenav a {
+  color: #495057;
+  font-size: 0.75rem;
+}
+
+   .like_button {
+   display: inline-block;
+   float: right;
+   }
+   #timeline .listing {
+   max-height:90px;
+   }
+   .like_button {
+      position:relative;
+      bottom: 3.6rem;
+      z-index:1;
+      margin-right:20px;
+   }
+   li.listing.clearfix.big {
+    margin-bottom: -10px!important;
+}
+
+span.cat_info {
+    margin: 0px;
+    margin-bottom: 4px;
+}
+
+.cat_info a {
+       font-size: 9px;
+}
+.job_info {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.info.big {
+    line-height: 1.25;
+    padding-left: 25px;
+    display: inline-block;
+    position: relative;
+    bottom: 5px;
+}
+.scroll {
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar; }
+
+.scroll::-webkit-scrollbar {
+  display: none; }
+
+.container.example-three {
+    max-width: 367px!important;
+    float: left;
+    padding-left: 0px;
+    margin-right: 0px;
+} 
+nav.vertical-align-middle.scroll {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+#timeline .image_wrapper {
+  position:absolute;
+}
+.info {
+    position: relative;
+    left: 68px;
+}
+
+.image_wrapper {
+    max-height: 60px;
+    height:60px;
+    display: flex;
+    align-items: center;
+}
+@media only screen and (max-width: 500px){ 
+.container.example-three {
+    max-width: 550px!important;
+}
+.info.big {
+    max-width: 20em;
+    margin-top: 20px;
+}
+a.like_button.no-click {
+    padding-top:10px;
+}
+#timeline .listing {
+    min-height: 10.3em;
+}
+nav.vertical-align-middle.scroll {
+    max-width:250px;
+}
+#timeline .image_wrapper {
+    padding-top:25px;
+}
+.main {
+    height: auto;
+}
 }
 </style>
 <div class="page-header">
@@ -117,20 +400,66 @@ background-color:#a378fc;
 
 <div class="mes_favoris">
 	<ul id="timeline">
-            <% softwares.each do |software| %>
-            <%= link_to software_path(software) do %>
-                <li class="listing clearfix" data-id="<%= software.id %>">
-                <div class="image_wrapper">
-                    <%= image_tag logo_url(software) %>
-                </div>
-                <div class="info">
-                    <span class="job_title">
-                        <%= software.title %>
-                    </span>
-                    <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>
-                </div>
-                </li>
-            <% end %>
-            <% end %>
+<% softwares.each do |software| %>
+<% if software.published? %>
+
+        <li class="listing clearfix big" data-id="<%= software.id %>">
+          <div class="image_wrapper">      
+            <%= image_tag software.logo %>
+          </div>
+          <div class="info">
+            <span class="job_title"><%= software.title %></span>
+            <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">         
+               <% software.categories.each do |category| %>
+               <% if category.parent.nil? %>
+                     parent
+                     <% else %>
+                     <%= link_to category.name, category, class:"tag no-click" %>
+               <% end %>
+               <% end %>
+            </span>
+            </nav>
+            </div>
+          </div>
+        </li>
+
+<li class="listing clearfix little" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag software.logo.variant(resize: "120x120") %>
+   </div>
+   <div class="info big">
+      <span class="job_title"><%= software.title %>
+      </span>
+      <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </span> 
+      </nav>
+      </div>
+   </div>
+</li>
+
+         <% if user_signed_in? %>
+         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
+            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
+         </div>
+         <% else %>
+         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
+         <% end %>
+
+<% end %>
+<% end %>
+<%# published %>
     </ul>
 </div>

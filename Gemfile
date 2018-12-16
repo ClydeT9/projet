@@ -34,6 +34,7 @@ gem 'google-cloud-storage'
 gem 'mini_magick'
 gem 'active_link_to'
 gem 'ransack'
+gem 'seed_dump'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

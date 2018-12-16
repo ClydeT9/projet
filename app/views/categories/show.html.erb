@@ -1,7 +1,7 @@
 <style>
 .sidebar {
   width: 13%;
-  height: 85vh;
+  height: 90vh;
   min-height: 200px;
   overflow: auto;
   position: -webkit-sticky;
@@ -15,7 +15,6 @@
   padding-top:20px;
   padding-bottom: 20px;
 }
-
 .footer {
       margin-top: 0rem!important;
 }
@@ -152,7 +151,7 @@ text-decoration: none;
 }
 .job_title{
   font-weight: 700;
-  font-size: 1.1em;
+  font-size: 15px;
   color: #34324b;
 }
 .job_info{
@@ -204,6 +203,19 @@ background-color:#a378fc;
    display: none!important;
 }
 @media only screen and (max-width: 1200px){
+  #timeline .image_wrapper {
+    display: inline-block!important;
+    position: relative;
+    left: 20px;
+  }
+  .info-big {
+    padding-left:0px;
+    max-width: 80%;
+  }
+  #timeline .listing {
+    max-height: 105px;
+    padding-top: 20px;
+}
 .listing.clearfix.big{
    display: none!important;
 }
@@ -223,7 +235,11 @@ background-color:#a378fc;
   width:80%;
 }
 }
-
+@media only screen and (max-width: 800px){
+  .container.example-three {
+   max-width:400px!important;
+}
+ }
 
 @media only screen and (max-width: 800px){
 .sidebar {
@@ -269,6 +285,7 @@ background-color:#a378fc;
   color: #495057;
   font-size: 0.75rem;
 }
+
    .like_button {
    display: inline-block;
    float: right;
@@ -288,105 +305,166 @@ background-color:#a378fc;
 
 span.cat_info {
     margin: 0px;
+    margin-bottom: 4px;
 }
 
 .cat_info a {
-       font-size: 10px;
+       font-size: 9px;
 }
 .job_info {
     margin-top: 4px;
     margin-bottom: 4px;
 }
+.info.big {
+    line-height: 1.25;
+    padding-left: 25px;
+    display: inline-block;
+    position: relative;
+    bottom: 5px;
+}
+.scroll {
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar; }
 
-#nav a.active {
-font-weight: bold;
-color: #437dd2;
+.scroll::-webkit-scrollbar {
+  display: none; }
+
+.container.example-three {
+    max-width: 367px!important;
+    float: left;
+    padding-left: 0px;
+    margin-right: 0px;
+} 
+nav.vertical-align-middle.scroll {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+#timeline .image_wrapper {
+  position:absolute;
+}
+.info {
+    position: relative;
+    left: 68px;
 }
 
+.image_wrapper {
+    max-height: 60px;
+    height:60px;
+    display: flex;
+    align-items: center;
+}
+@media only screen and (max-width: 500px){ 
+.container.example-three {
+    max-width: 550px!important;
+}
+.info.big {
+    max-width: 20em;
+    margin-top: 20px;
+}
+a.like_button.no-click {
+    padding-top:10px;
+}
+#timeline .listing {
+    min-height: 10.3em;
+}
+nav.vertical-align-middle.scroll {
+    max-width:250px;
+}
+#timeline .image_wrapper {
+    padding-top:25px;
+}
+.main {
+    height: auto;
+}
+}
 </style>
+<div class="index">
 <div class="wrapper">
+
 <div class="sidebar">
 <nav id="nav" class="overflow-y-auto text-base lg:text-sm">
    <div class="mb-4">
-      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Collaboration", controller: "categories", action: "show", id: 1 %></p>
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Collaboration", controller: "categories", action: "show", id: 1 %></p>
       <ul>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion de projet",controller: "categories", action: "show", id: 2 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Messagerie",controller: "categories", action: "show", id: 3 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Outils collaboratifs", controller: "categories", action: "show", id: 4 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Partage de fichiers", controller: "categories", action: "show", id: 5 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Présentation/Vidéo", controller: "categories", action: "show", id: 6 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Réseau Social d'entreprise", controller: "categories", action: "show", id: 7 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Visioconférence", controller: "categories", action: "show", id: 8 %></li>       
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion de projet",controller: "categories", action: "show", id: 2 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Messagerie",controller: "categories", action: "show", id: 3 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Outils collaboratifs", controller: "categories", action: "show", id: 4 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Partage de fichiers", controller: "categories", action: "show", id: 5 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Présentation/Vidéo", controller: "categories", action: "show", id: 6 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Réseau Social d'entreprise", controller: "categories", action: "show", id: 7 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Visioconférence", controller: "categories", action: "show", id: 8 %></li>       
       </ul>
    </div>
     <div class="mb-4">
-      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Finances", controller: "categories", action: "show", id: 9 %></p>
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Finances", controller: "categories", action: "show", id: 9 %></p>
       <ul>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Comptabilité",  controller: "categories", action: "show", id: 10 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Devis", controller: "categories", action: "show", id: 11 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Facturation/Recouvrement", controller: "categories", action: "show", id: 12 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des achats/stocks", controller: "categories", action: "show", id: 13 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des clients/fournisseurs", controller: "categories", action: "show", id: 14 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Note de frais", controller: "categories", action: "show", id: 15 %></li>  
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Paiement en ligne", controller: "categories", action: "show", id: 16 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Rapports financiers", controller: "categories", action: "show", id: 17 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Trésorerie", controller: "categories", action: "show", id: 18 %></li> 
+         <li class="mb-3 lg:mb-2"><%= link_to "Comptabilité",  controller: "categories", action: "show", id: 10 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Devis", controller: "categories", action: "show", id: 11 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Facturation/Recouvrement", controller: "categories", action: "show", id: 12 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des achats/stocks", controller: "categories", action: "show", id: 13 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des clients/fournisseurs", controller: "categories", action: "show", id: 14 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Note de frais", controller: "categories", action: "show", id: 15 %></li>  
+         <li class="mb-3 lg:mb-2"><%= link_to "Paiement en ligne", controller: "categories", action: "show", id: 16 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Rapports financiers", controller: "categories", action: "show", id: 17 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Trésorerie", controller: "categories", action: "show", id: 18 %></li> 
       </ul>
    </div>
    <div class="mb-4">
-      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Gestion commerciale", controller: "categories", action: "show", id: 19 %></p>
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Gestion commerciale", controller: "categories", action: "show", id: 19 %></p>
       <ul>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Fidélisation des clients", controller: "categories", action: "show", id: 20 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des prospects", controller: "categories", action: "show", id: 21 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des ventes", controller: "categories", action: "show", id: 22 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des visiteurs", controller: "categories", action: "show", id: 23 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Marketing Automation", controller: "categories", action: "show", id: 24 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Organisations de réunions", controller: "categories", action: "show", id: 25 %></li> 
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Point de vente", controller: "categories", action: "show", id: 26 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Prise de RDV/Réservations", controller: "categories", action: "show", id: 27 %> </li> 
+         <li class="mb-3 lg:mb-2"><%= link_to "Fidélisation des clients", controller: "categories", action: "show", id: 20 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des prospects", controller: "categories", action: "show", id: 21 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des ventes", controller: "categories", action: "show", id: 22 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des visiteurs", controller: "categories", action: "show", id: 23 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Marketing Automation", controller: "categories", action: "show", id: 24 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Organisations de réunions", controller: "categories", action: "show", id: 25 %></li> 
+         <li class="mb-3 lg:mb-2"><%= link_to "Point de vente", controller: "categories", action: "show", id: 26 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Prise de RDV/Réservations", controller: "categories", action: "show", id: 27 %> </li> 
       </ul>
    </div>
       <div class="mb-4">
-      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Internet", controller: "categories", action: "show", id: 28 %></p>
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Internet", controller: "categories", action: "show", id: 28 %></p>
       <ul>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Création de site", controller: "categories", action: "show", id: 29 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Création d'application", controller: "categories", action: "show", id: 30 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "E-commerce", controller: "categories", action: "show", id: 31 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Hébergement", controller: "categories", action: "show", id: 32 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Référencement", controller: "categories", action: "show", id: 33 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Sécurité", controller: "categories", action: "show", id: 34 %></li>  
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Traduction", controller: "categories", action: "show", id: 35 %></li>  
+         <li class="mb-3 lg:mb-2"><%= link_to "Création de site", controller: "categories", action: "show", id: 29 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Création d'application", controller: "categories", action: "show", id: 30 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "E-commerce", controller: "categories", action: "show", id: 31 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Hébergement", controller: "categories", action: "show", id: 32 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Référencement", controller: "categories", action: "show", id: 33 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Sécurité", controller: "categories", action: "show", id: 34 %></li>  
+         <li class="mb-3 lg:mb-2"><%= link_to "Traduction", controller: "categories", action: "show", id: 35 %></li>  
       </ul>
    </div>
       <div class="mb-4">
-      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Marketing", controller: "categories", action: "show", id: 36 %></p>
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Marketing", controller: "categories", action: "show", id: 36 %></p>
       <ul>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Campagnes publicitaires", controller: "categories", action: "show", id: 37 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Enquêtes", controller: "categories", action: "show", id: 38 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Fidélisation client", controller: "categories", action: "show", id: 39 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des réseaux sociaux", controller: "categories", action: "show", id: 40 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Jeux-Concours", controller: "categories", action: "show", id: 41 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Mailing", controller: "categories", action: "show", id: 42 %></li> 
+         <li class="mb-3 lg:mb-2"><%= link_to "Campagnes publicitaires", controller: "categories", action: "show", id: 37 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Enquêtes", controller: "categories", action: "show", id: 38 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Fidélisation client", controller: "categories", action: "show", id: 39 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des réseaux sociaux", controller: "categories", action: "show", id: 40 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Jeux-Concours", controller: "categories", action: "show", id: 41 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Mailing", controller: "categories", action: "show", id: 42 %></li> 
       </ul>
    </div>
       <div class="mb-4">
-      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Ressources humaines", controller: "categories", action: "show", id: 43 %></p>
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Ressources humaines", controller: "categories", action: "show", id: 43 %></p>
       <ul>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Formation", controller: "categories", action: "show", id: 44 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des congés/absences", controller: "categories", action: "show", id: 45 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des salaires", controller: "categories", action: "show", id: 46 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des talents", controller: "categories", action: "show", id: 47 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Recrutement", controller: "categories", action: "show", id: 48 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Temps de travail", controller: "categories", action: "show", id: 49 %></li> 
+         <li class="mb-3 lg:mb-2"><%= link_to "Formation", controller: "categories", action: "show", id: 44 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des congés/absences", controller: "categories", action: "show", id: 45 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des salaires", controller: "categories", action: "show", id: 46 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des talents", controller: "categories", action: "show", id: 47 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Recrutement", controller: "categories", action: "show", id: 48 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Temps de travail", controller: "categories", action: "show", id: 49 %></li> 
   </ul>
    </div>
       <div class="mb-4">
-      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= active_link_to "Service client", controller: "categories", action: "show", id: 50 %></p>
+      <p class="titrenav mb-3 lg:mb-2 text-grey uppercase tracking-wide font-bold text-sm lg:text-xs"><%= link_to "Service client", controller: "categories", action: "show", id: 50 %></p>
       <ul>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Gestion des appels", controller: "categories", action: "show", id: 51 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Live chat", controller: "categories", action: "show", id: 52 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Multicanal", controller: "categories", action: "show", id: 53 %></li>
-         <li class="mb-3 lg:mb-2"><%= active_link_to "Relation client", controller: "categories", action: "show", id: 54 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Gestion des appels", controller: "categories", action: "show", id: 51 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Live chat", controller: "categories", action: "show", id: 52 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Multicanal", controller: "categories", action: "show", id: 53 %></li>
+         <li class="mb-3 lg:mb-2"><%= link_to "Relation client", controller: "categories", action: "show", id: 54 %></li>
       </ul>
    </div>
 </nav>
@@ -395,22 +473,47 @@ color: #437dd2;
 
 
   <div class="main">
-		<ul id="timeline">
+    <div id="my-softwares">
+
+    	<ul id="timeline">
     <div id="my-softwares">
 <% if @category.id == 1 %>
 <% @collaboration.each do |software| %>
-<li class="listing clearfix big" data-id="<%= software.id %>">
+<% if software.published? %>
+        <li class="listing clearfix big" data-id="<%= software.id %>">
+          <div class="image_wrapper">      
+            <%= image_tag software.logo %>
+          </div>
+          <div class="info">
+            <span class="job_title"><%= software.title %></span>
+            <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">         
+               <% software.categories.each do |category| %>
+               <% if category.parent.nil? %>
+                     parent
+                     <% else %>
+                     <%= link_to category.name, category, class:"tag no-click" %>
+               <% end %>
+               <% end %>
+            </span>
+            </nav>
+            </div>
+          </div>
+        </li>
+
+<li class="listing clearfix little" data-id="<%= software.id %>">
    <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
+      <%= image_tag software.logo.variant(resize: "120x120") %>
    </div>
-   <div class="info">
-      <span class="job_title">
-         <%= software.title %>
+   <div class="info big">
+      <span class="job_title"><%= software.title %>
       </span>
-
       <span class="job_info"><%= software.slogan %></span>
-
-      <span class="cat_info">
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
          <% software.categories.each do |category| %>
          <% if category.parent.nil? %>
                 parent
@@ -418,21 +521,11 @@ color: #437dd2;
                 <%= link_to category.name, category, class:"tag no-click" %>
          <% end %>
          <% end %>
-      </span>
+      </span> 
+      </nav>
+      </div>
    </div>
 </li>
-<%= link_to software_path(software) do %>
-<li class="listing clearfix little" data-id="<%= software.id %>">
-   <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
-   </div>
-   <div class="info">
-      <span class="job_title"><%= software.title %>
-      </span>
-      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
-   </div>
-</li>
-<% end %>
 
          <% if user_signed_in? %>
          <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
@@ -441,24 +534,50 @@ color: #437dd2;
          <% else %>
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
+
+<% end %>
+<%# published %>
 <% end %>
 <% end %>  
 <%# collaboration %>
 
 <% if @category.id == 9 %>
 <% @finances.each do |software| %>
-<li class="listing clearfix big" data-id="<%= software.id %>">
+<% if software.published? %>
+        <li class="listing clearfix big" data-id="<%= software.id %>">
+          <div class="image_wrapper">      
+            <%= image_tag software.logo %>
+          </div>
+          <div class="info">
+            <span class="job_title"><%= software.title %></span>
+            <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">         
+               <% software.categories.each do |category| %>
+               <% if category.parent.nil? %>
+                     parent
+                     <% else %>
+                     <%= link_to category.name, category, class:"tag no-click" %>
+               <% end %>
+               <% end %>
+            </span>
+            </nav>
+            </div>
+          </div>
+        </li>
+
+<li class="listing clearfix little" data-id="<%= software.id %>">
    <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
+      <%= image_tag software.logo.variant(resize: "120x120") %>
    </div>
-   <div class="info">
-      <span class="job_title">
-         <%= software.title %>
+   <div class="info big">
+      <span class="job_title"><%= software.title %>
       </span>
-
       <span class="job_info"><%= software.slogan %></span>
-
-      <span class="cat_info">
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
          <% software.categories.each do |category| %>
          <% if category.parent.nil? %>
                 parent
@@ -466,21 +585,11 @@ color: #437dd2;
                 <%= link_to category.name, category, class:"tag no-click" %>
          <% end %>
          <% end %>
-      </span>
+      </span> 
+      </nav>
+      </div>
    </div>
 </li>
-<%= link_to software_path(software) do %>
-<li class="listing clearfix little" data-id="<%= software.id %>">
-   <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
-   </div>
-   <div class="info">
-      <span class="job_title"><%= software.title %>
-      </span>
-      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
-   </div>
-</li>
-<% end %>
 
          <% if user_signed_in? %>
          <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
@@ -489,6 +598,9 @@ color: #437dd2;
          <% else %>
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
+
+<% end %>
+<%# published %>
 <% end %>
 <% end %>  
 <%# finances %>
@@ -496,18 +608,41 @@ color: #437dd2;
 
 <% if @category.id == 19 %>
 <% @commerce.each do |software| %>
-<li class="listing clearfix big" data-id="<%= software.id %>">
+<% if software.published? %>
+        <li class="listing clearfix big" data-id="<%= software.id %>">
+          <div class="image_wrapper">      
+            <%= image_tag software.logo %>
+          </div>
+          <div class="info">
+            <span class="job_title"><%= software.title %></span>
+            <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">         
+               <% software.categories.each do |category| %>
+               <% if category.parent.nil? %>
+                     parent
+                     <% else %>
+                     <%= link_to category.name, category, class:"tag no-click" %>
+               <% end %>
+               <% end %>
+            </span>
+            </nav>
+            </div>
+          </div>
+        </li>
+
+<li class="listing clearfix little" data-id="<%= software.id %>">
    <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
+      <%= image_tag software.logo.variant(resize: "120x120") %>
    </div>
-   <div class="info">
-      <span class="job_title">
-         <%= software.title %>
+   <div class="info big">
+      <span class="job_title"><%= software.title %>
       </span>
-
       <span class="job_info"><%= software.slogan %></span>
-
-      <span class="cat_info">
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
          <% software.categories.each do |category| %>
          <% if category.parent.nil? %>
                 parent
@@ -515,21 +650,11 @@ color: #437dd2;
                 <%= link_to category.name, category, class:"tag no-click" %>
          <% end %>
          <% end %>
-      </span>
+      </span> 
+      </nav>
+      </div>
    </div>
 </li>
-<%= link_to software_path(software) do %>
-<li class="listing clearfix little" data-id="<%= software.id %>">
-   <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
-   </div>
-   <div class="info">
-      <span class="job_title"><%= software.title %>
-      </span>
-      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
-   </div>
-</li>
-<% end %>
 
          <% if user_signed_in? %>
          <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
@@ -538,6 +663,9 @@ color: #437dd2;
          <% else %>
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
+
+<% end %>
+<%# published %>
 <% end %>
 <% end %>  
 <%# commerce %>
@@ -546,18 +674,41 @@ color: #437dd2;
 
 <% if @category.id == 28 %>
 <% @internet.each do |software| %>
-<li class="listing clearfix big" data-id="<%= software.id %>">
+<% if software.published? %>
+        <li class="listing clearfix big" data-id="<%= software.id %>">
+          <div class="image_wrapper">      
+            <%= image_tag software.logo %>
+          </div>
+          <div class="info">
+            <span class="job_title"><%= software.title %></span>
+            <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">         
+               <% software.categories.each do |category| %>
+               <% if category.parent.nil? %>
+                     parent
+                     <% else %>
+                     <%= link_to category.name, category, class:"tag no-click" %>
+               <% end %>
+               <% end %>
+            </span>
+            </nav>
+            </div>
+          </div>
+        </li>
+
+<li class="listing clearfix little" data-id="<%= software.id %>">
    <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
+      <%= image_tag software.logo.variant(resize: "120x120") %>
    </div>
-   <div class="info">
-      <span class="job_title">
-         <%= software.title %>
+   <div class="info big">
+      <span class="job_title"><%= software.title %>
       </span>
-
       <span class="job_info"><%= software.slogan %></span>
-
-      <span class="cat_info">
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
          <% software.categories.each do |category| %>
          <% if category.parent.nil? %>
                 parent
@@ -565,21 +716,11 @@ color: #437dd2;
                 <%= link_to category.name, category, class:"tag no-click" %>
          <% end %>
          <% end %>
-      </span>
+      </span> 
+      </nav>
+      </div>
    </div>
 </li>
-<%= link_to software_path(software) do %>
-<li class="listing clearfix little" data-id="<%= software.id %>">
-   <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
-   </div>
-   <div class="info">
-      <span class="job_title"><%= software.title %>
-      </span>
-      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
-   </div>
-</li>
-<% end %>
 
          <% if user_signed_in? %>
          <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
@@ -588,6 +729,9 @@ color: #437dd2;
          <% else %>
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
+
+<% end %>
+<%# published %>
 <% end %>
 <% end %>  
 <%# internet %>
@@ -596,18 +740,41 @@ color: #437dd2;
 
 <% if @category.id == 36 %>
 <% @marketing.each do |software| %>
-<li class="listing clearfix big" data-id="<%= software.id %>">
+<% if software.published? %>
+        <li class="listing clearfix big" data-id="<%= software.id %>">
+          <div class="image_wrapper">      
+            <%= image_tag software.logo %>
+          </div>
+          <div class="info">
+            <span class="job_title"><%= software.title %></span>
+            <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">         
+               <% software.categories.each do |category| %>
+               <% if category.parent.nil? %>
+                     parent
+                     <% else %>
+                     <%= link_to category.name, category, class:"tag no-click" %>
+               <% end %>
+               <% end %>
+            </span>
+            </nav>
+            </div>
+          </div>
+        </li>
+
+<li class="listing clearfix little" data-id="<%= software.id %>">
    <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
+      <%= image_tag software.logo.variant(resize: "120x120") %>
    </div>
-   <div class="info">
-      <span class="job_title">
-         <%= software.title %>
+   <div class="info big">
+      <span class="job_title"><%= software.title %>
       </span>
-
       <span class="job_info"><%= software.slogan %></span>
-
-      <span class="cat_info">
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
          <% software.categories.each do |category| %>
          <% if category.parent.nil? %>
                 parent
@@ -615,21 +782,11 @@ color: #437dd2;
                 <%= link_to category.name, category, class:"tag no-click" %>
          <% end %>
          <% end %>
-      </span>
+      </span> 
+      </nav>
+      </div>
    </div>
 </li>
-<%= link_to software_path(software) do %>
-<li class="listing clearfix little" data-id="<%= software.id %>">
-   <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
-   </div>
-   <div class="info">
-      <span class="job_title"><%= software.title %>
-      </span>
-      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
-   </div>
-</li>
-<% end %>
 
          <% if user_signed_in? %>
          <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
@@ -638,24 +795,50 @@ color: #437dd2;
          <% else %>
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
+
+<% end %>
+<%# published %>
 <% end %>
 <% end %>  
 <%# marketing %>
 
 <% if @category.id == 43 %>
 <% @rh.each do |software| %>
-<li class="listing clearfix big" data-id="<%= software.id %>">
+<<% if software.published? %>
+        <li class="listing clearfix big" data-id="<%= software.id %>">
+          <div class="image_wrapper">      
+            <%= image_tag software.logo %>
+          </div>
+          <div class="info">
+            <span class="job_title"><%= software.title %></span>
+            <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">         
+               <% software.categories.each do |category| %>
+               <% if category.parent.nil? %>
+                     parent
+                     <% else %>
+                     <%= link_to category.name, category, class:"tag no-click" %>
+               <% end %>
+               <% end %>
+            </span>
+            </nav>
+            </div>
+          </div>
+        </li>
+
+<li class="listing clearfix little" data-id="<%= software.id %>">
    <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
+      <%= image_tag software.logo.variant(resize: "120x120") %>
    </div>
-   <div class="info">
-      <span class="job_title">
-         <%= software.title %>
+   <div class="info big">
+      <span class="job_title"><%= software.title %>
       </span>
-
       <span class="job_info"><%= software.slogan %></span>
-
-      <span class="cat_info">
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
          <% software.categories.each do |category| %>
          <% if category.parent.nil? %>
                 parent
@@ -663,21 +846,11 @@ color: #437dd2;
                 <%= link_to category.name, category, class:"tag no-click" %>
          <% end %>
          <% end %>
-      </span>
+      </span> 
+      </nav>
+      </div>
    </div>
 </li>
-<%= link_to software_path(software) do %>
-<li class="listing clearfix little" data-id="<%= software.id %>">
-   <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
-   </div>
-   <div class="info">
-      <span class="job_title"><%= software.title %>
-      </span>
-      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
-   </div>
-</li>
-<% end %>
 
          <% if user_signed_in? %>
          <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
@@ -686,24 +859,50 @@ color: #437dd2;
          <% else %>
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
+
+<% end %>
+<%# published %>
 <% end %>
 <% end %>  
 <%# rh %>
 
 <% if @category.id == 50 %>
 <% @client.each do |software| %>
-<li class="listing clearfix big" data-id="<%= software.id %>">
+<% if software.published? %>
+        <li class="listing clearfix big" data-id="<%= software.id %>">
+          <div class="image_wrapper">      
+            <%= image_tag software.logo %>
+          </div>
+          <div class="info">
+            <span class="job_title"><%= software.title %></span>
+            <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">         
+               <% software.categories.each do |category| %>
+               <% if category.parent.nil? %>
+                     parent
+                     <% else %>
+                     <%= link_to category.name, category, class:"tag no-click" %>
+               <% end %>
+               <% end %>
+            </span>
+            </nav>
+            </div>
+          </div>
+        </li>
+
+<li class="listing clearfix little" data-id="<%= software.id %>">
    <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
+      <%= image_tag software.logo.variant(resize: "120x120") %>
    </div>
-   <div class="info">
-      <span class="job_title">
-         <%= software.title %>
+   <div class="info big">
+      <span class="job_title"><%= software.title %>
       </span>
-
       <span class="job_info"><%= software.slogan %></span>
-
-      <span class="cat_info">
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
          <% software.categories.each do |category| %>
          <% if category.parent.nil? %>
                 parent
@@ -711,21 +910,11 @@ color: #437dd2;
                 <%= link_to category.name, category, class:"tag no-click" %>
          <% end %>
          <% end %>
-      </span>
+      </span> 
+      </nav>
+      </div>
    </div>
 </li>
-<%= link_to software_path(software) do %>
-<li class="listing clearfix little" data-id="<%= software.id %>">
-   <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
-   </div>
-   <div class="info">
-      <span class="job_title"><%= software.title %>
-      </span>
-      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
-   </div>
-</li>
-<% end %>
 
          <% if user_signed_in? %>
          <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
@@ -734,6 +923,9 @@ color: #437dd2;
          <% else %>
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
+
+<% end %>
+<%# published %>
 <% end %>
 <% end %>  
 <%# client %>
@@ -742,18 +934,41 @@ color: #437dd2;
 
 <% if @category.subtree %>
 <% @category.softwares.each do |software| %>
-<li class="listing clearfix big" data-id="<%= software.id %>">
+<% if software.published? %>
+        <li class="listing clearfix big" data-id="<%= software.id %>">
+          <div class="image_wrapper">      
+            <%= image_tag software.logo %>
+          </div>
+          <div class="info">
+            <span class="job_title"><%= software.title %></span>
+            <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">         
+               <% software.categories.each do |category| %>
+               <% if category.parent.nil? %>
+                     parent
+                     <% else %>
+                     <%= link_to category.name, category, class:"tag no-click" %>
+               <% end %>
+               <% end %>
+            </span>
+            </nav>
+            </div>
+          </div>
+        </li>
+
+<li class="listing clearfix little" data-id="<%= software.id %>">
    <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
+      <%= image_tag software.logo.variant(resize: "120x120") %>
    </div>
-   <div class="info">
-      <span class="job_title">
-         <%= software.title %>
+   <div class="info big">
+      <span class="job_title"><%= software.title %>
       </span>
-
       <span class="job_info"><%= software.slogan %></span>
-
-      <span class="cat_info">
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
          <% software.categories.each do |category| %>
          <% if category.parent.nil? %>
                 parent
@@ -761,21 +976,11 @@ color: #437dd2;
                 <%= link_to category.name, category, class:"tag no-click" %>
          <% end %>
          <% end %>
-      </span>
+      </span> 
+      </nav>
+      </div>
    </div>
 </li>
-<%= link_to software_path(software) do %>
-<li class="listing clearfix little" data-id="<%= software.id %>">
-   <div class="image_wrapper">
-      <%= image_tag logo_url(software) %>
-   </div>
-   <div class="info">
-      <span class="job_title"><%= software.title %>
-      </span>
-      <span class="job_info">Twitter <span>&bull;</span> San Francisco <span>&bull;</span> March 1st</span>      
-   </div>
-</li>
-<% end %>
 
          <% if user_signed_in? %>
          <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
@@ -784,23 +989,27 @@ color: #437dd2;
          <% else %>
          <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
          <% end %>
+
+<% end %>
+<%# published %>
 <% end %>
 <% end %>
     </div>
     </ul>
+  </div>
   </div><%# main %>
 
 <div class="sidebar2">
   <div id='contentest'>
-  
-    <div class="newsletter2">
+
+<div class="newsletter2">
   <h3>Inscrivez-vous à notre newsletter</h3>
   <br>
-  <h6>Rester informer des dernières applications</h6>
+  <h6>[Bientôt disponible]</h6>
   <br>
   <form class="w-full max-w-sm">
   <div class="flex items-center border-b border-b-2 border-teal py-2">
-    <input class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="clyde.thomson@uneapp.com" aria-label="Full name">
+    <input class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="clyde.thomson@uneapp.com" aria-label="Full name" disabled>
     <button class="flex-no-shrink bg-teal hover:bg-teal-dark border-teal hover:border-teal-dark text-sm border-4 text-white py-1 px-2 rounded" type="button">
       Inscription
     </button>
@@ -812,6 +1021,13 @@ color: #437dd2;
   </div>
 </div>
 
+
+</div>
+<%# wrapper %>
+</div>
+<%# index %>
+
+
 <script>
     $(".listing.clearfix.big[data-id]").click(function(e) {
     if (!$(e.target).hasClass('no-click')) {
@@ -821,4 +1037,11 @@ color: #437dd2;
     }
 });
 </script>
-</div>
+
+<script>
+    $(".listing.clearfix.little[data-id]").click(function(e) {
+    if (!$(e.target).hasClass('no-click')) {
+      window.location = "/softwares/" + $(this).attr('data-id');
+    }
+});
+</script>

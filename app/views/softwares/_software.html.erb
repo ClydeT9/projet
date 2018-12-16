@@ -118,7 +118,6 @@ nav.vertical-align-middle.scroll {
           </div>
         </li>
 
-<%= link_to software_path(software) do %>
 <li class="listing clearfix little" data-id="<%= software.id %>">
    <div class="image_wrapper">
       <%= image_tag software.logo.variant(resize: "120x120") %>
@@ -142,7 +141,6 @@ nav.vertical-align-middle.scroll {
       </div>
    </div>
 </li>
-<% end %>
 
          <% if user_signed_in? %>
          <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
