@@ -35,6 +35,8 @@ gem 'mini_magick'
 gem 'active_link_to'
 gem 'ransack'
 gem 'seed_dump'
+gem 'font-awesome-sass'
+gem 'jquery-slick-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

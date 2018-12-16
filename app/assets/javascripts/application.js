@@ -21,11 +21,12 @@
 //= require toastr
 //= require trix
 //= require selectize
-// = require tabler/tabler
-// = require tabler/vendors/bootstrap.bundle.min
-// = require tabler/vendors/circle-progress.min
-// = require tabler/vendors/jquery.sparkline.min
-// = require tabler/core
+//= require tabler/tabler
+//= require tabler/vendors/bootstrap.bundle.min
+//= require tabler/vendors/circle-progress.min
+//= require tabler/vendors/jquery.sparkline.min
+//= require tabler/core
+//= require jquery.slick
 toastr.options = {
   "closeButton": true,
   "progressBar": true,
