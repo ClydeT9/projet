@@ -211,76 +211,7 @@ li.sub-drop a {
 <%= link_to root_path do %>
   <span class="navbar-brand"><span class="une">une</span><span class="app">app</span></span>
 <% end %>
-<div class="dropdown cat">
-  <button type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="fas fa-bars"></i>
-  </button>
-  <div class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenuButton">
-      <li class="main-sub"><%= link_to "Collaboration", controller: "categories", action: "show", id: 1 %></li>
-         <li class="sub-drop"><%= link_to "Gestion de projet",controller: "categories", action: "show", id: 2 %></li>
-         <li class="sub-drop"><%= link_to "Messagerie",controller: "categories", action: "show", id: 3 %></li>
-         <li class="sub-drop"><%= link_to "Outils collaboratifs", controller: "categories", action: "show", id: 4 %></li>
-         <li class="sub-drop"><%= link_to "Partage de fichiers", controller: "categories", action: "show", id: 5 %></li>
-         <li class="sub-drop"><%= link_to "Présentation/Vidéo", controller: "categories", action: "show", id: 6 %></li>
-         <li class="sub-drop"><%= link_to "Réseau Social d'entreprise", controller: "categories", action: "show", id: 7 %></li>
-         <li class="sub-drop"><%= link_to "Visioconférence", controller: "categories", action: "show", id: 8 %></li>  
 
-      <li class="main-sub"><%= link_to "Finances", controller: "categories", action: "show", id: 9 %></li>
-         <li class="sub-drop"><%= link_to "Comptabilité",  controller: "categories", action: "show", id: 10 %></li>
-         <li class="sub-drop"><%= link_to "Devis", controller: "categories", action: "show", id: 11 %></li>
-         <li class="sub-drop"><%= link_to "Facturation/Recouvrement", controller: "categories", action: "show", id: 12 %></li>
-         <li class="sub-drop"><%= link_to "Gestion des achats/stocks", controller: "categories", action: "show", id: 13 %></li>
-         <li class="sub-drop"><%= link_to "Gestion des clients/fournisseurs", controller: "categories", action: "show", id: 14 %></li>
-         <li class="sub-drop"><%= link_to "Note de frais", controller: "categories", action: "show", id: 15 %></li>  
-         <li class="sub-drop"><%= link_to "Paiement en ligne", controller: "categories", action: "show", id: 16 %></li>
-         <li class="sub-drop"><%= link_to "Rapports financiers", controller: "categories", action: "show", id: 17 %></li>
-         <li class="sub-drop"><%= link_to "Trésorerie", controller: "categories", action: "show", id: 18 %></li> 
-
-      <li class="main-sub"><%= link_to "Gestion commerciale", controller: "categories", action: "show", id: 19 %></li>
-         <li class="sub-drop"><%= link_to "Fidélisation des clients", controller: "categories", action: "show", id: 20 %></li>
-         <li class="sub-drop"><%= link_to "Gestion des prospects", controller: "categories", action: "show", id: 21 %></li>
-         <li class="sub-drop"><%= link_to "Gestion des ventes", controller: "categories", action: "show", id: 22 %></li>
-         <li class="sub-drop"><%= link_to "Gestion des visiteurs", controller: "categories", action: "show", id: 23 %></li>
-         <li class="sub-drop"><%= link_to "Marketing Automation", controller: "categories", action: "show", id: 24 %></li>
-         <li class="sub-drop"><%= link_to "Organisations de réunions", controller: "categories", action: "show", id: 25 %></li> 
-         <li class="sub-drop"><%= link_to "Point de vente", controller: "categories", action: "show", id: 26 %></li>
-         <li class="sub-drop"><%= link_to "Prise de RDV/Réservations", controller: "categories", action: "show", id: 27 %> </li> 
-
-      <li class="main-sub"><%= link_to "Internet",controller: "categories", action: "show", id: 28 %></li>
-         <li class="sub-drop"><%= link_to "Création de site", controller: "categories", action: "show", id: 29 %></li>
-         <li class="sub-drop"><%= link_to "Création d'application", controller: "categories", action: "show", id: 30 %></li>
-         <li class="sub-drop"><%= link_to "E-commerce", controller: "categories", action: "show", id: 31 %></li>
-         <li class="sub-drop"><%= link_to "Hébergement", controller: "categories", action: "show", id: 32 %></li>
-         <li class="sub-drop"><%= link_to "Référencement", controller: "categories", action: "show", id: 33 %></li>
-         <li class="sub-drop"><%= link_to "Sécurité", controller: "categories", action: "show", id: 34 %></li>  
-         <li class="sub-drop"><%= link_to "Traduction", controller: "categories", action: "show", id: 35 %></li>  
-
-      <li class="main-sub"><%= link_to "Marketing",controller: "categories", action: "show", id: 36 %></li>
-         <li class="sub-drop"><%= link_to "Campagnes publicitaires", controller: "categories", action: "show", id: 37 %></li>
-         <li class="sub-drop"><%= link_to "Enquêtes", controller: "categories", action: "show", id: 38 %></li>
-         <li class="sub-drop"><%= link_to "Fidélisation client", controller: "categories", action: "show", id: 39 %></li>
-         <li class="sub-drop"><%= link_to "Gestion des réseaux sociaux", controller: "categories", action: "show", id: 40 %></li>
-         <li class="sub-drop"><%= link_to "Jeux-Concours", controller: "categories", action: "show", id: 41 %></li>
-         <li class="sub-drop"><%= link_to "Mailing", controller: "categories", action: "show", id: 42 %></li> 
-
-      <li class="main-sub"><%= link_to "Ressources humaines",controller: "categories", action: "show", id: 43 %></li>
-         <li class="sub-drop"><%= link_to "Formation", controller: "categories", action: "show", id: 44 %></li>
-         <li class="sub-drop"><%= link_to "Gestion des congés/absences", controller: "categories", action: "show", id: 45 %></li>
-         <li class="sub-drop"><%= link_to "Gestion des salaires", controller: "categories", action: "show", id: 46 %></li>
-         <li class="sub-drop"><%= link_to "Gestion des talents", controller: "categories", action: "show", id: 47 %></li>
-         <li class="sub-drop"><%= link_to "Recrutement", controller: "categories", action: "show", id: 48 %></li>
-         <li class="sub-drop"><%= link_to "Temps de travail", controller: "categories", action: "show", id: 49 %></li> 
-
-
-      <li class="main-sub"><%= link_to "Service client", controller: "categories", action: "show", id: 50 %></li>
-         <li class="sub-drop"><%= link_to "Gestion des appels", controller: "categories", action: "show", id: 51 %></li>
-         <li class="sub-drop"><%= link_to "Live chat", controller: "categories", action: "show", id: 52 %></li>
-         <li class="sub-drop"><%= link_to "Multicanal", controller: "categories", action: "show", id: 53 %></li>
-         <li class="sub-drop"><%= link_to "Relation client", controller: "categories", action: "show", id: 54 %></li>
-</div>
-  <%# dropdown-menu %>
-</div>
-<%# dropdown %>
 
 
     <ul class="navbar-nav mr-auto pl-4">
