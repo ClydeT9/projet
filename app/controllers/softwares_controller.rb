@@ -5,12 +5,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares
   # GET /softwares.json
   def index
-    @softwares = Software.all.paginate(page: params[:page], per_page: 15).order("published_at desc")
-    respond_to do |format|
-      format.html
-      format.js
-     end
-     @softwares = Software.includes(:comment_threads).page(params[:page]).order("published_at desc")
+    @softwares = Software.includes(:comment_threads).paginate(:page => params[:page], :per_page => 15).order("published_at desc")
   end
 
   # GET /softwares/1

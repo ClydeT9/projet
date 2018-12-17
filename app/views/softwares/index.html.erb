@@ -383,7 +383,7 @@ background-color:#a378fc;
           <%= render @softwares %>
       </ul>
     </div>
-    <%= will_paginate %>
+    <%= will_paginate @softwares, :previous_label => 'Précédent', :next_label => 'Suivant' %>
   </div><%# main %>
 
 <div class="sidebar2">

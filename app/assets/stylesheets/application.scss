@@ -507,3 +507,21 @@ i.fas.fa-images {
 .bigshow.mt-4.overflow-hidden.bg-white.rounded.mx-auto {
   text-align: justify;
 }
+
+// pagination
+.pagination {
+  padding: 2px;
+  border-radius: 3px;
+  border: 1px solid #e6e7e9;
+  margin: auto;
+  margin-top: 0px;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.pagination a,
+.pagination em {
+  font-style: inherit;
+  margin-left: 5px;
+  margin-right: 5px;
+}
