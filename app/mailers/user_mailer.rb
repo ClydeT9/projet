@@ -6,9 +6,14 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(to: @user.email, subject: 'Inscription réussie sur uneapp')
   end
-  
+
   def send_signup_admin(user)
     @user = User.find(1)
     mail(to: @user.email, subject: 'Inscription UNEAPP')
+  end
+
+  def send_software_email(user)
+    @user = User.find(1)
+    mail(to: @user.email, subject: 'Nouveau logiciel UNEAPP')
   end
 end

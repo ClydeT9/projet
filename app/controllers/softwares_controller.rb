@@ -1,6 +1,7 @@
 class SoftwaresController < ApplicationController
   before_action :set_software, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except:[:index,:show]
+  after_action :send_software_email
 
   # GET /softwares
   # GET /softwares.json
@@ -65,6 +66,10 @@ class SoftwaresController < ApplicationController
  else
      render :edit
  end
+  end
+
+  def send_software_email
+    UserMailer.send_software_email(@user).deliver
   end
 
   # DELETE /softwares/1
