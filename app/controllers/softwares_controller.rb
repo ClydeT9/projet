@@ -1,7 +1,7 @@
 class SoftwaresController < ApplicationController
   before_action :set_software, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except:[:index,:show]
-  after_action :send_software_email
+  after_action :send_software_email, only: [:create, :update]
 
   # GET /softwares
   # GET /softwares.json
