@@ -5,6 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if @user.save
       # Deliver the signup email
       UserMailer.send_signup_email(@user).deliver
+      UserMailer.send_signup_admin(@user).deliver
       sign_in(@user)
       return redirect_back(fallback_location: root_path)
     else
