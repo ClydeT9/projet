@@ -100,7 +100,7 @@
     font-size: 1.5rem;
     top: 1px;
 }
-.bigshow span.btn.btn-secondary.btn-sm.pl-4.pr-4 {
+.bigshow span.btn.btn-secondary.btn-sm.pl-4.pr-4,.bigshow span.btn.btn-primary.btn-sm.pl-4.pr-4 {
     float: right;
     font-size:14px;
 }
@@ -151,30 +151,60 @@ iframe.slick-slide.slick-current.slick-active {
 a.tag {
    margin-bottom:4px;
 }
+
+
+.hello.no-click,.hello2.no-click.disliked {
+    color:#495057;
+    background-color: #fff;
+    border-color: rgba(0, 40, 100, 0.12);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+.hello2.no-click {
+    color:white;
+    background-color: #467fcf;
+    border-color: #467fcf;
+}
+.hello.no-click.liked {
+    color:white;
+    background-color: #467fcf;
+    border-color: #467fcf;
+}
+.hello2.no-click.liked {
+    color:white;
+    background-color: #467fcf;
+    border-color: #467fcf;
+}
 </style>
-<div class="containershow">
+<div class="containershow" data-id="<%= @software.slug %>">
 <div class="bigshow mt-4 overflow-hidden bg-white rounded mx-auto">
 <div class="p-4 mb-4">
       <div class="image_wrapper">
          <%= image_tag logo_url(@software) %>
       </div>
       <div class="bigshow_titre">
-         <h3 class="mb-2"><%= @software.title %> 
-
+         <h3 class="mb-2"><%= @software.title %>
 
          <small class="text-sm">(Par <%= @software.editeur %>)</small>
-<% if user_signed_in? %>
-        <div id="like-icon-software-<%= @software.id.to_s %>" class="like show ml-auto">
-          <%= render "like_icon", {is_liked: @is_liked, software: @software} %>
-        </div>
-<% else %>
-      <a data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm ml-2 pl-4 pr-4">Favoris <i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
-<% end %>
 
-
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? @software) %>
+                <%= link_to like_software_path(@software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= @software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(@software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= @software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
+        
 </h3>
          <h5 class="text-grey-dark mb-2">
-            <%= @software.slogan %> 
+            <%= @software.slogan %>
          </h5>
          <div class="cat_big">   
          <% @software.categories.each do |category| %>
@@ -309,7 +339,7 @@ a.tag {
 <%# fin containershow %>
 
 <script>
-   if (window.location.href.indexOf("/softwares/") > -1) {
+   if (window.location.href.indexOf($('.containershow[data-id]').attr('data-id')) > -1) {
        $(".littleshow" ).addClass( "littleshow2" );
        $(".bigshow" ).addClass( "bigshow2" );
    }

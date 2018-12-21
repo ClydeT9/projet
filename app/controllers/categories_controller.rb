@@ -63,7 +63,9 @@ class CategoriesController < ApplicationController
 
   private
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.friendly.find(params[:id])
+      redirect_to action: action_name, id: @category.friendly_id, status: 301 unless @category.friendly_id == params[:id]
+      #@category = Category.find(params[:id])
     end
 
     def category_params

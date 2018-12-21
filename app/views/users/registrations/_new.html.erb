@@ -7,7 +7,6 @@
     padding:2rem;
     border-radius: 4px 0px 0px 4px;
 }
-
 .body2 {
     width: 50% !important;
     height: 100% !important;
@@ -17,12 +16,10 @@ button.close2.signup {
   width:100%;
   text-align: right;
 }
-
 .body2a {
     padding-left: 3rem;
     padding-right: 3rem;
 }
-
 .signuptitre {
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -31,33 +28,27 @@ button.close2.signup {
   padding:0rem!important;
   height: 530px;
 }
-
 ul i.fas.fa-check {
   color: #5eba01;
   margin-right: 10px;
 }
-
 .body2 i.fas.fa-times {
   padding-top: 10px;
   padding-right: 10px;
 }
-
 .body1 ul.list-unstyled.leading-loose {
   line-height: 32px !important;
   text-align: left !important;
   margin: 17px 0px 15px 20px !important;
 }
-
 .body1 li small {
   font-size: 14px;
 }
-
 .body1 h4 {
     letter-spacing: 0.15px !important;
     line-height: 32px !important;
     font-size: 20px !important;
 }
-
 .body1 img {
   width:200px;
   margin-left: 70px;
@@ -74,16 +65,13 @@ ul i.fas.fa-check {
 .signupbutton:hover {
     text-decoration:underline;
 }
-
 <%# après cours %>
 .form-control.login {
     margin-bottom: 10px!important;
 }
-
 button.googlelogin {
     margin-right:0px!important;
 }
-
 .pointer:hover {
     cursor: pointer;
 }
@@ -181,4 +169,11 @@ button.googlelogin {
 $("#insform").bind("ajax:error", function(evt, xhr, status, error) {
                 window.location.reload();
         });
+</script>
+<script>
+ $('#new_user_1').submit(function(e) {
+    e.preventDefault();
+    // Coding
+    $('#signUpModal').modal('toggle'); //or  $('#IDModal').modal('hide');
+});
 </script>

@@ -1,5 +1,5 @@
 class SoftwaresController < ApplicationController
-  before_action :set_software, only: [:show, :edit, :update, :destroy]
+  before_action :set_software, only: [:show, :edit, :update, :destroy, :upvote]
   before_action :authenticate_user!, except:[:index,:show]
   after_action :send_software_email, only: [:create, :update]
 
@@ -12,8 +12,8 @@ class SoftwaresController < ApplicationController
   # GET /softwares/1
   # GET /softwares/1.json
   def show
-    @software = Software.find(params[:id])
-    # @software = Software.friendly.find(params[:id])
+    #@software = Software.find(params[:id])
+    @software = Software.friendly.find(params[:id])
     @is_liked = @software.is_liked(current_user) if user_signed_in?
     @comment = Comment.build_from(@software, current_user.id, '') if user_signed_in?
     respond_to do |format|
@@ -88,12 +88,23 @@ class SoftwaresController < ApplicationController
     redirect_back(fallback_location: softwares_path)
   end
 
+  def upvote
+    if !current_user.liked? @software
+      @software.liked_by current_user
+    elsif current_user.liked? @software
+      @software.unliked_by current_user 
+    end
+    respond_to do |format|
+        format.html { redirect_back(fallback_location: root_path) }
+        format.js 
+        end
+  end 
 
 private
     # Use callbacks to share common setup or constraints between actions.
     def set_software
-      @software = Software.find(params[:id])
-      # @software = Software.friendly.find(params[:id])
+      #@software = Software.find(params[:id])
+      @software = Software.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

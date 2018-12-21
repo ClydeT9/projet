@@ -1,5 +1,0 @@
-<% if is_liked.present? %>
-    <%= link_to like_path(is_liked), method: :delete, remote: true do %><span class="btn btn-primary btn-sm pl-4 pr-4 no-click"><span class="favoris_button">Favoris</span> <i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span><% end %>
-<% else %>
-    <%= link_to software_likes_path(software), method: :post,remote: true do %><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><span class="favoris_button">Favoris</span> <i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span><% end %>
-<% end %>

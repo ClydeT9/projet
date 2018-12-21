@@ -37,6 +37,10 @@ gem 'ransack'
 gem 'seed_dump'
 gem 'font-awesome-sass'
 gem 'jquery-slick-rails'
+gem 'activeadmin'
+gem 'inherited_resources'
+gem 'active_skin'
+gem 'acts_as_votable'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

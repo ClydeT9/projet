@@ -170,7 +170,7 @@ input#software_category_ids-selectized {
                                     <div class="form-group w-100">
                                     <%= f.hidden_field :description,id:"inputDesc", rows:8,autocomplete: "description",class:"form-control col-sm-12 col-md-12", placeholder:"Description" %>
                                     <trix-editor input="inputDesc" name="text" id="text"></trix-editor>
-                                    <label class="form-label float-left w-full">Description<span class="requis">(requis)</span> (200 mots minimum et 400 mots maximum) <span class="float-right"><span id="display_count">0</span></span></label>
+                                    <label class="form-label float-left w-full">Description<span class="requis">(requis)</span> (200 mots minimum et 450 mots maximum) <span class="float-right"><span id="display_count">0</span></span></label>
                                     </div>
                                     </div>
 
@@ -183,7 +183,7 @@ input#software_category_ids-selectized {
                                 <div class="form-group">
                                 <label class="form-label">Slogan<span class="requis">(requis)</span></label>
                                 <div class="flex mb-4">
-                                    <%= f.text_field :slogan,id:"inputSlogan",autocomplete: "slogan",maxlength:"60", class:"form-control", placeholder:"Rechercher une app qui améliorera votre quotidien professionnel" %>
+                                    <%= f.text_field :slogan,id:"inputSlogan",autocomplete: "slogan",maxlength:"42", class:"form-control", placeholder:"Rechercher une app qui améliorera votre quotidien professionnel" %>
                                 </div>
                                </div>
 
@@ -372,7 +372,7 @@ $('#video_url').keyup(function (){
   $('#youtube-id').html('<iframe src="https://www.youtube.com/embed/' + youtubeId + '" width="auto" height="190" frameborder="0" allowfullscreen></iframe>');
 });
 </script>
- <script>
+ <%# <script>
  function checkURL (abc) {
   var string = abc.value;
   if (!~string.indexOf("https")) {
@@ -399,20 +399,20 @@ $('#video_url').keyup(function (){
   abc.value = string;
   return abc
 }
-</script>
+</script> %>
 <script>
 $(document).ready(function() {
     $("#text").on('keyup', function() {
         var words = this.value.match(/\S+/g).length;
-        if (words > 400) {
+        if (words > 450) {
             // Split the string on first 200 words and rejoin on spaces
-            var trimmed = $(this).val().split(/\s+/, 400).join(" ");
+            var trimmed = $(this).val().split(/\s+/, 450).join(" ");
             // Add a space at the end to keep new typing making new words
             $(this).val(trimmed + " ");
         }
         else {
             $('#display_count').text(words);
-            $('#word_left').text(400-words);
+            $('#word_left').text(450-words);
         }
     });
  }); 

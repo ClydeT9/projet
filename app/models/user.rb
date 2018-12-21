@@ -1,11 +1,12 @@
 class User < ApplicationRecord
+  acts_as_voter
   has_one_attached :avatar
   has_many :softwares, dependent: :destroy
   has_many :likes
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook]
+  :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook]
          validates :name, presence: true, length: {maximum: 75} 
 
          validates :fullname, presence: true, length: {maximum: 75}
@@ -18,7 +19,7 @@ class User < ApplicationRecord
         end
 
          extend FriendlyId
-         friendly_id :name, use: :slugged
+         friendly_id :name, use: [:slugged, :finders]
 
          def self.from_omniauth(auth)
           where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

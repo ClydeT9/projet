@@ -6,7 +6,7 @@ class PagesController < ApplicationController
     end
 
     def search
-        @softwares = Software.ransack(title_or_slogan_cont: params[:q]).result(distinct: true)
+        @softwares = Software.ransack(title_or_slogan_cont: params[:q]).result(distinct: true).paginate(:page => params[:page], :per_page => 14).order("published_at desc")
         @categories = Category.ransack(name_cont: params[:q]).result(distinct: true)
 
         respond_to do |format|

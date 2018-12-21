@@ -44,6 +44,7 @@ div#contentest {
     height: 85vh;
     overflow: auto;
     position: sticky;
+    position: -webkit-sticky;
     top: 80px;
     border: 1px solid #e6e7e9;
     border-radius: 4px;
@@ -158,15 +159,18 @@ text-decoration: none;
 .info{
   line-height: 1.25;
   padding-left: 10px;
+  max-height: 61px;
 }
 .job_title{
   font-weight: 700;
   font-size: 15px;
   color: #34324b;
+  max-height: 19px;
 }
 .job_info{
   color:#74718f;
   display: block;
+  font-size: 13px;
 }
 .job_info span{
   margin: 0 .75em;
@@ -295,6 +299,16 @@ background-color:#a378fc;
   color: #495057;
   font-size: 0.75rem;
 }
+
+.contenta {
+    opacity: 0.2;
+}
+
+@media only screen and (max-width: 1200px){  
+    .container.example-three,.job_title, .info, .job_info {
+    max-height:200px!important;
+}
+}
 </style>
 <div class="index">
 <div class="wrapper">
@@ -399,7 +413,6 @@ background-color:#a378fc;
 
 <div class="sidebar2">
   <div id='contentest'>
-
 <div class="newsletter2">
   <h3>Inscrivez-vous à notre newsletter</h3>
   <br>
@@ -429,7 +442,7 @@ background-color:#a378fc;
 <script>
     $(".listing.clearfix.big[data-id]").click(function(e) {
     if (!$(e.target).hasClass('no-click')) {
-      $.get('/softwares/' + $(this).attr('data-id'), function(data) {
+      $.get('/app/' + $(this).attr('data-id'), function(data) {
         $('#contentest').html(data);
       }); 
     }
@@ -439,7 +452,28 @@ background-color:#a378fc;
 <script>
     $(".listing.clearfix.little[data-id]").click(function(e) {
     if (!$(e.target).hasClass('no-click')) {
-      window.location = "/softwares/" + $(this).attr('data-id');
+      window.location = "/app/" + $(this).attr('data-id');
     }
 });
 </script>
+
+
+<%# <script>
+$(function () {
+  $('.listing.clearfix').click(function () {
+    setTimeout(function () {
+            $('.containershow').addClass('contenta');
+        }, 50);
+  });
+});
+</script>
+<script>
+$(function () {
+    $('.listing.clearfix').click(function () {
+        $('.containershow').addClass('contenta');
+        setTimeout(function () {
+            $('.containershow').removeClass('contenta');
+        }, 800);
+    });
+});
+</script> %>

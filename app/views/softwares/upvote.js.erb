@@ -1,0 +1,7 @@
+<% if current_user.liked? @software %>
+ $("#software-<%= @software.id %>").addClass("liked").html('<i class="fas fa-caret-up no-click" aria-hidden="true"></i>');
+ $("#software-<%= @software.id %>").removeClass("disliked").html('<i class="fas fa-caret-up no-click" aria-hidden="true"></i>');
+<% else %>
+ $("#software-<%= @software.id %>").removeClass("liked").html('<i class="fas fa-caret-up no-click" aria-hidden="true"></i>');
+ $("#software-<%= @software.id %>").addClass("disliked").html('<i class="fas fa-caret-up no-click" aria-hidden="true"></i>');
+<% end %>

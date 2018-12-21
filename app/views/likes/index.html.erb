@@ -1,6 +1,3 @@
-<% if @user == current_user %>
-    <%= render "software", {softwares: @saved} %>
-<% end %>
 <style>
 .mes_favoris {
     width: 60%;
@@ -132,7 +129,7 @@ text-decoration: none;
   border: 1px solid #e6e7e9;
   border-radius: 0.3em;
   padding: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 0em;
   position: relative;
   z-index: 1;
   display: table;
@@ -328,7 +325,7 @@ span.cat_info {
 .job_info {
     margin-top: 4px;
     margin-bottom: 4px;
-    max-width:75%;
+    max-width:100%;
 }
 @media only screen and (max-width: 1200px){  
     .job_info {
@@ -399,43 +396,48 @@ nav.vertical-align-middle.scroll {
     height: auto;
 }
 }
+.container {
+    height: auto !important;
+    min-height: 100%;
+    min-height: calc(100% - 9em);
+}
+
+/* like */
+.hello.no-click,.hello2.no-click.disliked {
+    color:#495057;
+    background-color: #fff;
+    border-color: rgba(0, 40, 100, 0.12);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+.hello2.no-click {
+    color:white;
+    background-color: #467fcf;
+    border-color: #467fcf;
+}
+.hello.no-click.liked {
+    color:white;
+    background-color: #467fcf;
+    border-color: #467fcf;
+}
+.hello2.no-click.liked {
+    color:white;
+    background-color: #467fcf;
+    border-color: #467fcf;
+}
 </style>
+
 <div class="page-header">
     <h1 class="page-title">
             Mes favoris
     </h1>
 </div>
 
-
 <div class="mes_favoris">
 	<ul id="timeline">
-<% softwares.each do |software| %>
+<% @softwareslike.each do |software| %>
 <% if software.published? %>
 
-        <li class="listing clearfix big" data-id="<%= software.id %>">
-          <div class="image_wrapper">      
-            <%= image_tag software.logo %>
-          </div>
-          <div class="info">
-            <span class="job_title"><%= software.title %></span>
-            <span class="job_info"><%= software.slogan %></span>
-            <div class="container example-three">
-            <nav class="vertical-align-middle scroll">
-            <span class="cat_info">         
-               <% software.categories.each do |category| %>
-               <% if category.parent.nil? %>
-                     parent
-                     <% else %>
-                     <%= link_to category.name, category, class:"tag no-click" %>
-               <% end %>
-               <% end %>
-            </span>
-            </nav>
-            </div>
-          </div>
-        </li>
-
-<li class="listing clearfix little" data-id="<%= software.id %>">
+<li class="listing clearfix" data-id="<%= software.slug %>">
    <div class="image_wrapper">
       <%= image_tag software.logo.variant(resize: "120x120") %>
    </div>
@@ -459,16 +461,36 @@ nav.vertical-align-middle.scroll {
    </div>
 </li>
 
-         <% if user_signed_in? %>
-         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
-            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
-         </div>
-         <% else %>
-         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
-         <% end %>
+
+
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? software) %>
+                <%= link_to like_software_path(software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
+
+
 
 <% end %>
 <% end %>
 <%# published %>
     </ul>
 </div>
+
+<script>
+    $(".listing.clearfix[data-id]").click(function(e) {
+    if (!$(e.target).hasClass('no-click')) {
+      window.location = "/app/" + $(this).attr('data-id');
+    }
+});
+</script>

@@ -44,6 +44,7 @@ div#contentest {
     height: 85vh;
     overflow: auto;
     position: sticky;
+    position: -webkit-sticky;
     top: 80px;
     border: 1px solid #e6e7e9;
     border-radius: 4px;
@@ -58,7 +59,6 @@ div#contentest {
   justify-self: bottom;
 }
 ul {
-  list-style-type: none;
   padding-left: 0px;
 }
 ul li a {
@@ -159,15 +159,18 @@ text-decoration: none;
 .info{
   line-height: 1.25;
   padding-left: 10px;
+  max-height: 61px;
 }
 .job_title{
   font-weight: 700;
   font-size: 15px;
   color: #34324b;
+  max-height: 19px;
 }
 .job_info{
   color:#74718f;
   display: block;
+  font-size: 13px;
 }
 .job_info span{
   margin: 0 .75em;
@@ -219,7 +222,7 @@ background-color:#a378fc;
     position: relative;
     left: 20px;
   }
-  .info-big {
+  .info.big {
     padding-left:0px;
     max-width: 80%;
   }
@@ -297,6 +300,16 @@ background-color:#a378fc;
   font-size: 0.75rem;
 }
 
+.contenta {
+    opacity: 0.2;
+}
+
+@media only screen and (max-width: 1200px){  
+    .container.example-three,.job_title, .info, .job_info {
+    max-height:200px!important;
+}
+}
+
    .like_button {
    display: inline-block;
    float: right;
@@ -325,13 +338,10 @@ span.cat_info {
 .job_info {
     margin-top: 4px;
     margin-bottom: 4px;
-    max-width:75%;
-}
-@media only screen and (max-width: 1200px){  
-    .job_info {
     max-width:100%;
+    max-height: 16px;
 }
-}
+
 .info.big {
     line-height: 1.25;
     padding-left: 25px;
@@ -353,6 +363,7 @@ span.cat_info {
     float: left;
     padding-left: 0px;
     margin-right: 0px;
+    max-height:19px;
 } 
 nav.vertical-align-middle.scroll {
     white-space: nowrap;
@@ -363,7 +374,8 @@ nav.vertical-align-middle.scroll {
 }
 .info {
     position: relative;
-    left: 68px;
+    left: 4%;
+    width: 80%;
 }
 
 .image_wrapper {
@@ -396,10 +408,40 @@ nav.vertical-align-middle.scroll {
     height: auto;
 }
 }
+
+.hello.no-click,.hello2.no-click.disliked {
+    color:#495057;
+    background-color: #fff;
+    border-color: rgba(0, 40, 100, 0.12);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+.hello2.no-click {
+    color:white;
+    background-color: #467fcf;
+    border-color: #467fcf;
+}
+.hello.no-click.liked {
+    color:white;
+    background-color: #467fcf;
+    border-color: #467fcf;
+}
+.hello2.no-click.liked {
+    color:white;
+    background-color: #467fcf;
+    border-color: #467fcf;
+}
+@media only screen and (max-width: 1200px){  
+    .job_info {
+    max-width:100%;
+}
+
+.info {
+    left: 18%;
+}
+}
 </style>
 <div class="index">
 <div class="wrapper">
-
 <div class="sidebar">
 <nav id="nav" class="overflow-y-auto text-base lg:text-sm">
    <div class="mb-4">
@@ -544,19 +586,28 @@ nav.vertical-align-middle.scroll {
    </div>
 </li>
 
-         <% if user_signed_in? %>
-         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
-            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
-         </div>
-         <% else %>
-         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
-         <% end %>
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? software) %>
+                <%= link_to like_software_path(software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
 
 <% end %>
 <%# published %>
 <% end %>
-<% end %>  
 <%# collaboration %>
+<% end %>  
+
 
 <% if @category.id == 9 %>
 <% @finances.each do |software| %>
@@ -608,13 +659,21 @@ nav.vertical-align-middle.scroll {
    </div>
 </li>
 
-         <% if user_signed_in? %>
-         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
-            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
-         </div>
-         <% else %>
-         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
-         <% end %>
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? software) %>
+                <%= link_to like_software_path(software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
 
 <% end %>
 <%# published %>
@@ -673,13 +732,21 @@ nav.vertical-align-middle.scroll {
    </div>
 </li>
 
-         <% if user_signed_in? %>
-         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
-            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
-         </div>
-         <% else %>
-         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
-         <% end %>
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? software) %>
+                <%= link_to like_software_path(software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
 
 <% end %>
 <%# published %>
@@ -739,13 +806,21 @@ nav.vertical-align-middle.scroll {
    </div>
 </li>
 
-         <% if user_signed_in? %>
-         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
-            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
-         </div>
-         <% else %>
-         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
-         <% end %>
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? software) %>
+                <%= link_to like_software_path(software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
 
 <% end %>
 <%# published %>
@@ -805,13 +880,21 @@ nav.vertical-align-middle.scroll {
    </div>
 </li>
 
-         <% if user_signed_in? %>
-         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
-            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
-         </div>
-         <% else %>
-         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
-         <% end %>
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? software) %>
+                <%= link_to like_software_path(software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
 
 <% end %>
 <%# published %>
@@ -821,7 +904,7 @@ nav.vertical-align-middle.scroll {
 
 <% if @category.id == 43 %>
 <% @rh.each do |software| %>
-<<% if software.published? %>
+<% if software.published? %>
         <li class="listing clearfix big" data-id="<%= software.id %>">
           <div class="image_wrapper">      
             <%= image_tag software.logo %>
@@ -869,13 +952,21 @@ nav.vertical-align-middle.scroll {
    </div>
 </li>
 
-         <% if user_signed_in? %>
-         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
-            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
-         </div>
-         <% else %>
-         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
-         <% end %>
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? software) %>
+                <%= link_to like_software_path(software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
 
 <% end %>
 <%# published %>
@@ -933,13 +1024,21 @@ nav.vertical-align-middle.scroll {
    </div>
 </li>
 
-         <% if user_signed_in? %>
-         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
-            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
-         </div>
-         <% else %>
-         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
-         <% end %>
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? software) %>
+                <%= link_to like_software_path(software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
 
 <% end %>
 <%# published %>
@@ -999,13 +1098,21 @@ nav.vertical-align-middle.scroll {
    </div>
 </li>
 
-         <% if user_signed_in? %>
-         <div id="like-icon-software-<%= software.id.to_s %>" class="like_button ml-auto no-click">
-            <%= render "like_icon", {is_liked: software.is_liked(current_user), software: software} %>
-         </div>
-         <% else %>
-         <a class="like_button no-click" data-toggle="modal" data-target="#logInModal"><span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span></a>
-         <% end %>
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? software) %>
+                <%= link_to like_software_path(software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
 
 <% end %>
 <%# published %>
@@ -1048,7 +1155,7 @@ nav.vertical-align-middle.scroll {
 <script>
     $(".listing.clearfix.big[data-id]").click(function(e) {
     if (!$(e.target).hasClass('no-click')) {
-      $.get('/softwares/' + $(this).attr('data-id'), function(data) {
+      $.get('/app/' + $(this).attr('data-id'), function(data) {
         $('#contentest').html(data);
       }); 
     }
@@ -1058,7 +1165,7 @@ nav.vertical-align-middle.scroll {
 <script>
     $(".listing.clearfix.little[data-id]").click(function(e) {
     if (!$(e.target).hasClass('no-click')) {
-      window.location = "/softwares/" + $(this).attr('data-id');
+      window.location = "/app/" + $(this).attr('data-id');
     }
 });
 </script>
