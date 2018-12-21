@@ -142,6 +142,8 @@ iframe.slick-slide.slick-current.slick-active {
    width:80px;
    display:inline-block;
    border-radius:4px;
+   position: relative;
+   top: 8px;
 }
 .info.little {
        display: inline-block;
@@ -221,7 +223,7 @@ a.tag {
 <%# fin du big %>
 
 <div class="littleshow w-full overflow-hidden bg-white rounded mx-auto">
-<div class="p-4">
+<div class="p-4 h-32 pt-2">
          <div class="image_wrapper little">      
             <%= image_tag @software.logo %>
          </div>
