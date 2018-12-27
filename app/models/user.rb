@@ -7,9 +7,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable
-         validates :name, presence: true, length: {maximum: 75} 
-
-         validates :fullname, presence: true, length: {maximum: 75}
 
          def thumbnail input
           return self.images[input].variant(resize: '100x100>').processed
