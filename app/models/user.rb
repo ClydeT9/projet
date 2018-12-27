@@ -21,8 +21,8 @@ class User < ApplicationRecord
         def self.create_from_facebook_data(facebook_data)
           where(provider: facebook_data.provider, uid: facebook_data.uid).first_or_create do | user |
             user.email = facebook_data.info.email
-            user.name = provider_data.info.first_name
-            user.fullname = provider_data.info.last_name
+            user.name = facebook_data.info.first_name
+            user.fullname = facebook_data.info.last_name
             user.password = Devise.friendly_token[0, 20]
           end
         end
