@@ -18,12 +18,20 @@ class User < ApplicationRecord
          extend FriendlyId
          friendly_id :name, use: [:slugged, :finders]
 
-         def self.create_from_provider_data(provider_data)
-          where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
-            user.email = provider_data.info.email
+        def self.create_from_facebook_data(facebook_data)
+          where(provider: facebook_data.provider, uid: facebook_data.uid).first_or_create do | user |
+            user.email = facebook_data.info.email
             user.name = provider_data.info.first_name
             user.fullname = provider_data.info.last_name
             user.password = Devise.friendly_token[0, 20]
           end
         end
+        
+        def self.create_from_google_data(google_data)
+          where(provider: google_data.provider, uid: google_data.uid).first_or_create do | user |
+            user.email = google_data.info.email
+            user.password = Devise.friendly_token[0, 20]
+        end
+      
+
 end
