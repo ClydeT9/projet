@@ -268,7 +268,7 @@ Devise.setup do |config|
   ENV['GOOGLE_KEY'], 
   ENV['GOOGLE_SECRET'], 
   callback_url:  "https://www.uneapp.com/my_engine/users/auth/google_oauth2/callback",
-  scope: 'userinfo.email,userinfo.profile'
+  scope: 'userinfo.email,userinfo.profile', info_fields: 'email, first_name, last_name'
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

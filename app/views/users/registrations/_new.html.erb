@@ -111,7 +111,7 @@ button.googlelogin {
                         <center>
                             <button class="facebooklogin"><i class="fab fa-facebook fa-2x"></i><%= link_to "Continuer avec Facebook", user_facebook_omniauth_authorize_path %></button>
                             <br>
-                            <button class="googlelogin"><i class="fab fa-google fa-2x"></i>Continuer avec Google</button>
+                            <button class="googlelogin"><i class="fab fa-google fa-2x"></i><%= link_to "Continuer avec Google", user_google_oauth2_omniauth_authorize_path %></button>
                             <br>
                             <%= link_to new_editor_registration_path do %>
                                 <div class="bg-orange-lightest border-orange text-orange-dark p-2 mt-3 rounded-sm text-xs pointer" data-toggle="modal" data-target="#signUpModalEditor" data-dismiss="modal" role="alert">

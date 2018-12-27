@@ -30,6 +30,8 @@ class User < ApplicationRecord
         def self.create_from_google_data(google_data)
           where(provider: google_data.provider, uid: google_data.uid).first_or_create do | user |
             user.email = google_data.info.email
+            user.name = google_data.info.first_name
+            user.fullname = google_data.info.last_name
             user.password = Devise.friendly_token[0, 20]
         end
       end
