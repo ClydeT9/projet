@@ -261,7 +261,7 @@ Devise.setup do |config|
   config.omniauth :facebook,
   ENV['FACEBOOK_KEY'],
   ENV['FACEBOOK_SECRET'],
-  callback_url:  "https://www.uneapp.com/users/auth/facebook/callback"
+  callback_url:  "https://www.uneapp.com/my_engine/users/auth/facebook/callback"
   #config.omniauth :facebook, "213190266281163", "58abfa7bf1ed4b2433ce9971f40b3318", scope: "email", info_fields: 'email,name' 
   #config.omniauth :facebook,  "213190266281163", "58abfa7bf1ed4b2433ce9971f40b3318", callback_url: "https://www.uneapp.com/users/auth/facebook/callback"
   # ==> Warden configuration
