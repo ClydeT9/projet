@@ -12,7 +12,7 @@ class PagesController < ApplicationController
         respond_to do |format|
             format.html {}
             format.json {
-              @softwares    = @softwares.limit(5)
+              @softwares = @softwares.includes(:categories).limit(5)
               @categories = @categories.limit(5)
             }
           end

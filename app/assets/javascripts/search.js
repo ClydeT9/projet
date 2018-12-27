@@ -16,12 +16,10 @@ document.addEventListener("turbolinks:load", function () {
             // }
         ],
 
-
-
         template: {
             type: "custom",
             method: function (value, element) {
-                return "<div id='searchflex'> <div id='bloc1'></div>" + "<div id='bloc2'><h6><span class='s-1'>" + element.title + " </span></h6> " + "<span class='s-2'>" + element.slogan + "</span> </div></div>";
+                return "<div class='flex'><div class='w-1/6'><img class='imagesearch' src='" + element.logo_url + "'/> </div>" + "<div class='w-5/6'><h6>" + element.title + "</h6> " + "<span class='s-2'>" + element.slogan + "</span> </div></div>";
             }
         },
         list: {

@@ -444,6 +444,7 @@ background-color:#a378fc;
     if (!$(e.target).hasClass('no-click')) {
       $.get('/app/' + $(this).attr('data-id'), function(data) {
         $('#contentest').html(data);
+        $('#contentest').scrollTop(0);
       }); 
     }
 });

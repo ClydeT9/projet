@@ -6,7 +6,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares
   # GET /softwares.json
   def index
-    @softwares = Software.includes(:comment_threads).paginate(:page => params[:page], :per_page => 14).order("published_at desc")
+    @softwares = Software.includes(:comment_threads).paginate(:page => params[:page], :per_page => 20).order("published_at desc")
   end
 
   # GET /softwares/1
