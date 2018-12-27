@@ -5,7 +5,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user
       set_flash_message(:notice, :success, kind: 'Facebook') if is_navigational_format?
     else
-      flash[:error] = 'There was a problem signing you in through Facebook. Please register or try signing in later.'
+      flash[:error] = 'Un problème est survenu lors de votre connexion via Facebook. Veuillez vous inscrire ou essayez de vous connecter plus tard.'
       redirect_to new_user_registration_url
     end 
   end
@@ -16,13 +16,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user
       set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
     else
-      flash[:error] = 'There was a problem signing you in through Google. Please register or try signing in later.'
+      flash[:error] = 'Un problème est survenu lors de votre connexion via Google. Veuillez vous inscrire ou essayez de vous connecter plus tard.'
       redirect_to new_user_registration_url
     end 
   end
 
   def failure
-    flash[:error] = 'There was a problem signing you in. Please register or try signing in later.' 
+    flash[:error] = 'Un problème est survenu lors de la connexion. Veuillez vous inscrire ou essayez de vous connecter ultérieurement.' 
     redirect_to new_user_registration_url
   end
 end

@@ -164,7 +164,6 @@ button.googlelogin.session {
                     </div>
                     <div class="card-title">Connexion à votre compte</div>
                     <%= form_for(resource, as: resource_name, :html => { :id => "new_user_2"},remote: true, url: user_session_path(resource_name)) do |f| %>
-                      <%= devise_error_messages! %>
                         <div class="form-group">
                             <%= f.email_field :email, class:"form-control", autocomplete: "email",id:"email_newuser",:required => true %>
                             <label class="form-control-placeholder" for="email_newuser">Adresse email</label>
