@@ -267,6 +267,7 @@ Devise.setup do |config|
   config.omniauth :google_oauth2,
   ENV['GOOGLE_KEY'],
   ENV['GOOGLE_SECRET'],
+  callback_url:  "https://www.uneapp.com/my_engine/users/auth/facebook/callback",
   scope: 'userinfo.email,userinfo.profile', info_fields: 'email, first_name, last_name'
   
   # ==> Warden configuration
