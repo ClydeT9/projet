@@ -266,6 +266,8 @@ Devise.setup do |config|
 
   config.omniauth :google_oauth2,
   ENV['GOOGLE_KEY'],
+  ENV['GOOGLE_SECRET'],
+  callback_url:  "https://www.uneapp.com/my_engine/users/auth/google_oauth2/callback",
   scope: 'userinfo.email,userinfo.profile'
   
   # ==> Warden configuration
