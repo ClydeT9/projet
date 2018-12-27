@@ -265,7 +265,8 @@ Devise.setup do |config|
   scope: 'email', info_fields: 'email, first_name, last_name'
 
   config.omniauth :google_oauth2,
-  ENV['GOOGLE_APPLICATION_CREDENTIALS'],
+  ENV['GOOGLE_KEY'],
+  ENV['GOOGLE_SECRET'],
   callback_url:  "https://www.uneapp.com/my_engine/users/auth/google_oauth2/callback",
   scope: 'email', info_fields: 'email, first_name, last_name'
   #config.omniauth :facebook, "213190266281163", "58abfa7bf1ed4b2433ce9971f40b3318", scope: "email", info_fields: 'email,name' 
