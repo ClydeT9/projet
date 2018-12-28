@@ -425,7 +425,7 @@ background-color:#a378fc;
           <%= render @softwares %>
       </ul>
     </div>
-    <%= will_paginate @softwares, :previous_label => 'Précédent', :next_label => 'Suivant' %>
+    <%= will_paginate @softwares, :previous_label => 'Précédent', :next_label => 'Suivant', :page_links => false %>
   </div><%# main %>
 
 <div class="sidebar2">
