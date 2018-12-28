@@ -29,8 +29,19 @@
 //= require jquery.slick
 toastr.options = {
   "closeButton": true,
+  "debug": false,
+  "newestOnTop": true,
   "progressBar": true,
-  "positionClass": "toast-bottom-right",
-  "showDuration": "10000",
-  "timeOut": "10000"
+  "positionClass": "toast-top-right",
+  "preventDuplicates": true,
+  "onclick": null,
+  "showDuration": "500",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut",
+  "rtl": false
 };
