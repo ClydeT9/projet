@@ -176,7 +176,7 @@ input#software_category_ids-selectized {
 
                                    </div>
 </div>
-  </div>
+</div>
 
 	<div id="tab-2" class="tab-content">
                               <div class="col-sm-12 col-md-12">
@@ -198,11 +198,12 @@ input#software_category_ids-selectized {
                                     'Internet' => [['Création de site', 29], ["Création d'application",30],['E-commerce', 31], ['Hébergement', 32],['Référencement', 33], ['Sécurité', 34],['Traduction', 35]],
                                     'Marketing'      => [['Campagnes publicitaires', 37], ['Enquêtes', 38],['Fidélisation client', 39], ['Gestion des réseaux sociaux', 40], ['Jeux-Concours', 41], ['Mailing', 42]],
                                     'Ressources humaines' => [['Formation', 44], ['Gestion des congés/absences',45],['Gestion des salaires', 46], ['Gestion des talents',47],['Recrutement', 48], ['Temps de travail',49]],
-                                    'Service client' => [['Gestion des appels', 51], ['Live chat',52],['Multicanal', 53], ['Relation Client',54]]
+                                    'Service client' => [['Gestion des appels', 51], ['Live chat',52],['Multicanal', 53], ['Relation Client',54]],
+                                    'Secteurs d\'activité' => [['Agricole', 56], ['Associations',57],['Avocat', 58], ['Bâtiment',59],['Coiffure',60],['Fitness', 61], ['Garage',62], ['Nettoyage à sec',63], ['Gestion locative',64], ['Gestion hôtelière',65], ['Restauration',66], ['Transport',67]],
                                     } %>
 
 
-                                    <label class="form-label">Catégories<span class="requis">(requis)</span></label>
+                                    <label class="form-label">Catégories<span class="requis">(5 maximum)</span></label>
                                     <%= f.select :category_ids, grouped_options_for_select(categories, @software.category_ids), {}, {multiple: true, class: "selectize" } %>
                                     </div>
                                     </div>
