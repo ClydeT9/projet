@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @secteurs = Software.joins(:categories).where(categories: { ancestry: "55" }).distinct
     @collaboration = Software.joins(:categories).where(categories: { ancestry: "1" }).distinct
     @finances = Software.joins(:categories).where(categories: { ancestry: "9" }).distinct
     @commerce = Software.joins(:categories).where(categories: { ancestry: "19" }).distinct

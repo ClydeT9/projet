@@ -517,7 +517,6 @@ nav.vertical-align-middle.scroll {
       <ul>
          <li class="mb-3 lg:mb-2"><%= link_to "Campagnes publicitaires", controller: "categories", action: "show", id: 37 %></li>
          <li class="mb-3 lg:mb-2"><%= link_to "Enquêtes", controller: "categories", action: "show", id: 38 %></li>
-         <li class="mb-3 lg:mb-2"><%= link_to "Fidélisation client", controller: "categories", action: "show", id: 39 %></li>
          <li class="mb-3 lg:mb-2"><%= link_to "Gestion des réseaux sociaux", controller: "categories", action: "show", id: 40 %></li>
          <li class="mb-3 lg:mb-2"><%= link_to "Jeux-Concours", controller: "categories", action: "show", id: 41 %></li>
          <li class="mb-3 lg:mb-2"><%= link_to "Mailing", controller: "categories", action: "show", id: 42 %></li> 
@@ -553,6 +552,80 @@ nav.vertical-align-middle.scroll {
 
     	<ul id="timeline">
     <div id="my-softwares">
+<% if @category.id == 55 %>
+<% @secteurs.each do |software| %>
+<% if software.published? %>
+        <li class="listing clearfix big" data-id="<%= software.id %>">
+          <div class="image_wrapper">      
+            <%= image_tag software.logo %>
+          </div>
+          <div class="info">
+            <span class="job_title"><%= software.title %></span>
+            <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">         
+               <% software.categories.each do |category| %>
+               <% if category.parent.nil? %>
+                     parent
+                     <% else %>
+                     <%= link_to category.name, category, class:"tag no-click" %>
+               <% end %>
+               <% end %>
+            </span>
+            </nav>
+            </div>
+          </div>
+        </li>
+
+<li class="listing clearfix little" data-id="<%= software.id %>">
+   <div class="image_wrapper">
+      <%= image_tag software.logo.variant(resize: "120x120") %>
+   </div>
+   <div class="info big">
+      <span class="job_title"><%= software.title %>
+      </span>
+      <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </span> 
+      </nav>
+      </div>
+   </div>
+</li>
+
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? software) %>
+                <%= link_to like_software_path(software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
+
+<% end %>
+<%# published %>
+<% end %>
+<%# secteurs %>
+<% end %>  
+
+
+
 <% if @category.id == 1 %>
 <% @collaboration.each do |software| %>
 <% if software.published? %>

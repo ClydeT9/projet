@@ -196,7 +196,7 @@ input#software_category_ids-selectized {
                                     'Finances' => [['Comptabilité', 10], ['Devis',11],['Facturation/Recouvrement', 12], ['Gestion des achats/stocks',13],['Gestion des clients/fournisseurs', 14], ['Note de frais',15],['Paiement en ligne', 16], ['Rapports financiers',17], ['Trésorerie',18]],
                                     'Gestion commerciale'      => [['Fidélisation des clients', 20], ['Gestion des prospects', 21],['Gestion des ventes', 22], ['Gestion des visiteurs', 23],['Marketing Automation', 24], ['Organisations de réunions', 25],['Point de vente', 26], ['Prise de RDV/Réservations', 27]],
                                     'Internet' => [['Création de site', 29], ["Création d'application",30],['E-commerce', 31], ['Hébergement', 32],['Référencement', 33], ['Sécurité', 34],['Traduction', 35]],
-                                    'Marketing'      => [['Campagnes publicitaires', 37], ['Enquêtes', 38],['Fidélisation client', 39], ['Gestion des réseaux sociaux', 40], ['Jeux-Concours', 41], ['Mailing', 42]],
+                                    'Marketing'      => [['Campagnes publicitaires', 37], ['Enquêtes', 38], ['Gestion des réseaux sociaux', 40], ['Jeux-Concours', 41], ['Mailing', 42]],
                                     'Ressources humaines' => [['Formation', 44], ['Gestion des congés/absences',45],['Gestion des salaires', 46], ['Gestion des talents',47],['Recrutement', 48], ['Temps de travail',49]],
                                     'Service client' => [['Gestion des appels', 51], ['Live chat',52],['Multicanal', 53], ['Relation Client',54]],
                                     'Secteurs d\'activité' => [['Agricole', 56], ['Associations',57],['Avocat', 58], ['Bâtiment',59],['Coiffure',60],['Fitness', 61], ['Garage',62], ['Nettoyage à sec',63], ['Gestion locative',64], ['Gestion hôtelière',65], ['Restauration',66], ['Transport',67]],
@@ -325,7 +325,7 @@ $(document).ready(function(){
 
 });
 </script>
-<script>
+<%# <script>
 // Bouton publish disabled
 $(document).ready(function (){
     validate();
@@ -345,7 +345,7 @@ function validate(){
         $("input#publish").prop("disabled", true);
     }
 }
-</script>
+</script> %>
 <script>
 // empeche d'envoyer le formulaire avec la touche enter
 $('#formulaire').on('keyup keypress', function(e) {
