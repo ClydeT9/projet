@@ -661,21 +661,18 @@ nav.vertical-align-middle.scroll {
 </div>
 <%# index %>
 
-
 <script>
-    $(".listing.clearfix.big[data-id]").click(function(e) {
-    if (!$(e.target).hasClass('no-click')) {
-      $.get('/app/' + $(this).attr('data-id'), function(data) {
-        $('#contentest').html(data);
-      }); 
-    }
+$(".listing.clearfix.big[data-id]").click(function (e) {
+  if (!$(e.target).hasClass('no-click')) {
+    $.get('/app/' + $(this).attr('data-id'), function (data) {
+      $('#contentest').html(data);
+    });
+  }
 });
-</script>
 
-<script>
-    $(".listing.clearfix.little[data-id]").click(function(e) {
-    if (!$(e.target).hasClass('no-click')) {
-      window.location = "/app/" + $(this).attr('data-id');
-    }
+$(".listing.clearfix.little[data-id]").click(function (e) {
+  if (!$(e.target).hasClass('no-click')) {
+    window.location = "/app/" + $(this).attr('data-id');
+  }
 });
 </script>

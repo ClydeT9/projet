@@ -456,41 +456,19 @@ background-color:#a378fc;
 
 
 <script>
-    $(".listing.clearfix.big[data-id]").click(function(e) {
-    if (!$(e.target).hasClass('no-click')) {
-      $.get('/app/' + $(this).attr('data-id'), function(data) {
-        $('#contentest').html(data);
-        $('#contentest').scrollTop(0);
-      }); 
-    }
-});
-</script>
-
-<script>
-    $(".listing.clearfix.little[data-id]").click(function(e) {
-    if (!$(e.target).hasClass('no-click')) {
-      window.location = "/app/" + $(this).attr('data-id');
-    }
-});
-</script>
-
-
-<%# <script>
-$(function () {
-  $('.listing.clearfix').click(function () {
-    setTimeout(function () {
-            $('.containershow').addClass('contenta');
-        }, 50);
-  });
-});
-</script>
-<script>
-$(function () {
-    $('.listing.clearfix').click(function () {
-        $('.containershow').addClass('contenta');
-        setTimeout(function () {
-            $('.containershow').removeClass('contenta');
-        }, 800);
+// softwares/index
+$(".listing.clearfix.big[data-id]").click(function (e) {
+  if (!$(e.target).hasClass('no-click')) {
+    $.get('/app/' + $(this).attr('data-id'), function (data) {
+      $('#contentest').html(data);
+      $('#contentest').scrollTop(0);
     });
+  }
 });
-</script> %>
+
+$(".listing.clearfix.little[data-id]").click(function (e) {
+  if (!$(e.target).hasClass('no-click')) {
+    window.location = "/app/" + $(this).attr('data-id');
+  }
+});
+</script>

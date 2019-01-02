@@ -486,11 +486,3 @@ nav.vertical-align-middle.scroll {
 <%# published %>
     </ul>
 </div>
-
-<script>
-    $(".listing.clearfix[data-id]").click(function(e) {
-    if (!$(e.target).hasClass('no-click')) {
-      window.location = "/app/" + $(this).attr('data-id');
-    }
-});
-</script>

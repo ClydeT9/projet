@@ -109,9 +109,9 @@ button.googlelogin {
                         <button type="button" class="close2 signup" data-dismiss="modal"><i class="fas fa-times"></i></button>   
               <div class="body2a">
                         <center>
-                            <button class="facebooklogin"><i class="fab fa-facebook fa-2x"></i><%= link_to "Continuer avec Facebook", user_facebook_omniauth_authorize_path %></button>
+                            <%= link_to user_facebook_omniauth_authorize_path do %><button class="facebooklogin"><i class="fab fa-facebook fa-2x"></i>Continuer avec Facebook</button><% end %>              
                             <br>
-                            <button class="googlelogin"><i class="fab fa-google fa-2x"></i><%= link_to "Continuer avec Google", user_google_oauth2_omniauth_authorize_path %></button>
+                            <%= link_to user_google_oauth2_omniauth_authorize_path do %><button class="googlelogin"><i class="fab fa-google fa-2x"></i>Continuer avec Google</button><% end %>
                             <br>
                             <%= link_to new_editor_registration_path do %>
                                 <div class="bg-orange-lightest border-orange text-orange-dark p-2 mt-3 rounded-sm text-xs pointer" data-toggle="modal" data-target="#signUpModalEditor" data-dismiss="modal" role="alert">

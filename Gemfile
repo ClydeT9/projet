@@ -42,6 +42,7 @@ gem 'activeadmin'
 gem 'inherited_resources'
 gem 'active_skin'
 gem 'acts_as_votable'
+gem 'webpacker', '~> 3.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

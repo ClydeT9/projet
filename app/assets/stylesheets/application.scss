@@ -277,7 +277,6 @@ img.avatar {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 40, 100, 0.12);
-  border-bottom: 0px !important;
   border-radius: 3px 3px 0px 0px;
 }
 
@@ -613,4 +612,76 @@ i.fas.fa-images {
 
 #contentest::-webkit-scrollbar-thumb {
   background: #b8c2cc;
+}
+
+
+// comments/form
+textarea#comment_body {
+  min-width: 100%;
+  background: #f5f7fb;
+  border-radius: 4px;
+  min-height: 60px;
+  border: 1px solid #e9ecef;
+}
+
+a.soulignement.cursor-pointer {
+  text-decoration: underline !important;
+}
+
+// comments/list
+ol#comments,
+ol#comments li {
+  list-style-type: none;
+}
+
+ol#comments {
+  padding-left: 0px;
+}
+
+.commentname {
+  font-weight: bold;
+  font-size: 15px;
+  margin-right: 10px;
+}
+
+.tagline.comment {
+  background: #f5f7fb;
+  border-radius: 4px 4px 0px 0px;
+  padding: 5px;
+  border: 1px solid #e9ecef;
+  border-bottom: 1px solid #f1f5f8;
+  padding-left: 10px;
+}
+
+section.body.comment {
+  background: #ffffff;
+  border: 1px solid #f1f5f8;
+  border-top: none;
+  border-radius: 0px 0px 4px 4px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.commentbody {
+  display: inline-block;
+  text-align: justify;
+}
+
+.commentreply {
+  display: inline-block;
+  font-size: 10px;
+  float: right;
+  padding-right: 10px;
+  padding-top: 4px;
+}
+
+.commentreply a {
+  color: #8795a1;
+}
+
+.tagline.comment span.badge.badge-success {
+  font-size: 10px;
+  position: relative;
+  bottom: 1px;
+  background-color: #437dd3;
 }

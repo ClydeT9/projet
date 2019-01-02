@@ -155,9 +155,9 @@ button.googlelogin.session {
             </div>
               <div class="modal-body"> 
                         <center>
-                            <button class="facebooklogin"><i class="fab fa-facebook fa-2x"></i><%= link_to "Continuer avec Facebook", user_facebook_omniauth_authorize_path %></button>
-                            <br>
-                            <button class="googlelogin session"><i class="fab fa-google fa-2x"></i><%= link_to "Continuer avec Google", user_google_oauth2_omniauth_authorize_path %></button>
+                                <%= link_to user_facebook_omniauth_authorize_path do %><button class="facebooklogin"><i class="fab fa-facebook fa-2x"></i>Continuer avec Facebook</button><% end %>              
+                                <br>
+                                <%= link_to user_google_oauth2_omniauth_authorize_path do %><button class="googlelogin session"><i class="fab fa-google fa-2x"></i>Continuer avec Google</button><% end %>
                         </center>
                     <div class="contentor">
                         <p class="or">OU</p>
@@ -179,7 +179,6 @@ button.googlelogin.session {
                     
                 <br>
                 <div class="text-center text-muted">   
-
                         <button class="signupbutton" 
                         data-toggle="modal" 
                         data-target="#signUpModal" 
