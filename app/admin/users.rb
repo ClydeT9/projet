@@ -2,7 +2,7 @@ ActiveAdmin.register User do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :email, :name, :id
+permit_params :email, :name, :id, :provider
 
 
 index do
@@ -23,8 +23,8 @@ index do
       column "Éditeur", sortable: true do |user|
         user.role_editor
       end
-      column "User" do |user|
-        
+      column "Provider" do |user|
+        user.provider
       end
       column "Créer le",sortable: true do |user|
         user.created_at
