@@ -4,7 +4,6 @@ ActiveAdmin.register User do
 #
 permit_params :email, :name, :id, :provider
 
-
 index do
     selectable_column
     column "Photo" do |user|
@@ -34,6 +33,9 @@ index do
       end
       column "Nbre de connexion",sortable: true do |user|
         user.sign_in_count
+      end
+      column "Nbre de likes",sortable: true do |user|
+        user.find_liked_items.size
       end
   end
 

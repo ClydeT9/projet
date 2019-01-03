@@ -37,6 +37,7 @@
       <h2 class="mb-2 mt-2 black"><%= link_to software.title, software_path(software) %> <% if software.published? %><span class="badge badge-success">En ligne</span><%else%><span class="badge badge-warning">Brouillon</span><%end%></h2>
       <p class="mb-4 text-grey-dark text-sm">
         <%= link_to software.slogan, software_path(software) %>
+       
       </p>
        <!-- button -->
        <div class="text-right pt-8">

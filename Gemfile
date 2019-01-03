@@ -44,6 +44,7 @@ gem 'active_skin'
 gem 'acts_as_votable'
 gem 'webpacker', '~> 3.5'
 gem 'meta-tags'
+gem 'impressionist'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

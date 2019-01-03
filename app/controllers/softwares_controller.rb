@@ -1,7 +1,9 @@
 class SoftwaresController < ApplicationController
-  before_action :set_software, only: [:show, :edit, :update, :destroy, :upvote]
+  before_action :set_software, only: [:show, :edit, :update, :stat, :destroy, :upvote]
   before_action :authenticate_user!, except:[:index,:show]
+  before_action :require_same_user, only: [:edit, :update, :stat]
   after_action :send_software_email, only: [:create, :update]
+  impressionist :actions => [:show]
 
   # GET /softwares
   # GET /softwares.json
@@ -12,8 +14,9 @@ class SoftwaresController < ApplicationController
   # GET /softwares/1
   # GET /softwares/1.json
   def show
-    #@software = Software.find(params[:id])
     @software = Software.friendly.find(params[:id])
+    @related_softwares = Software.joins(:categories).where('softwares.id != ?', @software.id).where(software_categories: {category_id: @software.category_ids}).distinct
+    impressionist(@software)
     @is_liked = @software.is_liked(current_user) if user_signed_in?
     @comment = Comment.build_from(@software, current_user.id, '') if user_signed_in?
     respond_to do |format|
@@ -27,7 +30,11 @@ class SoftwaresController < ApplicationController
 
   def upload_photo
   end
-  
+
+  def stat
+    @softwares = current_user.softwares
+  end
+
   # GET /softwares/new
   def new
     @software = current_user.softwares.build
@@ -122,4 +129,12 @@ private
     def unpublishing?
       params[:commit] == "Annuler la publication"
     end
+    
+    def require_same_user
+      if current_user.id != @software.user_id
+          flash[:danger] = "Vous n'avez pas le droit de modifier cette page"
+          redirect_to root_path
+      end
+    end
+
 end

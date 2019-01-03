@@ -19,11 +19,13 @@ Rails.application.routes.draw do
   devise_for :editors, path: 'editors', controllers: {
     registrations:      "editors/registrations",
   }
+  
   resources :users, only: [:show]
   resources :softwares, path: 'app' do 
     member do
       delete :delete_image_attachment
       put "like" => "softwares#upvote"
+      get 'stat'
      end  
   end
   resources :likes, only: [:create, :destroy, :index], shallow: true
@@ -33,4 +35,5 @@ Rails.application.routes.draw do
   root 'softwares#index'
   get '/myapp' => 'pages#myapp'
   get '/mentions' => 'pages#mentions'
+  get '/stat' => 'softwares#stat'
 end

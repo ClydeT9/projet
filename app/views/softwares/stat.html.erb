@@ -1,0 +1,4 @@
+<% if current_user %>
+<%= @software.impressionist_count(:start_date => 7.day.ago) %>
+<%= @software.get_upvotes.where('created_at >= ?', Time.zone.now - 7.days).count %>
+<% end %>
