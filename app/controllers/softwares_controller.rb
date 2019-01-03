@@ -20,6 +20,9 @@ class SoftwaresController < ApplicationController
       format.html
       format.js
     end
+    set_meta_tags title: @software.slogan,
+                  site: @software.title,
+                  description: @software.slogan
   end
 
   def upload_photo

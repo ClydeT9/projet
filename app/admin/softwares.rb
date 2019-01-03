@@ -20,8 +20,8 @@ index do
     column "Logo" do |software|
         image_tag url_for(software.logo), class:'image_wrapper'
       end
-    column "ID" do |software|
-        software.id
+    column "Like", sortable: :cached_votes_total do |software|
+        software.cached_votes_total
       end
     column "Nom" do |software|
       link_to software.title, admin_software_path(software)
@@ -38,7 +38,7 @@ index do
       column "User" do |software|
         link_to software.user.name, admin_user_path(software.user)
       end
-      column "Créer le" do |software|
+      column "Créer le",sortable: :created_at do |software|
         software.created_at
       end
   end
