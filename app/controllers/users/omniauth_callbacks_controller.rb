@@ -2,6 +2,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     @user = User.create_from_facebook_data(request.env['omniauth.auth'])
     if @user.persisted?
+      if @user.save
+        UserMailer.send_signup_email(@user).deliver
+        UserMailer.send_signup_admin(@user).deliver
+      end
       sign_in_and_redirect @user
       set_flash_message(:notice, :success, kind: 'Facebook') if is_navigational_format?
     else
@@ -13,6 +17,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def google_oauth2
     @user = User.create_from_google_data(request.env['omniauth.auth'])
     if @user.persisted?
+      if @user.save
+        UserMailer.send_signup_email(@user).deliver
+        UserMailer.send_signup_admin(@user).deliver
+      end
       sign_in_and_redirect @user
       set_flash_message(:notice, :success, kind: 'Google') if is_navigational_format?
     else
