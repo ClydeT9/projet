@@ -348,6 +348,15 @@ a.tag {
 <%# fin commun %>
 
 
+<div class="bigshow">
+   <% @related_softwares.each do |software| %>
+      <%= software.title %>
+      (<% software.categories.each do |category| %>
+         <%= link_to category.name, category, class:"tag no-click" %>
+      <% end %>)
+      <br>
+   <% end %> 
+</div>
 
 
 </div>

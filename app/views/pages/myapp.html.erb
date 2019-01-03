@@ -37,11 +37,11 @@
       <h2 class="mb-2 mt-2 black"><%= link_to software.title, software_path(software) %> <% if software.published? %><span class="badge badge-success">En ligne</span><%else%><span class="badge badge-warning">Brouillon</span><%end%></h2>
       <p class="mb-4 text-grey-dark text-sm">
         <%= link_to software.slogan, software_path(software) %>
-       
+        <%= link_to stat_software_path(software) do %>Statistiques<% end %>
       </p>
        <!-- button -->
        <div class="text-right pt-8">
-      <button type="button" class="btn btn-secondary btn-sm mb-1">Statistiques</button>
+      <%= link_to "Statistiques", stat_software_path(software),class:"btn btn-secondary btn-sm mb-1" %>
       <%= link_to "Aperçu", software_path(software),class:"btn btn-secondary btn-sm mb-1" %>
       <%= link_to "Mettre à jour", edit_software_path(software),class:"btn btn-primary btn-sm mb-1" %>
         </div>
