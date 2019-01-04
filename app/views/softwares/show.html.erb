@@ -190,15 +190,10 @@ a.tag {
 /* related */
 .bigshow.related {
    width: 300px;
-   padding-left: 10px;
    background: #f5f7fb;
    padding-top: 16px;
+   padding-left: 10px;
 }
-  @media only screen and (max-width: 1000px){
-     .bigshow.related {
-        display:none;
-     }
-  }
 .bigcontainer {
     display: flex;
     max-width: 1200px!important;
@@ -210,11 +205,108 @@ img.image_related {
 .containershowbis {
     max-width: 900px;
 }
+.col {
+   padding-left:10px;
+}
 /*  */
 .bigshow.pt-4.overflow-hidden.bg-transparent.rounded.mx-auto.bigshow2 {
    background-color:#f5f7fb!important;
 }
+
+@media (min-width: 992px) {
+.container {
+    max-width: 96%;
+}
+}
+@media (min-width: 768px){
+.container {
+    max-width: 96%;
+}
+}
+@media (min-width: 576px) {
+.container {
+    max-width: 96%;
+}
+}
+
+
+@media only screen and (max-width: 1000px){
+   .containershow {
+      display:block;
+      margin:auto;
+   }
+   .brtest {
+      display:none;
+   }
+   .bigshow.related {
+      width: 100%;
+      margin:0px;
+      padding-left:0px;
+   }
+   .max-w-sm.bg-white.mb-4.text-center.pt-4 {
+    float: left;
+    width: calc(100%/2);
+    min-height: 400px;
+    background-color: #f5f7fb!important;
+    margin-bottom: 0px!important;
+}
+.related_mobile {
+    background-color: white;
+    min-height: 390px;
+    margin: 5px;
+    padding-top: 20px;
+}
+}
+@media only screen and (max-width: 600px){
+.max-w-sm.bg-white.mb-4.text-center.pt-4 {
+    float: left;
+    width: calc(100%/1);
+    min-width: 100%;
+}
+.related_mobile {
+    background-color: white;
+    padding-top: 20px;
+}
+}
+
+/* related_softwares button */
+    .related_softwares {
+        display:none;
+    }
+
+@media only screen and (max-width: 800px){ 
+.related_softwares {
+    display:block;
+    background: white;
+    border-bottom: 1px solid #e0e5ec;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    position: fixed;
+    right: 0px;
+    width: 100%;
+    top: 60px;
+    z-index: 1;
+} 
+.related_softwares .fas {
+    padding: 10px;
+}
+.bigshow.pt-4.overflow-hidden.bg-transparent.rounded.mx-auto.bigshow2{
+   padding-top:60px!important;
+}
+#connexion {
+   padding-top: 30px;
+}
+}
 </style>
+<div class="bigshow">
+   <a class="smoothScroll" href="#related">
+   <div class="related_softwares">Découvrir les alternatives à <%= @software.title %>
+   <i class="fas fa-caret-right fa-lg"></i>
+   </div>
+   </a>
+</div>
+
 <div class="bigcontainer">
 <div class="containershow" data-id="<%= @software.slug %>">
 <div class="containershowbis">
@@ -380,11 +472,13 @@ img.image_related {
 
 </div>
 <%# containershowbis %>
-<div class="bigshow related">
+<div class="bigshow related" id="related">
 <div class="related">
-<h5 class="text-center mb-3 lg:mb-2 uppercase tracking-wide bg-white p-2 font-bold text-sm lg:text-sm">Alternatives à <%= @software.title %></h5>
+<h5 class="text-center uppercase tracking-wide bg-white p-2 font-bold text-sm lg:text-sm">Alternatives à <%= @software.title %></h5>
+<div class="brtest mb-4"></div>
 <% @related_softwares.each do |software| %>
-<div style="" class="max-w-sm bg-white mb-4 text-center pt-4">
+<div class="max-w-sm bg-white mb-4 text-center pt-4">
+<div class="related_mobile">
    <%= image_tag logo_url(software), class:"image_related rounded" %>
    <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2"><%= software.title %></div>
@@ -406,6 +500,8 @@ img.image_related {
    </div>
 
 </div>
+<%# related_mobile %>
+</div>
 <% end %>
 </div>
 <%# related %>
@@ -414,6 +510,9 @@ img.image_related {
 
 </div>
 <%# fin containershow %>
+
+</div>
+<%# bigcontainer %>
 
 <script>
    if (window.location.href.indexOf($('.containershow[data-id]').attr('data-id')) > -1) {
@@ -435,4 +534,26 @@ createSlick();
 //Now it will not throw error, even if called multiple times.
 $(window).on( 'resize', createSlick );
 </script>
-</div>
+
+<script>
+$(function() {
+  // This will select everything with the class smoothScroll
+  // This should prevent problems with carousel, scrollspy, etc...
+  $('.smoothScroll').click(function() {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 1000); // The number here represents the speed of the scroll in milliseconds
+        return false;
+      }
+    }
+  });
+});
+
+// Change the speed to whatever you want
+// Personally i think 1000 is too much
+// Try 800 or below, it seems not too much but it will make a difference
+</script>
