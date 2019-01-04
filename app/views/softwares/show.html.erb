@@ -83,8 +83,8 @@
    }
    .containershow {
     background: white;
-    margin: auto;
-    max-width:900px;
+    display: flex;
+    max-width: 1200px!important;
     }
 
     .show.description {
@@ -186,10 +186,40 @@ a.tag {
 .show ul {
   padding-left: 3rem;
 }
+
+/* related */
+.bigshow.related {
+   width: 300px;
+   padding-left: 10px;
+   background: #f5f7fb;
+   padding-top: 16px;
+}
+  @media only screen and (max-width: 1000px){
+     .bigshow.related {
+        display:none;
+     }
+  }
+.bigcontainer {
+    display: flex;
+    max-width: 1200px!important;
+    margin: auto;
+}
+img.image_related {
+   max-width:80px;
+}
+.containershowbis {
+    max-width: 900px;
+}
+/*  */
+.bigshow.pt-4.overflow-hidden.bg-transparent.rounded.mx-auto.bigshow2 {
+   background-color:#f5f7fb!important;
+}
 </style>
+<div class="bigcontainer">
 <div class="containershow" data-id="<%= @software.slug %>">
-<div class="bigshow mt-4 overflow-hidden bg-white rounded mx-auto">
-<div class="p-4 mb-4">
+<div class="containershowbis">
+<div class="bigshow pt-4 overflow-hidden bg-transparent rounded mx-auto">
+<div class="p-4 pb-5 bg-white">
       <div class="image_wrapper">
          <%= image_tag logo_url(@software) %>
       </div>
@@ -348,8 +378,39 @@ a.tag {
 <%# fin commun %>
 
 
+</div>
+<%# containershowbis %>
+<div class="bigshow related">
+<div class="related">
+<h5 class="text-center mb-3 lg:mb-2 uppercase tracking-wide bg-white p-2 font-bold text-sm lg:text-sm">Alternatives à <%= @software.title %></h5>
+<% @related_softwares.each do |software| %>
+<div style="" class="max-w-sm bg-white mb-4 text-center pt-4">
+   <%= image_tag logo_url(software), class:"image_related rounded" %>
+   <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-2"><%= software.title %></div>
+      <p class="text-grey-darker text-base"><%= software.slogan %></p>
+   </div>
 
+   <div class="px-3 py-3">
+   <div class="cat_big">   
+         <% software.categories.each do |category| %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+   </div>
+   </div>
 
+   <div class="px-6 py-4">
+      <%= link_to software_path(software), class:"btn btn-primary btn-sm" do %> 
+      Découvrir
+      <% end %>
+   </div>
+
+</div>
+<% end %>
+</div>
+<%# related %>
+</div>
+<%# bigshow %>
 
 </div>
 <%# fin containershow %>
@@ -374,3 +435,4 @@ createSlick();
 //Now it will not throw error, even if called multiple times.
 $(window).on( 'resize', createSlick );
 </script>
+</div>

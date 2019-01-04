@@ -15,7 +15,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares/1.json
   def show
     @software = Software.friendly.find(params[:id])
-    @related_softwares = Software.joins(:categories).where('softwares.id != ?', @software.id).where(software_categories: {category_id: @software.category_ids}).distinct
+    @related_softwares = Software.joins(:categories).where('softwares.id != ?', @software.id).where(software_categories: {category_id: @software.category_ids}).limit(3).order("RANDOM()").distinct
     impressionist(@software)
     @is_liked = @software.is_liked(current_user) if user_signed_in?
     @comment = Comment.build_from(@software, current_user.id, '') if user_signed_in?
