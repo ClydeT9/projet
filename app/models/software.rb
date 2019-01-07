@@ -12,7 +12,7 @@ class Software < ApplicationRecord
     self.per_page = 20
     
     
-    validates :title, length: {maximum: 25} 
+    validates :title, length: {maximum: 25}
     validates :software_url, length: {maximum: 250} 
     validates :target, length: {maximum: 200} 
     validates :slogan, length: {maximum: 50} 

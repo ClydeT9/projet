@@ -309,11 +309,135 @@ background-color:#a378fc;
     max-height:200px!important;
 }
 }
-.menudropdown.bis, .menudropdown.biss, .menudropdown.bisss {
-    display:none!important;
+
+   .like_button {
+   display: inline-block;
+   float: right;
+   }
+   #timeline .listing {
+   max-height:90px;
+   }
+   .like_button {
+      position:relative;
+      bottom: 3.6rem;
+      z-index:1;
+      margin-right:20px;
+   }
+   li.listing.clearfix.big {
+    margin-bottom: -10px!important;
 }
-.menudropdown {
-    display:block!important;
+
+span.cat_info {
+    margin: 0px;
+    margin-bottom: 4px;
+}
+
+.cat_info a {
+       font-size: 9px;
+}
+.job_info {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    max-width:100%;
+    max-height: 16px;
+}
+
+.info.big {
+    line-height: 1.25;
+    padding-left: 25px;
+    display: inline-block;
+    position: relative;
+    bottom: 5px;
+}
+.scroll {
+  white-space: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar; }
+
+.scroll::-webkit-scrollbar {
+  display: none; }
+
+.container.example-three {
+    max-width: 340px!important;
+    float: left;
+    padding-left: 0px;
+    margin-right: 0px;
+    max-height:19px;
+} 
+nav.vertical-align-middle.scroll {
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+#timeline .image_wrapper {
+  position:absolute;
+}
+.info {
+    position: relative;
+    left: 4%;
+    width: 80%;
+}
+
+.image_wrapper {
+    max-height: 60px;
+    height:60px;
+    display: flex;
+    align-items: center;
+}
+@media only screen and (max-width: 500px){ 
+.container.example-three {
+    max-width: 550px!important;
+}
+.info.big {
+    max-width: 17em;
+    margin-top: 10px;
+}
+a.like_button.no-click {
+    padding-top:10px;
+}
+#timeline .listing {
+    min-height: 10.3em;
+}
+nav.vertical-align-middle.scroll {
+    max-width:250px;
+}
+#timeline .image_wrapper {
+    padding-top:25px;
+}
+.main {
+    height: auto;
+}
+}
+
+.hello.no-click,.hello2.no-click.disliked {
+    color:#495057;
+    background-color: #fff;
+    border-color: rgba(0, 40, 100, 0.12);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+}
+.hello2.no-click {
+    color:white;
+    background-color: #467fcf;
+    border-color: #467fcf;
+}
+.hello.no-click.liked {
+    color:white;
+    background-color: #467fcf;
+    border-color: #467fcf;
+}
+.hello2.no-click.liked {
+    color:white;
+    background-color: #467fcf;
+    border-color: #467fcf;
+}
+@media only screen and (max-width: 1200px){  
+    .job_info {
+    max-width:100%;
+}
+
+.info {
+    left: 18%;
+}
 }
 </style>
 <div class="index">
@@ -427,14 +551,83 @@ background-color:#a378fc;
   <div class="main">
     <div id="my-softwares">
     	<ul id="timeline">
-          <%= render @softwares %>
+
+<% @softwares.each do |software| %>
+<% if software.published? %>
+        <li class="listing clearfix big" data-id="<%= software.slug %>">
+          <div class="image_wrapper">      
+            <%= image_tag software.logo %>
+          </div>
+          <div class="info">
+            <span class="job_title"><%= software.title %></span>
+            <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">         
+               <% software.categories.each do |category| %>
+               <% if category.parent.nil? %>
+                     parent
+                     <% else %>
+                     <%= link_to category.name, category, class:"tag no-click" %>
+               <% end %>
+               <% end %>
+            </span>
+            </nav>
+            </div>
+          </div>
+        </li>
+
+<li class="listing clearfix little" data-id="<%= software.slug %>">
+   <div class="image_wrapper">
+      <%= image_tag software.logo.variant(resize: "120x120") %>
+   </div>
+   <div class="info big">
+      <span class="job_title"><%= software.title %>
+      </span>
+      <span class="job_info"><%= software.slogan %></span>
+            <div class="container example-three">
+            <nav class="vertical-align-middle scroll">
+            <span class="cat_info">      
+         <% software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </span> 
+      </nav>
+      </div>
+   </div>
+</li>
+
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? software) %>
+                <%= link_to like_software_path(software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
+
+<% end %>
+<%# published %>
+<% end %>
       </ul>
     </div>
-    <%= will_paginate @softwares, :previous_label => 'Précédent', :next_label => 'Suivant', :page_links => false %>
+      <%= will_paginate @softwares, :previous_label => 'Précédent', :next_label => 'Suivant' %>
   </div><%# main %>
 
 <div class="sidebar2">
   <div id='contentest'>
+
 <div class="newsletter2">
   <h3>Inscrivez-vous à notre newsletter</h3>
   <br>
@@ -460,14 +653,11 @@ background-color:#a378fc;
 </div>
 <%# index %>
 
-
 <script>
-// softwares/index
 $(".listing.clearfix.big[data-id]").click(function (e) {
   if (!$(e.target).hasClass('no-click')) {
     $.get('/app/' + $(this).attr('data-id'), function (data) {
       $('#contentest').html(data);
-      $('#contentest').scrollTop(0);
     });
   }
 });
