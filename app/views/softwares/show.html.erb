@@ -302,6 +302,7 @@ img.image_related {
     }
 }
 </style>
+<% if @software.approved? %>
 <div class="bigshow">
    <a class="smoothScroll" href="#related">
    <div class="related_softwares">Découvrir les alternatives à <%= @software.title %>
@@ -516,6 +517,246 @@ img.image_related {
 
 </div>
 <%# bigcontainer %>
+
+
+
+
+
+
+
+<% else %>
+<% if current_user %>
+<div class="apercucurrent" style="width:70%; margin:auto; text-align:center; padding-top:10px; font-weight: bold; font-size: 14px;">En attente de validation ...
+Mais voici un aperçu de votre page une fois que celle-ci sera en ligne.</div>
+
+<div class="bigshow">
+   <a class="smoothScroll" href="#related">
+   <div class="related_softwares">Découvrir les alternatives à <%= @software.title %>
+   <i class="fas fa-caret-right fa-lg"></i>
+   </div>
+   </a>
+</div>
+
+<div class="bigcontainer">
+<div class="containershow" data-id="<%= @software.slug %>">
+<div class="containershowbis">
+<div class="bigshow pt-4 overflow-hidden bg-transparent rounded mx-auto">
+<div class="p-4 pb-5 bg-white">
+      <div class="image_wrapper">
+         <%= image_tag logo_url(@software) %>
+      </div>
+      <div class="bigshow_titre">
+         <h3 class="mb-2"><%= @software.title %>
+
+         <small class="text-sm">(Par <%= @software.editeur %>)</small>
+
+        <% if (!user_signed_in?) %>
+        <a class="like_button no-click" data-toggle="modal" data-target="#signUpModal">
+            <span class="btn btn-secondary btn-sm pl-4 pr-4 no-click"><i class="fas fa-caret-up fa-lg no-click" aria-hidden="true"></i></span>
+        </a>
+        <% else %>
+            <% if (!current_user.liked? @software) %>
+                <%= link_to like_software_path(@software), class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello btn btn-secondary btn-sm pl-4 pr-4 no-click" id="software-<%= @software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>  
+            <% else %>
+                <%= link_to like_software_path(@software),class:"like_button ml-auto no-click", method: :put, remote: true do %> 
+                <span class="hello2 btn btn-primary btn-sm pl-4 pr-4 no-click" id="software-<%= @software.id.to_s %>"><i class="fas fa-caret-up no-click" aria-hidden="true"></i></span>
+                <% end %>
+            <% end %>
+        <% end %>
+        
+</h3>
+         <h5 class="text-grey-dark mb-2">
+            <%= @software.slogan %>
+         </h5>
+         <div class="cat_big">   
+         <% @software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+         </div>
+      </div>
+   </div>
+</div> 
+<%# fin du big %>
+
+<div class="littleshow w-full overflow-hidden bg-white rounded mx-auto">
+<div class="titleshow p-4 h-32">
+         <div class="image_wrapper little">      
+            <%= image_tag @software.logo %>
+         </div>
+      <div class="info little">
+      <h3 class="mb-2"><%= @software.title %> <small class="text-sm">(Par <%= @software.editeur %>)</small></h3>
+      <label class="form-label text-sm mb-2">
+         <%= @software.slogan %>
+      </label>
+      <div class="cat_little">   
+         <% @software.categories.each do |category| %>
+         <% if category.parent.nil? %>
+                parent
+                <% else %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+         <% end %>
+      </div>
+      </div>
+      <%# info %>
+   </div>
+</div>
+<%# fin du little %>
+<div class="slide">
+<% if get_video_iframe(@software.video_url) == nil %>
+                          <div class="slider-box _clearfix">
+                          <div class="slick-slider">
+                                <% (0...@software.images.count).each do |image| %>
+                                <%= image_tag(@software.large(image))%>
+                                <% end %>
+                          </div>
+                         <div class="paginator-center text-color text-center">
+                          <ul class="prevnext">
+                              <li class="prev"><i class="fas fa-arrow-circle-left"></i></li>
+                              <li class="next"><i class="fas fa-arrow-circle-right"></i></li>
+                          </ul>
+                        </div>
+                        </div>
+<% else %>
+                          <div class="slider-box _clearfix">
+                          <div class="slick-slider">
+                                <%= get_video_iframe(@software.video_url) %>
+                                <% (0...@software.images.count).each do |image| %>
+                                <%= image_tag(@software.large(image))%>
+                                <% end %>
+                          </div>
+                         <div class="paginator-center text-color text-center">
+                          <ul class="prevnext">
+                              <li class="prev"><i class="fas fa-arrow-circle-left"></i></li>
+                              <li class="next"><i class="fas fa-arrow-circle-right"></i></li>
+                          </ul>
+                        </div>
+                        </div>
+<% end %>
+</div>
+
+<div class="w-full overflow-hidden bg-white rounded mx-auto">
+<div class="link mt-4 mb-2 text-center">
+      <%= link_to @software.software_url, :target=>"_blank" do %><button type="button" class="btn btn-secondary btn-sm"><i class="fas fa-external-link-alt"></i> Website</button><% end %>
+      <% if @software.facebook == "" %><%else%><%= link_to @software.facebook, :target=>"_blank" do %><button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-facebook"></i> Facebook</button><% end %><% end %>
+      <% if @software.linkedin == "" %><%else%><%= link_to @software.linkedin, :target=>"_blank" do %><button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-linkedin"></i> Linkedin</button><% end %><% end %>
+      <% if @software.twitter == "" %><%else%><%= link_to @software.twitter, :target=>"_blank" do %><button type="button" class="btn btn-secondary btn-sm"><i class="fab fa-twitter-square"></i> Twitter</button><% end %><% end %>
+   </div>
+   <div class="show p-4">
+      <div class="text-grey-darkest text-sm sans-serif">
+         <h5>Idéal pour</h5>
+         <hr>
+         <p> <%= @software.target %></p>
+      </div>
+   </div>
+</div>
+<%# commun aussi %>
+
+
+<div class="bigshow mt-4 overflow-hidden bg-white rounded mx-auto">
+<div class="show description p-4">
+      <div class="text-grey-darkest text-sm sans-serif">
+         <h5>Description</h5>
+         <hr>
+         <p><%= sanitize @software.description %> </p>
+      </div>
+   </div>
+</div>
+<%# fin big %>
+
+
+<div class="littleshow w-full overflow-hidden bg-white rounded mx-auto">
+<div class="show p-4">
+      <div class="text-grey-darkest text-sm sans-serif">
+         <h5>Description</h5>
+         <hr>
+         <p><%= sanitize @software.description %></p>
+      </div>
+   </div>
+</div>
+<%# fin little %>
+
+<div class="w-full overflow-hidden bg-white rounded mx-auto">
+<div class="show p-4 bg-white">
+   <div class="text-grey-darkest text-sm sans-serif">
+      <h5>Commentaires</h5>
+      <hr>
+      <div id="comment-software-<%= @software.id.to_s %>">
+         <%= render 'comments/list', comment: @comment %>
+      </div>
+      <br>
+      <div id="comment-form-software-<%= @software.id.to_s %>">
+         <%= render 'comments/form', comment: @comment %>
+      </div>
+   </div>
+</div>
+</div>
+<%# fin commun %>
+
+
+</div>
+<%# containershowbis %>
+<div class="bigshow related" id="related">
+<div class="related">
+<h5 class="text-center uppercase tracking-wide bg-white p-2 font-bold text-sm lg:text-sm">Alternatives à <%= @software.title %></h5>
+<div class="brtest mb-4"></div>
+<% @related_softwares.each do |software| %>
+<div class="max-w-sm bg-white mb-4 text-center pt-4">
+<div class="related_mobile">
+   <%= image_tag logo_url(software), class:"image_related rounded" %>
+   <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-2"><%= software.title %></div>
+      <p class="text-grey-darker text-base"><%= software.slogan %></p>
+   </div>
+
+   <div class="px-3 py-3">
+   <div class="cat_big">   
+         <% software.categories.each do |category| %>
+                <%= link_to category.name, category, class:"tag no-click" %>
+         <% end %>
+   </div>
+   </div>
+
+   <div class="px-6 py-4">
+      <%= link_to software_path(software), class:"btn btn-primary btn-sm" do %> 
+      Découvrir
+      <% end %>
+   </div>
+
+</div>
+<%# related_mobile %>
+</div>
+<% end %>
+</div>
+<%# related %>
+</div>
+<%# bigshow %>
+
+</div>
+<%# fin containershow %>
+
+</div>
+<%# bigcontainer %>
+
+
+
+
+
+
+
+
+
+
+<% end %>
+<%# fin du else approved %>
+<% end %>
+<%# approved ? %>
 
 <script>
    if (window.location.href.indexOf($('.containershow[data-id]').attr('data-id')) > -1) {

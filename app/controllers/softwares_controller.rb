@@ -8,7 +8,7 @@ class SoftwaresController < ApplicationController
   # GET /softwares
   # GET /softwares.json
   def index
-    @softwares = Software.includes(:comment_threads).paginate(:page => params[:page], :per_page => 25).order("published_at desc")
+    @softwares = Software.includes(:comment_threads).where(approved: true).paginate(:page => params[:page], :per_page => 25).order("published_at desc")
   end
 
   # GET /softwares/1
@@ -55,7 +55,7 @@ class SoftwaresController < ApplicationController
             params[:images].each do |i|
             end
         end
-        redirect_to edit_software_path(@software), notice:"Votre logiciel a été ajouté avec succès" 
+        redirect_to edit_software_path(@software), notice:"Votre app a été ajouté avec succès, elle sera mise en ligne après validation." 
   else
        render :new
   end
@@ -136,5 +136,4 @@ private
           redirect_to root_path
       end
     end
-
 end

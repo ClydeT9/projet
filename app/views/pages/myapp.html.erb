@@ -41,7 +41,19 @@ strong.premium {
     </div></div>
     <!-- card-content -->
      <div class="myapp3 px-6 py-6">
-      <h2 class="mb-2 mt-2 black"><%= link_to software.title, software_path(software) %> <% if software.published? %><span class="badge badge-success">En ligne</span><%else%><span class="badge badge-warning">Brouillon</span><%end%></h2>
+      <h2 class="mb-2 mt-2 black">
+        <%= link_to software.title, software_path(software) %> 
+          <% if software.published? %>
+            <% if software.approved %>
+            <span class="badge badge-success">En ligne</span>
+            <% else %>
+            <span class="badge badge-default">En attente</span>
+            <% end %>
+            <%# software approved %>
+          <%else%>
+            <span class="badge badge-warning">Brouillon</span>
+        <%end%>
+      </h2>
       <p class="mb-4 text-grey-dark text-sm">
         <%= link_to software.slogan, software_path(software) %>
       </p>
@@ -75,13 +87,6 @@ strong.premium {
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
 
 
 

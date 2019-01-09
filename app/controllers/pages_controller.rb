@@ -9,19 +9,19 @@ class PagesController < ApplicationController
     end
 
     def new
-        @softwares = Software.includes(:comment_threads).paginate(:page => params[:page], :per_page => 25).order("published_at desc")
+        @softwares = Software.includes(:comment_threads).where(approved: true).paginate(:page => params[:page], :per_page => 25).order("published_at desc")
     end
 
     def hot
-        @softwares = Software.includes(:comment_threads).paginate(:page => params[:page], :per_page => 25).order(:cached_votes_up => :desc)
+        @softwares = Software.includes(:comment_threads).where(approved: true).paginate(:page => params[:page], :per_page => 25).order(:cached_votes_up => :desc)
     end
 
     def random
-        @softwares = Software.includes(:comment_threads).paginate(:page => params[:page], :per_page => 25).order("RANDOM()")
+        @softwares = Software.includes(:comment_threads).where(approved: true).paginate(:page => params[:page], :per_page => 25).order("RANDOM()")
     end
 
     def search
-        @softwares = Software.ransack(title_or_slogan_cont: params[:q]).result(distinct: true).paginate(:page => params[:page], :per_page => 14).order("published_at desc")
+        @softwares = Software.ransack(title_or_slogan_cont: params[:q]).result(distinct: true).where(approved: true).paginate(:page => params[:page], :per_page => 14).order("published_at desc")
         @categories = Category.ransack(name_cont: params[:q]).result(distinct: true)
 
         respond_to do |format|

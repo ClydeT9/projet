@@ -554,7 +554,7 @@ nav.vertical-align-middle.scroll {
     <div id="my-softwares">
 <% if @category.id == 55 %>
 <% @secteurs.each do |software| %>
-<% if software.published? %>
+<% if software.published? && software.approved %>
         <li class="listing clearfix big" data-id="<%= software.slug %>">
           <div class="image_wrapper">      
             <%= image_tag software.logo %>
@@ -628,7 +628,7 @@ nav.vertical-align-middle.scroll {
 
 <% if @category.id == 1 %>
 <% @collaboration.each do |software| %>
-<% if software.published? %>
+<% if software.published? && software.approved %>
         <li class="listing clearfix big" data-id="<%= software.slug %>">
           <div class="image_wrapper">      
             <%= image_tag software.logo %>
@@ -701,7 +701,7 @@ nav.vertical-align-middle.scroll {
 
 <% if @category.id == 9 %>
 <% @finances.each do |software| %>
-<% if software.published? %>
+<% if software.published? && software.approved %>
         <li class="listing clearfix big" data-id="<%= software.slug %>">
           <div class="image_wrapper">      
             <%= image_tag software.logo %>
@@ -774,7 +774,7 @@ nav.vertical-align-middle.scroll {
 
 <% if @category.id == 19 %>
 <% @commerce.each do |software| %>
-<% if software.published? %>
+<% if software.published? && software.approved %>
         <li class="listing clearfix big" data-id="<%= software.slug %>">
           <div class="image_wrapper">      
             <%= image_tag software.logo %>
@@ -848,7 +848,7 @@ nav.vertical-align-middle.scroll {
 
 <% if @category.id == 28 %>
 <% @internet.each do |software| %>
-<% if software.published? %>
+<% if software.published? && software.approved %>
         <li class="listing clearfix big" data-id="<%= software.slug %>">
           <div class="image_wrapper">      
             <%= image_tag software.logo %>
@@ -922,7 +922,7 @@ nav.vertical-align-middle.scroll {
 
 <% if @category.id == 36 %>
 <% @marketing.each do |software| %>
-<% if software.published? %>
+<% if software.published? && software.approved %>
         <li class="listing clearfix big" data-id="<%= software.slug %>">
           <div class="image_wrapper">      
             <%= image_tag software.logo %>
@@ -994,7 +994,7 @@ nav.vertical-align-middle.scroll {
 
 <% if @category.id == 43 %>
 <% @rh.each do |software| %>
-<% if software.published? %>
+<% if software.published? && software.approved %>
         <li class="listing clearfix big" data-id="<%= software.slug %>">
           <div class="image_wrapper">      
             <%= image_tag software.logo %>
@@ -1066,7 +1066,7 @@ nav.vertical-align-middle.scroll {
 
 <% if @category.id == 50 %>
 <% @client.each do |software| %>
-<% if software.published? %>
+<% if software.published? && software.approved %>
         <li class="listing clearfix big" data-id="<%= software.slug %>">
           <div class="image_wrapper">      
             <%= image_tag software.logo %>
@@ -1140,7 +1140,7 @@ nav.vertical-align-middle.scroll {
 
 <% if @category.subtree %>
 <% @category.softwares.each do |software| %>
-<% if software.published? %>
+<% if software.published? && software.approved %>
         <li class="listing clearfix big" data-id="<%= software.slug %>">
           <div class="image_wrapper">      
             <%= image_tag software.logo %>

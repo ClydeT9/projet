@@ -2,13 +2,14 @@ ActiveAdmin.register Software do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :title, :logo, :slug, :slogan
+permit_params :title, :logo, :slug, :slogan, :approved
 
 form do |f|
   f.inputs do
     f.input :title
     f.input :slogan
     f.input :slug
+    f.check_box :approved
     f.input :description
     f.input :logo, as: :file
     f.actions
@@ -25,6 +26,9 @@ index do
       end
     column "Nom" do |software|
       link_to software.title, admin_software_path(software)
+    end
+    column "Approuvé" do |software|
+      software.approved
     end
     column "URL" do |software|
         software.software_url

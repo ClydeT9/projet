@@ -10,8 +10,9 @@ class Software < ApplicationRecord
     has_many_attached :images
     belongs_to :user
     self.per_page = 20
-    
-    
+
+    scope :approved, -> { where(approved: true) }
+
     validates :title, length: {maximum: 25}
     validates :software_url, length: {maximum: 250} 
     validates :target, length: {maximum: 200} 
