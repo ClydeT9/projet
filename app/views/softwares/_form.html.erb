@@ -136,7 +136,7 @@ trix-toolbar#trix-toolbar-1 {
     margin-bottom: 0rem!important;
 }
 </style>
-<%= simple_form_for @software, html: {multipart: true, name:"myForm", id:"formulaire"} do |f| %>
+<%= simple_form_for @software, html: {multipart: true, id:"formulaire"} do |f| %>
 <%= render 'shared/errors' %>
     <div class="row form">
         <div class="col-lg-9 form">
@@ -155,13 +155,13 @@ trix-toolbar#trix-toolbar-1 {
                                     <div class="flex">
                                     <div class="form-group w-100">
                                     <label class="form-label">Nom<span class="requis">(requis)</span></label>
-                                    <%= f.text_field :title, name:"name", id:"inputTitle",maxlength:"25",autocomplete: "title",class:"form-control col-sm-12 col-md-12", placeholder:"Uneapp" %>
+                                    <%= f.text_field :title, id:"inputTitle",maxlength:"25",autocomplete: "title",class:"form-control col-sm-12 col-md-12", placeholder:"Uneapp" %>
                                     </div>
                                     </div>
                                     <div class="flex">
                                     <div class="form-group w-1/2">
                                     <label class="form-label">Site internet<span class="requis">(requis)</span></label>
-                                    <%= f.text_field :software_url, name:"password", id:"inputURL",maxlength:"150",autocomplete: "software_url",class:"form-control mr-1", placeholder:"https://www.uneapp.com",onblur:"checkURL(this)" %>
+                                    <%= f.text_field :software_url, id:"inputURL",maxlength:"150",autocomplete: "software_url",class:"form-control mr-1", placeholder:"https://www.uneapp.com",onblur:"checkURL(this)" %>
                                     </div>
                                     <div class="form-group w-1/2">
                                     <label class="form-label">Éditeur<span class="requis">(requis)</span></label>
@@ -201,7 +201,7 @@ trix-toolbar#trix-toolbar-1 {
                                 <div class="flex">
                                 <div class="form-group w-100">
                                 <label class="form-label">Slogan<span class="requis">(requis)</span></label>
-                                    <%= f.text_field :slogan,id:"inputSlogan",autocomplete: "slogan",maxlength:"50", class:"form-control", placeholder:"Rechercher une app qui améliorera votre quotidien professionnel" %>
+                                    <%= f.text_field :slogan, id:"inputSlogan",autocomplete: "slogan",maxlength:"50", class:"form-control", placeholder:"Rechercher une app qui améliorera votre quotidien professionnel" %>
                                 </div>
                                 </div>
 
@@ -220,7 +220,7 @@ trix-toolbar#trix-toolbar-1 {
 
 
                                     <label class="form-label">Catégories<span class="requis">(5 maximum)</span></label>
-                                    <%= f.select :category_ids, grouped_options_for_select(categories, @software.category_ids), {}, {multiple: true, class: "selectize" } %>
+                                    <%= f.select :category_ids, grouped_options_for_select(categories, @software.category_ids), {}, {multiple: true, id:"inputCat", class: "selectize" } %>
                                     </div>
                                     </div>
                                     <%# flex  %>
@@ -263,7 +263,7 @@ trix-toolbar#trix-toolbar-1 {
             
 
 <label class="form-label">Screenshots<span class="requis">(minimum 1 screenshot)</span></label>
-<%= f.file_field :images, multiple: true %>
+<%= f.file_field :images, multiple: true,id:"inputScreen" %>
 <br><br>
 <div class="row">
    <% (0...@software.images.count).each do |image| %>
@@ -395,18 +395,63 @@ $(document).ready(function() {
 // }
 
 function checkWordCount() {
-var x=document.forms["myForm"]["name"].value;
+var x=document.forms["formulaire"]["inputTitle"].value;
 if (x==null || x=="")
   {
-  alert("Name must be filled out");
+  alert("Veuillez indiquer un nom dans le formulaire");
   return false;
   }
 
-var y=document.forms["myForm"]["password"].value;
+var y=document.forms["formulaire"]["inputURL"].value;
 if (y==null || y=="") {
-  alert("Password name must be filled out");
+  alert("Veuillez indiquer une url dans le formulaire");
   return false;
   }
+
+var y=document.forms["formulaire"]["inputEditeur"].value;
+if (y==null || y=="") {
+  alert("Veuillez indiquer un éditeur dans le formulaire");
+  return false;
+  }
+
+var y=document.forms["formulaire"]["inputSlogan"].value;
+if (y==null || y=="") {
+  alert("Veuillez indiquer un slogan dans le formulaire");
+  return false;
+  }
+
+var y=document.forms["formulaire"]["inputCat"].value;
+if (y==null || y=="") {
+  alert("Veuillez indiquer une catégorie");
+  return false;
+  }
+
+var y=document.forms["formulaire"]["inputTarget"].value;
+if (y==null || y=="") {
+  alert("Veuillez remplir le champ 'idéal pour' dans le formulaire");
+  return false;
+  }
+
+var y=document.forms["formulaire"]["inputFiles"].value;
+if (y==null || y=="") {
+  alert("Veuillez ajouter un logo");
+  return false;
+  }
+
+var y=document.forms["formulaire"]["inputScreen"].value;
+if (y==null || y=="") {
+  alert("Veuillez ajouter une capture d'écran");
+  return false;
+  }
+
+    s = document.getElementById("text").value;
+    s = s.replace(/(^\s*)|(\s*$)/gi,"");
+    s = s.replace(/[ ]{2,}/gi," ");
+    s = s.replace(/\n /,"\n");
+    if (s.split(' ').length <= 200) {
+        alert("Pas assez de mots dans la description ...");
+return false;
+    }
     }
 
 // 7
@@ -423,8 +468,8 @@ return false;
 })
 </script>
 
-
-<%# <script>
+<%# 
+<script>
 // Bouton publish disabled
 $(document).ready(function (){
     validate();
