@@ -310,6 +310,20 @@ input#q:hover {
     display:none!important;
 }
 }
+
+.editorconnexion {
+    margin-top: 4px;
+    text-decoration: underline;
+}
+.editorconnexiona {
+    font-size: 13px;
+    color: #606f7b;
+    cursor: pointer;
+}
+.editorconnexiona:hover {
+    cursor: pointer;
+    color: #467fcf!important;
+}
 </style>
 <div class="overlay"></div>  
 <div class="nav-wrapper">  
@@ -446,6 +460,7 @@ input#q:hover {
     <h6>Une façon simple de retrouver des applications web adaptées à vos besoins !</h6>
     <%= link_to user_facebook_omniauth_authorize_path do %><button class="facebooklogin"><i class="fab fa-facebook fa-2x"></i>Continuer avec Facebook</button><% end %>              
     <%= link_to user_google_oauth2_omniauth_authorize_path do %><button class="googlelogin"><i class="fab fa-google fa-2x"></i>Continuer avec Google</button><% end %>
+    <br><div class="editorconnexion"><a class="editorconnexiona" data-toggle="modal" data-target="#signUpModalEditor">Vous souhaitez mettre votre solution en ligne ? Cliquez ici</a></div>
 </div>
 
 <% end %>
