@@ -639,16 +639,24 @@ nav.vertical-align-middle.scroll {
 <div class="newsletter2">
   <h3>Inscrivez-vous à notre newsletter</h3>
   <br>
-  <h6>[Bientôt disponible]</h6>
-  <br>
-  <form class="w-full max-w-sm">
-  <div class="flex items-center border-b border-b-2 border-teal py-2">
-    <input class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="clyde.thomson@uneapp.com" aria-label="Full name" disabled>
-    <button class="flex-no-shrink bg-teal hover:bg-teal-dark border-teal hover:border-teal-dark text-sm border-4 text-white py-1 px-2 rounded" type="button">
-      Inscription
-    </button>
-  </div>
-</form>
+
+      <form class="w-full max-w-sm" id="theform" name="theform" action="https://my.sendinblue.com/users/subscribeembed/js_id/3tn1g/id/2" method="POST">
+        <div class="flex items-center border-b border-b-2 border-teal py-2">
+         <input type="hidden" name="js_id" id="js_id" value="3tn1g"><input type="hidden" name="listid" id="listid" value="3"><input type="hidden" name="from_url" id="from_url" value="yes"><input type="hidden" name="hdn_email_txt" id="hdn_email_txt" value=""> <input type="hidden" name="sib_simple" value="simple"> <input type="hidden" name="sib_forward_url" value="https://www.uneapp.com" id="sib_forward_url"> 
+            <input type="hidden" name="req_hid" id="req_hid" value="" style="font-size: 13px;"> 
+            <!-- an email as primary --> 
+              <input type="email" name="email" id="email" value="" placeholder="clyde.thomson@uneapp.com" class="appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none"> 
+                  <div style="clear:both;"></div>
+                  <div class="hidden-btns">
+                     <br> <!----> 
+                  </div>
+            <!-- end of primary --> 
+            <button class="flex-no-shrink bg-teal hover:bg-teal-dark border-teal hover:border-teal-dark text-sm border-4 text-white py-1 px-2 rounded" type="submit" data-editfield="subscribe">S'inscrire</button>
+            <div style="clear:both;"></div>
+            </div>
+      </form>
+<!-- End : SendinBlue Signup Form HTML Code -->
+
 </div>
 <%# newsletter2 %>
 

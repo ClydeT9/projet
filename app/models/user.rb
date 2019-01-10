@@ -8,15 +8,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
-         def thumbnail input
+  validates_length_of :softwares, maximum: 1
+
+        def thumbnail input
           return self.images[input].variant(resize: '100x100>').processed
         end
         def medium input
           return self.images[input].variant(resize: '300x300>').processed
         end
 
-         extend FriendlyId
-         friendly_id :name, use: [:slugged, :finders]
+        extend FriendlyId
+        friendly_id :name, use: [:slugged, :finders]
 
         def self.create_from_facebook_data(facebook_data)
           where(provider: facebook_data.provider, uid: facebook_data.uid).first_or_create do | user |

@@ -21,6 +21,7 @@ class Software < ApplicationRecord
     validates :facebook,length: {maximum: 100} 
     validates :linkedin, length: {maximum: 100} 
     validates :twitter, length: {maximum: 100} 
+    validates_associated :user
 
     def view_count_yesterday
         impressions.where("created_at >= ? AND created_at < ?",1.day.ago.beginning_of_day, 1.day.ago.end_of_day).size
