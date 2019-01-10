@@ -136,7 +136,7 @@ trix-toolbar#trix-toolbar-1 {
     margin-bottom: 0rem!important;
 }
 </style>
-<% if current_user.softwares.size == 0 %>
+<% if current_user.softwares.size == 1 %>
 
 <%= simple_form_for @software, html: {multipart: true, id:"formulaire"} do |f| %>
 <%= render 'shared/errors' %>
