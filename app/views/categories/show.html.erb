@@ -1139,7 +1139,7 @@ nav.vertical-align-middle.scroll {
 
 
 <% if @category.subtree %>
-<% @category.softwares.each do |software| %>
+<% @category.softwares.order("published_at desc").each do |software| %>
 <% if software.published? && software.approved %>
         <li class="listing clearfix big" data-id="<%= software.slug %>">
           <div class="image_wrapper">      

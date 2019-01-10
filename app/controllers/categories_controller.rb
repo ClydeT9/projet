@@ -10,14 +10,14 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @secteurs = Software.joins(:categories).where(categories: { ancestry: "55" }).distinct
-    @collaboration = Software.joins(:categories).where(categories: { ancestry: "1" }).distinct
-    @finances = Software.joins(:categories).where(categories: { ancestry: "9" }).distinct
-    @commerce = Software.joins(:categories).where(categories: { ancestry: "19" }).distinct
-    @internet = Software.joins(:categories).where(categories: { ancestry: "28" }).distinct
-    @marketing = Software.joins(:categories).where(categories: { ancestry: "36" }).distinct
-    @rh = Software.joins(:categories).where(categories: { ancestry: "43" }).distinct
-    @client = Software.joins(:categories).where(categories: { ancestry: "50" }).distinct
+    @secteurs = Software.joins(:categories).where(categories: { ancestry: "55" }).order("published_at desc").distinct
+    @collaboration = Software.joins(:categories).where(categories: { ancestry: "1" }).order("published_at desc").distinct
+    @finances = Software.joins(:categories).where(categories: { ancestry: "9" }).order("published_at desc").distinct
+    @commerce = Software.joins(:categories).where(categories: { ancestry: "19" }).order("published_at desc").distinct
+    @internet = Software.joins(:categories).where(categories: { ancestry: "28" }).order("published_at desc").distinct
+    @marketing = Software.joins(:categories).where(categories: { ancestry: "36" }).order("published_at desc").distinct
+    @rh = Software.joins(:categories).where(categories: { ancestry: "43" }).order("published_at desc").distinct
+    @client = Software.joins(:categories).where(categories: { ancestry: "50" }).order("published_at desc").distinct
   end
   
   def new
