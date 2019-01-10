@@ -2,7 +2,7 @@ ActiveAdmin.register User do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :email, :name, :id, :provider
+permit_params :email, :name, :id, :provider, :role_editor
 
 index do
     selectable_column
