@@ -3,7 +3,7 @@ class Software < ApplicationRecord
     acts_as_commentable
     is_impressionable
     has_many :software_categories
-    has_many :categories, through: :software_categories, dependent: :destroy
+    has_many :categories, through: :software_categories, dependent: :delete_all
     has_many :impressions, :as=>:impressionable
     has_many :likes
     has_one_attached :logo
