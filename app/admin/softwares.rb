@@ -2,16 +2,18 @@ ActiveAdmin.register Software do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :title, :editor, :description, :logo, :slug, :slogan, :approved, :software_url
+permit_params :title, :editeur, :description, :logo, :slug, :slogan, :approved, :software_url, :user
 
 form do |f|
   f.inputs do
     f.input :title
     f.input :slogan
     f.input :slug
+    f.input :user
     f.input :software_url
     f.check_box :approved
     f.input :description
+    f.input :editeur
     f.input :logo, as: :file
     f.actions
   end
@@ -53,7 +55,10 @@ show do
       row :cached_votes_total
       row :title
       row :slug
+      row :editeur
       row :slogan
+      row :software_url
+      row :user
       row :logo do |ad|
         image_tag url_for(ad.logo)
       end
