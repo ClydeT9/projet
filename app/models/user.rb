@@ -8,7 +8,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
-  validates_length_of :softwares, maximum: 1
+  validates_length_of :softwares, maximum: 3
 
         def thumbnail input
           return self.images[input].variant(resize: '100x100>').processed
