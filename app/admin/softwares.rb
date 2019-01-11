@@ -2,7 +2,7 @@ ActiveAdmin.register Software do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :title, ,:editor, :description, :logo, :slug, :slogan, :approved, :software_url
+permit_params :title, :editor, :description, :logo, :slug, :slogan, :approved, :software_url
 
 form do |f|
   f.inputs do
